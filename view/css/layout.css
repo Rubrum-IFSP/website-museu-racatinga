@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Six+Caps&display=swap');
+
+:root {
+    --primary-color: #E7D1B5;
+}
+
+body {
+    box-sizing: border-box;
+    height: 100%;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+header,
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+header {
+    width: 100%;
+    justify-content: space-between;
+    padding: 20px;
+    background: var(--primary-color);
+}
+
+nav {
+    width: 30%;
+    justify-content: space-evenly;
+}
+
+header img {
+    width: 100px;
+}
