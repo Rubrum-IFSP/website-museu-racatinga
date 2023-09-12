@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./view/css/index.css">
     <title>Museu de Racatinga</title>
 </head>
 <body>
@@ -15,15 +16,13 @@
         </nav>
     </header>
 
-    <section>
+    <section class="landing-section">
         <h3>A história vive</h3>
         <h1>Museu de Racatinga</h1>
-
-        <img src="./view/images/wallpaper.jpg" alt="wallpaper">
         <a href="./view/pages/equipe.html">SOBRE</a>
     </section>
 
-    <section>
+    <section class="contate-nos">
         <div id="quem-somos">
             <h2>Quem nós somos?</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur sequi accusantium necessitatibus sapiente? Dolores consequuntur commodi corrupti ex ipsa repellat molestiae recusandae quia veritatis sunt? Quibusdam fugiat voluptatum libero vel.</p>
@@ -32,15 +31,19 @@
         <div id="contato">
             <h2>Tendo algum problema?</h2>
             
-            <div>
-                <img src="#" alt="profile-pic">
+            <div class="contato-container">
+                <img src="./view/images/default_profile_pic.png" alt="profile-pic">
 
                 <form action="#">
-                    <label for="email-contato">Email:</label>
-                    <input type="email" name="email" id="email-contato">
+                    <div>
+                        <label for="email-contato">Email:</label>
+                        <input type="email" name="email" id="email-contato">
+                    </div>
 
-                    <label for="fale-conosco-contato">Fale Conosco:</label>
-                    <input type="text" name="fale-conosco-contato" id="fale-conosco-contato"/>
+                    <div>
+                        <label for="fale-conosco-contato">Fale Conosco:</label>
+                        <input type="text" name="fale-conosco-contato" id="fale-conosco-contato"/>
+                    </div>
                 </form>
             </div>
         </div>

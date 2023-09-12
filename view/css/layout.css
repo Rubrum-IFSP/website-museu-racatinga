@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Six+Caps&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Six+Caps&display=swap');
+
+:root {
+    --primary-color: #574f45;
+}
+
+body {
+    box-sizing: border-box;
+    height: 100%;
+    font-family: 'Lato', sans-serif;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+header,
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+header {
+    position: absolute;
+    width: 100%;
+    justify-content: space-between;
+    padding: 13px;
+    background: var(--primary-color);
+}
+
+header img {
+    margin-left: 20px;
+    border-radius: 50px;
+    width: 90px;
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, .25);
+}
+
+nav {
+    width: 30%;
+    gap: 1em;
+    justify-content: space-evenly;
+}
+
+nav a {
+    color: white;
+    text-align: center;
+    background-color: black;
+    padding: 15px;
+    border-radius: 15px;
+    border: 2px solid black;
+    text-decoration: none;
+    font-size: 1.5em;
+    width: 200px;
+    transition: .25s;
+}
+
+nav a:hover {
+    color: black;
+    background-color: white;
+}
