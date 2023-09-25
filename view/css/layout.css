@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Six+Caps&display=swap');
 
 :root {
-    --primary-color: #574f45;
+    --primary-color: rgba(0, 0, 0, .1);
 }
 
 body {
@@ -69,8 +69,10 @@ nav a:hover {
 
 footer {
     width: 100%;
-    justify-content: space-between;
+    justify-content: space-evenly;
     padding: 20px;
     color: white;
     background-color: black;
+    font-family: 'Six Caps', sans-serif;
+    font-size: 3.5em;
 }

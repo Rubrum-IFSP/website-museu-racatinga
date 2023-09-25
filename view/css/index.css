@@ -68,7 +68,7 @@ section.contate-nos {
 }
 
 #quem-somos p {
-    background-color: #beaaaa;
+    background-color: #b0b0b079;
     padding: 25px;
     width: 540px;
     border-radius: 15px;
@@ -90,7 +90,14 @@ form {
     height: 100%;
 }
 
+#contato h2 {
+    font-family: 'Six Caps', sans-serif;
+    font-weight: 400;
+    font-size: 5em;
+}
+
 .contato-container {
+    width: inherit;
     align-items: flex-start;
     gap: 1em;
 }
@@ -101,13 +108,43 @@ form {
 }
 
 .contato-container form {
+    min-width: 80%;
     flex-direction: column;
-    background-color: #beaaaa;
-    padding: 50px;
+    background-color: #b0b0b079;
+    padding: 20px 30px;
     border-radius: 15px;
     gap: 1em;
 }
 
-input {
+form label {
+    font-family: 'Six Caps', sans-serif;
+    font-size: 3em;
+}
+
+form div {
+    width: 100%;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.3em;
     display: block;
+}
+
+textarea#fale-conosco-contato {
+    resize: none;
+    height: 15em;
+}
+
+form button {
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px 30px;
+    font-size: 1.3em;
+    color: white;
+    background-color: black;
 }
