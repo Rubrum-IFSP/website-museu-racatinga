@@ -59,24 +59,25 @@ section.contate-nos {
 #quem-somos {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     gap: 1em;
     padding: 60px;
     height: 100vh;
-    justify-content: flex-start;
     box-shadow: 15px 0 10px -8px rgba(0, 0, 0, .25);
 }
 
 #quem-somos p {
-    background-color: #7D7D7D;
-    padding: 15px;
+    background-color: #beaaaa;
+    padding: 25px;
     width: 540px;
-    height: 90%;
     border-radius: 15px;
     font-size: 1.3em;
 }
 
-#contato, .contato-container, form {
+#contato, 
+.contato-container, 
+form {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -84,12 +85,14 @@ section.contate-nos {
 
 #contato {
     flex-direction: column;
+    gap: 1em;
     width: 100%;
     height: 100%;
 }
 
 .contato-container {
-    height: 80%;
+    align-items: flex-start;
+    gap: 1em;
 }
 
 .contato-container img {
@@ -97,8 +100,12 @@ section.contate-nos {
     border-radius: 50px;
 }
 
-form {
+.contato-container form {
     flex-direction: column;
+    background-color: #beaaaa;
+    padding: 50px;
+    border-radius: 15px;
+    gap: 1em;
 }
 
 input {
