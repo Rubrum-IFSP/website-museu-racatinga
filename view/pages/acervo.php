@@ -16,13 +16,16 @@
         </nav>
     </header>
 
+    <a href="./acervo.php?pagina=<?php echo ( isset( $_GET["pagina"] ) ) ? $_GET["pagina"] + 1 : 1 ; ?>">Próxima paginas</a>
+    <a href="./acervo.php?pagina=<?php echo ( isset( $_GET["pagina"] ) ) ? $_GET["pagina"] - 1 : 1 ; ?>">Página anterior</a>
+
     <?php 
 
         require "../../model/php/Conexao.php";
         require "../../model/php/Acervo.php";
-
+        
         $acervo = new Acervo();
-        $acervo->listar(1, 2);
+        $acervo->listar();
 
     ?>
 
