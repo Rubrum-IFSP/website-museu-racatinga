@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Six+Caps&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Six+Caps&display=swap');
 
 :root {
-    --primary-color: #E7D1B5;
+    --primary-color: rgba(0, 0, 0, .1);
 }
 
 body {
     box-sizing: border-box;
     height: 100%;
+    font-family: 'Lato', sans-serif;
 }
 
 *,
@@ -18,24 +20,60 @@ body {
 }
 
 header,
-nav {
+nav,
+footer {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
 header {
+    position: absolute;
+    top: 0;
     width: 100%;
     justify-content: space-between;
-    padding: 20px;
+    padding: 10px;
     background: var(--primary-color);
+}
+
+header img {
+    margin-left: 20px;
+    border-radius: 50px;
+    width: 60px;
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, .25);
 }
 
 nav {
     width: 30%;
+    gap: 1em;
     justify-content: space-evenly;
 }
 
-header img {
-    width: 100px;
+nav a {
+    color: white;
+    text-align: center;
+    background-color: black;
+    padding: 10px;
+    border-radius: 15px;
+    border: 2px solid black;
+    text-decoration: none;
+    font-size: 1.1em;
+    width: 200px;
+    transition: .25s;
+}
+
+nav a:hover {
+    color: black;
+    background-color: white;
+}
+
+
+footer {
+    width: 100%;
+    justify-content: space-evenly;
+    padding: 20px;
+    color: white;
+    background-color: black;
+    font-family: 'Six Caps', sans-serif;
+    font-size: 3.5em;
 }
