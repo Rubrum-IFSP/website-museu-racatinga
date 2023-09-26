@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Six+Caps&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Six+Caps&display=swap');
 
-:root {
-    --primary-color: rgba(0, 0, 0, .1);
-}
-
 body {
     box-sizing: border-box;
     height: 100%;
@@ -33,7 +29,7 @@ header {
     width: 100%;
     justify-content: space-between;
     padding: 10px;
-    background: var(--primary-color);
+    background: rgba(0, 0, 0, .1);
 }
 
 header img {

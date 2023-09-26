@@ -1,3 +1,18 @@
+<?php 
+    require "../../model/php/Conexao.php";
+    require "../../model/php/Acervo.php";
+    
+    $acervo = new Acervo();
+    $maxPaginas = $acervo->getMaxPaginas();
+
+    if ( isset($_GET["pagina"]) && ($_GET["pagina"] > $maxPaginas || $_GET["pagina"] < 0) ){
+        header("Location: ./acervo.php?pagina=0");
+        $_GET["pagina"] = 0;
+    } else if ( !isset($_GET["pagina"]) ) {
+        $_GET["pagina"] = 0;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -16,18 +31,39 @@
         </nav>
     </header>
 
-    <a href="./acervo.php?pagina=<?php echo ( isset( $_GET["pagina"] ) ) ? $_GET["pagina"] + 1 : 1 ; ?>">Próxima paginas</a>
-    <a href="./acervo.php?pagina=<?php echo ( isset( $_GET["pagina"] ) ) ? $_GET["pagina"] - 1 : 1 ; ?>">Página anterior</a>
+    <div class="navegacao-acervo">
+        <?php
+            echo "Página: <div>", $_GET["pagina"] + 1, " de ", $maxPaginas, "</div>"; 
+        ?>
 
-    <?php 
+        <div>
+            <a href="./acervo.php?pagina=<?php 
+                if ( isset( $_GET["pagina"] ) ) {
+                    if ( $_GET["pagina"] <= 0 ) { 
+                        echo $maxPaginas - 1; 
+                    } else {
+                        echo $_GET["pagina"] - 1;
+                    }
+                }
+            ?>">⬅️</a>
 
-        require "../../model/php/Conexao.php";
-        require "../../model/php/Acervo.php";
-        
-        $acervo = new Acervo();
-        $acervo->listar();
+            <a href="./acervo.php?pagina=<?php 
+                if ( isset( $_GET["pagina"] ) ) {
+                    if ( $_GET["pagina"] <= $maxPaginas ) {
+                        echo $_GET["pagina"];
+                    } else  {
+                        echo $_GET["pagina"] + 1;
+                    }
+                }
+            ?>">➡️</a>
+                
+        </div>
+    </div>
 
-    ?>
-
+    <div class="wrapper-peca">
+        <?php 
+            $acervo->listar();
+        ?>
+    </div>
 </body>
 </html>

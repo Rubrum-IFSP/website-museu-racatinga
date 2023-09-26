@@ -3,6 +3,55 @@
 body {
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #344734;
+    color: white;
+}
+
+.navegacao-acervo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 1.4em;
+    gap: 5px;
+}
+
+.navegacao-acervo a {
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.wrapper-peca {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 20px;
+}
+
+.container-peca,
+.informacoes-peca  {
+    border-radius: 15px;
+    display: flex;
+    padding: 15px;
+}
+
+.container-peca {
+    background: #b0b0b079;
+}
+
+.informacoes-peca {
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: 1.3em;
+}
+
+.informacoes-top {
+    font-size: 1.3em;
+    font-weight: 700;
 }
