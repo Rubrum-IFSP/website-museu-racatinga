@@ -7,7 +7,7 @@
 
         public function __construct() {
             $this->conexao = $this->conectar();
-            $this->limitePecas = 10;
+            $this->limitePecas = 15;
 
             if ( isset($_GET["pagina"]) ) {
                 $this->pagina = $_GET["pagina"];
@@ -18,26 +18,25 @@
 
         public function getMaxPaginas() {
             $totalPecas = mysqli_query($this->conexao, "SELECT `id` FROM `Pecas`");
-            $arrayTotalPecas = mysqli_fetch_array( $totalPecas );
-
-            $this->totalPaginas = ceil( sizeof($arrayTotalPecas)/$this->limitePecas );
+            $this->totalPaginas = ceil( $totalPecas->num_rows/$this->limitePecas );
             return $this->totalPaginas;
         }
 
         public function listar() {
             $offsetAtual = $this->pagina*$this->limitePecas;
-            $limiteAtual = $offsetAtual + $this->limitePecas;
 
-            $listar = mysqli_query($this->conexao,"SELECT `descricao`, `ano`, `artista`, `nome` FROM `Pecas` LIMIT $offsetAtual, $limiteAtual ;");
+            $listar = mysqli_query($this->conexao,"SELECT `descricao`, `ano`, `artista`, `nome` FROM `Pecas` LIMIT $offsetAtual, $this->limitePecas ;");
 
             while($linha=mysqli_fetch_array($listar)){
                 echo "<div class='container-peca'>";
-                    echo "<img src='../images/imagem.png'>";
+                    echo "<figure>";
+                        echo "<img src='../images/imagem.png'>";
+                        echo "<figcaption>".$linha[3]."</figcaption>";
+                    echo "</figure>";
                     echo "<div class='informacoes-peca'>";
                         echo "<div class='informacoes-top'>";
-                            echo "<p>Nome da peça: ".$linha[3]."</p>";
-                            echo "<p>Artista: ".$linha[2]."</p>";
-                            echo "<p>Ano de criação: ".$linha[1]."</p>";
+                            echo "<p><spam class='peca-titulo'>Artista: </spam>".$linha[2]."</p>";
+                            echo "<p><spam class='peca-titulo'>Ano de criação: </spam>".$linha[1]."</p>";
                         echo "</div>";
                         echo "<div class='informacoes-bottom'>";
                             echo "<p>".$linha[0]."</p>";

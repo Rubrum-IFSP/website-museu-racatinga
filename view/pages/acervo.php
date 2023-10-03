@@ -5,7 +5,7 @@
     $acervo = new Acervo();
     $maxPaginas = $acervo->getMaxPaginas();
 
-    if ( isset($_GET["pagina"]) && ($_GET["pagina"] > $maxPaginas || $_GET["pagina"] < 0) ){
+    if ( isset($_GET["pagina"]) && ($_GET["pagina"] > $maxPaginas-1 || $_GET["pagina"] < 0) ){
         header("Location: ./acervo.php?pagina=0");
         $_GET["pagina"] = 0;
     } else if ( !isset($_GET["pagina"]) ) {
@@ -33,36 +33,20 @@
 
     <div class="navegacao-acervo">
         <?php
-            echo "Página: <div>", $_GET["pagina"] + 1, " de ", $maxPaginas, "</div>"; 
+            echo "<h1>Página</h1> <div><p>", $_GET["pagina"] + 1, " de ", $maxPaginas, "</p></div>"; 
+            include "../components/barraNavegacaoAcervo.php";
         ?>
-
-        <div>
-            <a href="./acervo.php?pagina=<?php 
-                if ( isset( $_GET["pagina"] ) ) {
-                    if ( $_GET["pagina"] <= 0 ) { 
-                        echo $maxPaginas - 1; 
-                    } else {
-                        echo $_GET["pagina"] - 1;
-                    }
-                }
-            ?>">⬅️</a>
-
-            <a href="./acervo.php?pagina=<?php 
-                if ( isset( $_GET["pagina"] ) ) {
-                    if ( $_GET["pagina"] <= $maxPaginas ) {
-                        echo $_GET["pagina"];
-                    } else  {
-                        echo $_GET["pagina"] + 1;
-                    }
-                }
-            ?>">➡️</a>
-                
-        </div>
     </div>
 
     <div class="wrapper-peca">
         <?php 
             $acervo->listar();
+        ?>
+    </div>
+
+    <div class="navegacao-acervo">
+        <?php
+            include "../components/barraNavegacaoAcervo.php";
         ?>
     </div>
 </body>
