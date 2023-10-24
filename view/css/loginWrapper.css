@@ -1,0 +1,45 @@
+@import url(./layout.css);
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.amigoMuseu-wrapper, .account-wrapper {
+    position: absolute;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.amigoMuseu-wrapper {
+    background-color: aquamarine;
+    overflow: hidden;
+    width: 400px;
+    height: 300px;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.account-wrapper {
+    gap: 1em;
+}
+
+.account-wrapper.register {
+    display: none;
+}
+
+.userinfo-box label {
+    display: block;
+}
+
+.amigoMuseu-wrapper button {
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+}
