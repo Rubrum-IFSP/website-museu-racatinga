@@ -20,6 +20,7 @@ form.account-wrapper.active-wrapper {
 }
 
 .amigoMuseu-wrapper {
+    display: none;
     background-color: var(--primary-color);
     color: white;
     overflow: hidden;
@@ -32,7 +33,7 @@ form.account-wrapper.active-wrapper {
     display: none;
 }
 
-.account-wrapper.active {
+.amigoMuseu-wrapper.active, .account-wrapper.active {
     display: flex;
 }
 
