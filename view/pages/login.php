@@ -33,6 +33,7 @@
         </form>
 
         <form action="#" class="account-wrapper register">
+            <h1>Bem Vindo ao Museu!</h1>
             <div class="userinfo-area">
                 <div class="userinfo-box">
                     <label for="nome">Nome:</label>
@@ -58,7 +59,13 @@
             </div>
 
             <button>Registrar</button>
+
+            <div class="change-wrapper">
+                <p>Já tem uma conta? <span class="login-button">Entre agora!</span></p>
+            </div>
         </form>
     </div>
+
+    <script src="../js/amAccountWrapper.js"></script>
 </body>
 </html>

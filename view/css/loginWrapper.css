@@ -7,6 +7,10 @@ body {
     min-height: 100vh;
 }
 
+form.account-wrapper.active-wrapper {
+    display: flex;
+}
+
 .amigoMuseu-wrapper, .account-wrapper {
     position: absolute;
     flex-direction: column;
@@ -22,6 +26,22 @@ body {
     width: 100vw;
     height: 100vh;
     padding: 30px;
+}
+
+.account-wrapper.login, .account-wrapper.register {
+    display: none;
+}
+
+.account-wrapper.active {
+    display: flex;
+}
+
+.account-wrapper.register .userinfo-box {
+    margin-bottom: 1em;
+}
+
+.userinfo-area {
+    width: 100%;
 }
 
 span.material-symbols-outlined {
@@ -52,10 +72,6 @@ span.material-symbols-outlined {
     text-align: center;
 }
 
-.account-wrapper.register {
-    display: none;
-}
-
 .userinfo-box {
     width: 100%;
 }
@@ -69,7 +85,7 @@ span.material-symbols-outlined {
 .userinfo-box input {
     width: 100%;
     font-size: 1.4em;
-    padding: 5px;
+    padding: 10px;
     background: none;
     border: none;
     color: #f5ba30;
@@ -93,11 +109,11 @@ span.material-symbols-outlined {
     text-align: center;
 }
 
-.register-button {
+.register-button, .login-button {
     cursor: pointer;
     color: rgb(144, 187, 243);
 }
 
-.register-button:active {
+.register-button:active, .login-button:active {
     text-decoration: underline;
 }
