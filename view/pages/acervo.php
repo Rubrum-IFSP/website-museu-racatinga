@@ -1,6 +1,6 @@
 <?php 
-    require "../../model/php/Conexao.php";
-    require "../../model/php/Acervo.php";
+    require "../../classes/Conexao.php";
+    require "../../classes/Acervo.php";
     
     $acervo = new Acervo();
     $maxPaginas = $acervo->getMaxPaginas();
