@@ -22,7 +22,6 @@
             $classeLogin = new LoginAdministrador();
             if( $classeLogin->logarAdm($user,$pass)) echo "deu certo";
             else echo "deu errado";
-
         }
     ?>
 </body>

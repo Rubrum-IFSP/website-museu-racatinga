@@ -52,8 +52,9 @@ section.contate-nos {
     justify-content: space-around;
     background-color: #344734;
     color: white;
-    height: 100svh;
-    height: 100vh;
+    min-height: 100svh;
+    min-height: 100vh;
+    max-height: fit-content;
 }
 
 #quem-somos {
@@ -94,6 +95,7 @@ form {
     font-family: 'Six Caps', sans-serif;
     font-weight: 400;
     font-size: 5em;
+    text-align: center;
 }
 
 .contato-container {
@@ -147,4 +149,28 @@ form button {
     font-size: 1.3em;
     color: white;
     background-color: black;
+}
+
+@media (max-width: 1280px) {
+    section.contate-nos {
+        flex-direction: column;
+    }
+
+    #quem-somos {
+        padding: 25px;
+        box-shadow: none;
+        height: fit-content;
+    }
+
+    #quem-somos p {
+        width: fit-content;
+    }
+
+    #contato {
+        padding-bottom: 50px;
+    }
+
+    .contato-container img {
+        display: none;
+    }
 }

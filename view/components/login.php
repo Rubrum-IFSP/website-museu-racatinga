@@ -1,7 +1,5 @@
-
-
 <div class="amigoMuseu-wrapper">
-<span class="material-symbols-outlined">close</span>
+<span class="material-symbols-outlined close-icon">close</span>
 
 <form action="#" class="account-wrapper login">
         <h1>Bem Vindo de Volta!</h1>
@@ -56,4 +54,4 @@
     </form>
 </div>
 
-<script src="../js/amAccountWrapper.js"></script>
+<script src="view/js/amAccountWrapper.js"></script>

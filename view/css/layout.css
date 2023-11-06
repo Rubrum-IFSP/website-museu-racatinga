@@ -9,6 +9,7 @@
 body {
     box-sizing: border-box;
     height: 100%;
+    width: 100%;
     font-family: 'Lato', sans-serif;
 }
 
@@ -60,6 +61,7 @@ nav a {
     text-decoration: none;
     font-size: 1.1em;
     width: 200px;
+    cursor: pointer;
     transition: .25s;
 }
 
@@ -78,4 +80,14 @@ footer {
     font-family: 'Six Caps', sans-serif;
     font-size: 3.5em;
     bottom: 0;
+}
+
+@media (max-width: 1280px) {
+    header {
+        justify-content: space-around;
+    }
+
+    footer {
+        flex-direction: column;
+    }
 }
