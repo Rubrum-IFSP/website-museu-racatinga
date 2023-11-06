@@ -18,7 +18,19 @@
         }
 
         public function update(String $peca, String $desc, String $ano, String $artista, String $nome){
+            $mysqli = $this->conectar();
+            $query = "SELECT id FROM Pecas where nome = '$peca'";
+            $resultQuery = mysqli_query($mysqli, $query);
 
+            if(mysqli_num_rows($resultQuery)>0){
+                while($row = mysqli_fetch_assoc($resultQuery)){
+                    $selectedProduct = $row['id'];
+                    break;
+                }
+            }
+            $idPeca = $selectedProduct;
+            $queryUpdate = "UPDATE `Pecas` SET `descricao`='$desc',`ano`='$ano',`artista`='$artista',`nome`='$nome' WHERE id = $idPeca";
+            $resultQueryUpdate = mysqli_query($mysqli, $queryUpdate);
         }
         
     }

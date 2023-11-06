@@ -36,7 +36,7 @@
     if(isset($_POST['desc']) && isset($_POST['ano'])){
         if(isset($_POST['artista']) && isset($_POST['nome'])){
             require "../../classes/Conexao.php";
-            require "../../classes/Update.php";
+            require "../../classes/Create.php";
             $class = new Create();
             $peca = $_POST['pecas'];
             $desc = $_POST['desc'];
@@ -44,6 +44,7 @@
             $artista = $_POST['artista'];
             $nome = $_POST['nome'];
             $class->update($peca, $desc, $ano, $artista, $nome);
+            header("location: ./updateAdm.php");
         }
     }
 ?>
