@@ -9,7 +9,7 @@
         senha : <input type="text" name="senha">
         <input type="submit" name="submit">
     </form>
-    <a href="./MudarSenha.php">Mudar Senha</a>
+    <a href="./mudarSenhaAdm.php">Mudar Senha</a>
 
     <?php
         include("../../classes/Conexao.php");
