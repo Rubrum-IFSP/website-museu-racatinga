@@ -7,6 +7,7 @@
         <h1>Create</h1>
         <form method="POST" >
             <select name="eventos" id="eventos">
+
             <?php
                 
                 $mysqli = mysqli_connect("18.230.6.129","HT301410X","HT301410X","HT301410X");

@@ -8,6 +8,7 @@
         <h1>UPDATE</h1>
         <form method="POST">
             <select name="pecas">
+            <option name="placeHolder" value="Escolha...">Escolha...</option>
             <?php
                 
                 $mysqli = mysqli_connect("18.230.6.129","HT301410X","HT301410X","HT301410X");
@@ -35,16 +36,21 @@
 <?php
     if(isset($_POST['desc']) && isset($_POST['ano'])){
         if(isset($_POST['artista']) && isset($_POST['nome'])){
-            require "../../classes/Conexao.php";
-            require "../../classes/Create.php";
-            $class = new Create();
-            $peca = $_POST['pecas'];
-            $desc = $_POST['desc'];
-            $ano = $_POST['ano'];
-            $artista = $_POST['artista'];
-            $nome = $_POST['nome'];
-            $class->update($peca, $desc, $ano, $artista, $nome);
-            header("location: ./updateAdm.php");
+            if($_POST['pecas']!="Escolha..."){
+                require "../../classes/Conexao.php";
+                require "../../classes/Create.php";
+                $class = new Create();
+                $peca = $_POST['pecas'];
+                $desc = $_POST['desc'];
+                $ano = $_POST['ano'];
+                $artista = $_POST['artista'];
+                $nome = $_POST['nome'];
+                $class->update($peca, $desc, $ano, $artista, $nome);
+                header("location: ./updateAdm.php");
+            }
+            else{
+                echo "<p> Escolha uma peça valida</p>";
+            }
         }
     }
 ?>
