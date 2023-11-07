@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
+    <h1>É necessário mudar a senha e adicionar suas informações pessoais para continuar</h1>
     <form method="POST">
         novo usuario : <input type="text" name="user">
         senha : <input type="text" name="senha">

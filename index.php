@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if(isset($_SESSION['amgLogged']) || isset($_SESSION['admLogged'])){
+        // caso o amigo do museu esteja loggado
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,6 +18,7 @@
     <header>
         <img src="./view/images/logo_rubrum.png" alt="logo">
         <nav>
+            <a href="view/pages/compraIngresso.php">Ingressos </a>
             <a href="./view/pages/acervo.php">Acervo</a>
             <a class='open-login-button'>Login</a>
         </nav>

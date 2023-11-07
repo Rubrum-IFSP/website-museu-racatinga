@@ -12,7 +12,7 @@
 
     <?php
         
-        session_start();
+       
 
         include("../../classes/Conexao.php");
         include("../../classes/AdmMenu.php");
@@ -49,8 +49,7 @@
             }
             
             if ($validLogin){
-                $_SESSION["admLogged"] = true;
-                echo "<p><spam class='warning'>Informação correta</spam></p>";
+                session_start();
                 header("Location: ./mudarSenhaAdm.php");
             } 
             else {

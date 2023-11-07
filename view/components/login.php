@@ -1,112 +1,66 @@
-<div class="amigoMuseu-wrapper">
-<span class="material-symbols-outlined close-icon">close</span>
 
-<form method="POST" class="account-wrapper login">
-        <h1>Bem Vindo de Volta!</h1>
-        <div class="userinfo-box">
-            <label for="nome">Nome:</label>
-            <input type="text" name="nomeLogin">
-        </div>
-        
-        <div class="userinfo-box">
-            <label for="">Senha: </label>
-            <input type="text" name="senhaLogin">
-        </div>
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./view/css/index.css">
+        <title>Museu de Racatinga</title>
+    </head>
+    <body>
+        <div class="amigoMuseu-wrapper">
+        <span class="material-symbols-outlined close-icon">close</span>
 
-        <button type="submit" name="submit">Entrar</button>
+        <form method="POST" class="account-wrapper login">
+                <h1>Bem Vindo de Volta!</h1>
+                <div class="userinfo-box">
+                    <label for="nome">Nome:</label>
+                    <input type="text" name="nomeLogin">
+                </div>
+                
+                <div class="userinfo-box">
+                    <label for="">Senha: </label>
+                    <input type="text" name="senhaLogin">
+                </div>
 
-        <div class="change-wrapper">
-            <p>Não tem uma conta? <span class="register-button">Registre-se agora!</span></p>
-        </div>
-    </form>
-    <?php
-        if(isset($_POST['senhaLogin']) && isset($_POST['nomeLogin'])){
-            $nome = $_POST['nomeLogin'];
-            $senha = $_POST['senhaLogin'];
-            require "../../classes/Conexao.php";
-            require "../../classes/AmigoDoMuseu.php";
-            $classe = new AmigoDoMuseu();
+                <button type="submit" name="submitLogin">Entrar</button>
 
-            $logado = $classe->logar($nome,$senha);
-            if($logado)
-            {
-                header("location: ../../index.php");
-            }
-            else
-            {
-                if(isset($_POST['nomeLogin']) && isset($_POST['senhaLogin']))
-                {
-                    echo "<script>alert('Login deu errado hein')</script>";
+                <div class="change-wrapper">
+                    <p>Não tem uma conta? <a href="./cadastro.php" class="register-button">Registre-se agora!</a></p>
+                    <p>Esqueceu sua senha? <a href="./mudarSenhaAmigo.php" class="mudar-senha-button">Mudar Senha</a></p>
+                </div>
+            </form>
+            <?php
+                if(isset($_POST['senhaLogin']) && isset($_POST['nomeLogin'])){
+                    $nome = $_POST['nomeLogin'];
+                    $senha = $_POST['senhaLogin'];
+                    require "../../classes/Conexao.php";
+                    require "../../classes/AmigoDoMuseu.php";
+                    $classe = new AmigoDoMuseu();
+
+                    $logado = $classe->logar($nome,$senha);
+                    if($logado)
+                    {
+                        session_start();
+                        $_SESSION['amgLogged'] = true;
+                        header("location: ../../index.php");
+                    }
+                    else
+                    {
+                        if(isset($_POST['nomeLogin']) && isset($_POST['senhaLogin']))
+                        {
+                            echo "<script>alert('Login deu errado hein')</script>";
+                            unset($_POST['nomeLogin']);
+                            unset($_POST['senhaLogin']);
+                        }
+                    }
                     unset($_POST['nomeLogin']);
                     unset($_POST['senhaLogin']);
+
                 }
-            }
-            unset($_POST['nomeLogin']);
-            unset($_POST['senhaLogin']);
+            ?>
 
-        }
-    ?>
-
-    <form method ="POST" class="account-wrapper register">
-        <h1>Bem Vindo ao Museu!</h1>
-        <div class="userinfo-area">
-            <div class="userinfo-box">
-                <label for="nome">Nome:</label>
-                <input required type="text" name="nome">
-            </div>
-            
-            <div class="userinfo-box">
-                <label for="">Senha: </label>
-                <input required type="text" name="senha">
-            </div>
-        </div>
-
-        <div class="userinfo-area">
-            <div class="userinfo-box">
-                <label for="">CPF: </label>
-                <input required type="text" name="cpf" maxlength ='11'>
-            </div>
-
-            <div class="userinfo-box">
-                <label for="">RG: </label>
-                <input required type="text" name="rg" maxlength='9'>
-            </div>
-        </div>
-
-        <button type="submit" name="submit">Registrar</button>
-
-        <div class="change-wrapper">
-            <p>Já tem uma conta? <span class="login-button">Entre agora!</span></p>
-        </div>
-    </form>
-    <?php
-        if ( isset($_POST['submit']) ){
-            require("../../classes/Conexao.php");
-            require("../../classes/AmigoDoMuseu.php");
-            
-            $nome = $_POST['nome'];
-            $senha = $_POST['senha'];
-            $cpf = $_POST['cpf'];
-            $rg = $_POST['rg'];
-
-            $AmigoDoMuseu = new AmigoDoMuseu();
-            $cadastrado = $AmigoDoMuseu->cadastrar($nome, $senha, $cpf, $rg);
-
-            if($cadastrado)
-            {
-                echo '<script>alert("cadastro sucesso")</script>';
-            }
-            else
-            {
-                echo '<script>alert("nn deu certo o cadastro")</script>';
-            }
-
-            unset($_POST['nome']);
-            unset($_POST['senha']);
-            unset($_POST['cpf']);
-            unset($_POST['rg']);
-        }
-    ?>
-</div>
-
-<script src="view/js/amAccountWrapper.js"></script>
+        <script src="view/js/amAccountWrapper.js"></script>
+    </body>
+</html>

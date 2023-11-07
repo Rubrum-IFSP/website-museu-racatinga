@@ -4,12 +4,26 @@
         public function cadastrar($nome, $senha, $cpf, $rg):bool
         {
             $cadastrado = false;
+            $items = true;
             $resultNome = mysqli_query($this->conectar(), "SELECT * FROM Pessoa where nome='$nome'");
             if(mysqli_num_rows($resultNome)>0)
             {
                 echo '<script>alert("Já existe uma pessoa com este nome!")</script>'; 
+                $items =false;
             }
-            else
+            $resultCpf = mysqli_query($this->conectar(), "SELECT * FROM Pessoa where cpf='$cpf'");
+            if(mysqli_num_rows($resultCpf)>0)
+            {
+                echo '<script>alert("Já existe uma pessoa com este CPF!")</script>'; 
+                $items =false;
+            }
+            $resultRg = mysqli_query($this->conectar(), "SELECT * FROM Pessoa where nome='$rg'");
+            if(mysqli_num_rows($resultNome)>0)
+            {
+                echo '<script>alert("Já existe uma pessoa com este RG!")</script>'; 
+                $items =false;
+            }
+            if($items)
             {
             $query = "INSERT INTO `Pessoa`(`tipoUser`, `nome`, `cpf`, `senha`, `rg`) VALUES('amg','$nome','$cpf','$senha','$rg')";
             $request = mysqli_query($this->conectar(),$query);
@@ -34,6 +48,24 @@
             }
             else return false;
             
+        }
+
+        public function mudarSenha($cpf, $rg, $senha) :bool
+        {   
+            $query = "SELECT * FROM Pessoa WHERE cpf ='$cpf' AND rg = $rg";
+            $resultQuery = mysqli_query($this->conectar(), $query);
+            if(mysqli_num_rows($resultQuery)>0)
+            {
+                $queryUpdate = "UPDATE `Pessoa` SET `senha`='$senha' WHERE rg='1' AND cpf ='1'";
+                mysqli_query($this->conectar(), $queryUpdate);
+                return true;
+            }
+            else
+            {
+                echo "<script>alert('RG ou CPF não encontrados')</script>";
+                return false;
+            }
+
         }
     }
 ?>

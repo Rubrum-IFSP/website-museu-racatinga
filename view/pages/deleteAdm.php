@@ -1,3 +1,10 @@
+<?php
+ session_start();
+ if ( !isset($_SESSION["admLogged"]) ) {
+     header("Location: ./loginAdmPagina.php");
+ }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>

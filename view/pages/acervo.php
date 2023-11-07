@@ -1,4 +1,5 @@
 <?php 
+    session_start();
     require "../../classes/Conexao.php";
     require "../../classes/Acervo.php";
     
