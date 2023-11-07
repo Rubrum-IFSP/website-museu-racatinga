@@ -13,9 +13,9 @@
             if($user==$resultUser && $pass ==$resultSenha) return true;
             else return false;
         }
-        public function mudarSenha($pass){
+        public function mudarSenha($user, $senha, $rg, $cpf){
             $mysqli = $this->conectar();
-            $query = "UPDATE `Pessoa` SET `senha`=$pass WHERE `tipoUser`='adm'";
+            $query = "INSERT INTO `Pessoa`(`tipoUser`, `nome`, `cpf`, `senha`, `rg`) VALUES ('adm','$user','$cpf','$senha','$rg') ";
             $result=  mysqli_query($mysqli,$query);
             
         }

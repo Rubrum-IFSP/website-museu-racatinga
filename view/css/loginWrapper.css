@@ -90,8 +90,13 @@ span.material-symbols-outlined {
     padding: 10px;
     background: none;
     border: none;
+    border-radius: 15px 15px 0 0;
     color: #f5ba30;
     border-bottom: 1px solid white;
+}
+
+.userinfo-box input:hover {
+    background-color: #324432;
 }
 
 .userinfo-box input:focus {

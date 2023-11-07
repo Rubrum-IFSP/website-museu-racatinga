@@ -12,7 +12,7 @@
         <img src="./view/images/logo_rubrum.png" alt="logo">
         <nav>
             <a href="./view/pages/acervo.php">Acervo</a>
-            <a href="./view/pages/login.php">Login</a>
+            <a class='open-login-button'>Login</a>
         </nav>
     </header>
 
@@ -30,11 +30,11 @@
 
         <div id="contato">
             <h2>Tendo algum problema?</h2>
-            
+
             <div class="contato-container">
                 <img src="./view/images/default_profile_pic.png" alt="profile-pic">
 
-                <form action="#">
+                <form method="POST">
                     <div>
                         <label for="email-contato">Email:</label>
                         <input type="email" name="email" id="email-contato">
@@ -42,18 +42,32 @@
 
                     <div>
                         <label for="fale-conosco-contato">Fale Conosco:</label>
-                        <textarea type="text" name="fale-conosco-contato" id="fale-conosco-contato"> </textarea>
+                        <textarea type="text" name="fale-conosco-contato" id="fale-conosco-contato" limit="500"></textarea>
                     </div>
 
-                    <button type="submit">Enviar</button>
+                    <button name="submitComentario" type="submit">Enviar</button>
                 </form>
+                <?php
+                   if(isset($_POST['submitComentario']) ){
+                       $email = $_POST['email'];
+                       $comentario = $_POST['fale-conosco-contato'];
+                       require("classes/Conexao.php");
+                       require("classes/Comentario.php");
+                       $Comentario = new Comentario();
+                       $Comentario->criarComentario($email,$comentario);
+                   } 
+                ?>
             </div>
         </div>
     </section>
 
+    <?php
+        require './view/components/login.php';
+    ?>
+
     <footer>
         <p>Horário: Segunda à Sexta, das 09H às 16H</p>
-        
+
         <div class="contato">
             <p>
                 Contatos:
@@ -62,5 +76,7 @@
             </p>
         </div>
     </footer>
+
+    <script src="./view/js/index.js"></script>
 </body>
 </html>

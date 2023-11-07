@@ -87,3 +87,9 @@ header {
     font-size: 1.3em;
     font-weight: 700;
 }
+
+@media (max-width: 1025px) {
+    .wrapper-peca {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

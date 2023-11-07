@@ -26,7 +26,7 @@
     <header>
         <img src="../images/logo_rubrum.png" alt="logo">
         <nav>
-            <a href="../../index.html">Home</a>
+            <a href="../../index.php">Home</a>
             <a href="#">Login</a>
         </nav>
     </header>

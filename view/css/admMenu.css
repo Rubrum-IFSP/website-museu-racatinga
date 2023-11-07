@@ -1,0 +1,39 @@
+@import url(layout.css);
+
+body {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+nav {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    padding: 90px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    min-height: 100svh;
+}
+
+h1 {
+    text-align: center;
+}
+
+.wrapper-comentario {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.623);
+    display: grid;
+    width: 100%;
+    min-height: 100vh;
+    max-height: fit-content;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.container-comment {
+    background-color: rgba(202, 202, 202, 0.5);
+}
