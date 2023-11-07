@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,22 +12,28 @@
         senha : <input type="text" name="senha">
         rg: <input type="text" name="rg" maxlength ='9'>
         cpf: <input type="text" name="cpf" maxlength ='11'>
-        <input type="submit" name="submit">
+        <input value="Cadastrar Novo ADM" type="submit" name="submit">
     </form>
 
 
     <?php
         include ("../../classes/Conexao.php");
-        include ("../../classes/loginAdministrador.php");
+        include ("../../classes/AdmMenu.php");
 
         if(isset($_POST['senha'])){
             $user = $_POST['user'];
             $senha = $_POST['senha'];
             $rg = $_POST['rg'];
             $cpf = $_POST['cpf'];
-            $classe = new LoginAdministrador();
+            $classe = new AdmMenu();
             $classe->mudarSenha($user, $senha, $rg, $cpf);
-            header("location: ./mudarSenhaAdm.php");
+            unset($_POST['user']);
+            unset($_POST['senha']);
+            unset($_POST['rg']);
+            unset($_POST['cpf']);
+            header("location: ./admMenu.php");
+
+            $_SESSION['admLogged'] = true;
         }
     ?>
 </body>

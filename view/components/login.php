@@ -30,11 +30,16 @@
             $logado = $classe->logar($nome,$senha);
             if($logado)
             {
-                echo "logado";
+                header("location: ../../index.php");
             }
             else
             {
-                echo "nao logado";
+                if(isset($_POST['nomeLogin']) && isset($_POST['senhaLogin']))
+                {
+                    echo "<script>alert('Login deu errado hein')</script>";
+                    unset($_POST['nomeLogin']);
+                    unset($_POST['senhaLogin']);
+                }
             }
             unset($_POST['nomeLogin']);
             unset($_POST['senhaLogin']);

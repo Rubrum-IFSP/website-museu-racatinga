@@ -20,7 +20,6 @@
 
         if(isset($_POST["usuario"])) {
             $AdmMenu = new AdmMenu();
-            $validLogin = false;
 
             if ( $AdmMenu->procurarAdm() ) {
                 $user = $_POST["usuario"];
@@ -52,7 +51,7 @@
             if ($validLogin){
                 $_SESSION["admLogged"] = true;
                 echo "<p><spam class='warning'>Informação correta</spam></p>";
-                header("Location: ./admMenu.php");
+                header("Location: ./mudarSenhaAdm.php");
             } 
             else {
                 echo "<p><spam class='warning'>Informação errada</spam></p>";

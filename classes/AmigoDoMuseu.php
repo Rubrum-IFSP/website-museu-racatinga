@@ -23,12 +23,17 @@
             $mysqli = $this->conectar();
             $querySenha = "SELECT senha from Pessoa where senha='$pass'";
             $queryUser = "SELECT nome from Pessoa where nome='$user'";
-            
-            $resultUser =current(mysqli_query($mysqli,$queryUser)->fetch_assoc());
-            $resultSenha = current(mysqli_query($mysqli,$querySenha)->fetch_assoc());
-            
-            if($user==$resultUser && $pass ==$resultSenha) return true;
+            $resultUser= mysqli_query($mysqli,$queryUser)->fetch_assoc();
+            $resultSenha = mysqli_query($mysqli,$querySenha)->fetch_assoc();
+            if($resultUser!=null && $resultSenha!=null)
+            {
+                    $resultUser =current($resultUser);
+                    $resultSenha = current($resultSenha);
+                    if($user==$resultUser && $pass ==$resultSenha) return true;
+                    else return false;
+            }
             else return false;
+            
         }
     }
 ?>

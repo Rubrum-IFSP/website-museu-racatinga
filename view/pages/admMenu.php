@@ -34,7 +34,7 @@
         if ( !$admMenu->procurarAdm() ) {
             echo "
             <div class='change-pass'>
-                <p>Você está usando uma onta provisória, mude de senha para ter acesso total ao sistema</p>
+                <p>Você está usando uma conta provisória, mude de senha para ter acesso total ao sistema</p>
                 <a href='./mudarSenhaAdm.php'>Mudar de Senha</a>
             </div>
             ";

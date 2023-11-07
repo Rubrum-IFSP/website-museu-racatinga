@@ -20,20 +20,19 @@
         public function logarAdm($user, $pass) :bool
         {
             $mysqli = $this->conectar();
-            $querySenha = "SELECT senha from Pessoa where tipoUser= 'adm'";
-            $queryUser = "SELECT nome from Pessoa where tipoUser='adm'";
-            
-            $resultUser =current(mysqli_query($mysqli,$queryUser)->fetch_assoc());
-            $resultSenha = current(mysqli_query($mysqli,$querySenha)->fetch_assoc());
+            $queryLogin = "SELECT * FROM Adm WHERE senha='$pass' AND nome='$user'";
+            $returnQuery = mysqli_query($mysqli, $queryLogin);
 
-
-            if($user==$resultUser && $pass ==$resultSenha) return true;
+            if(mysqli_num_rows($returnQuery)>0) return true;
             else return false;
+
         }
         public function mudarSenha($user, $senha, $rg, $cpf){
             $mysqli = $this->conectar();
-            $query = "INSERT INTO `Pessoa`(`tipoUser`, `nome`, `cpf`, `senha`, `rg`) VALUES ('adm','$user','$cpf','$senha','$rg') ";
-            $result=  mysqli_query($mysqli,$query);
+            $queryUpdate = "UPDATE `Adm` SET `nome`='$user',`senha`='$senha',`cpf`='$cpf',`rg`='$rg' WHERE nome='administrador' AND  senha='123456' ";
+            $queryInsert = "INSERT INTO `Adm`( `nome`,`senha`) VALUES ('administrador','123456')";
+            mysqli_query($mysqli,$queryUpdate);
+            mysqli_query($mysqli,$queryInsert);
             
         }
     }
