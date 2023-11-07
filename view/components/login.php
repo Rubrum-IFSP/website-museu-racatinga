@@ -1,7 +1,7 @@
 <div class="amigoMuseu-wrapper">
 <span class="material-symbols-outlined close-icon">close</span>
 
-<form action="#" class="account-wrapper login">
+<form method="POST" class="account-wrapper login">
         <h1>Bem Vindo de Volta!</h1>
         <div class="userinfo-box">
             <label for="nome">Nome:</label>
@@ -19,30 +19,52 @@
             <p>Não tem uma conta? <span class="register-button">Registre-se agora!</span></p>
         </div>
     </form>
+    <?php
+        if(isset($_POST['senhaLogin']) && isset($_POST['nomeLogin'])){
+            $nome = $_POST['nomeLogin'];
+            $senha = $_POST['senhaLogin'];
+            require "../../classes/Conexao.php";
+            require "../../classes/AmigoDoMuseu.php";
+            $classe = new AmigoDoMuseu();
 
-    <form action="#" class="account-wrapper register">
+            $logado = $classe->logar($nome,$senha);
+            if($logado)
+            {
+                echo "logado";
+            }
+            else
+            {
+                echo "nao logado";
+            }
+            unset($_POST['nomeLogin']);
+            unset($_POST['senhaLogin']);
+
+        }
+    ?>
+
+    <form method ="POST" class="account-wrapper register">
         <h1>Bem Vindo ao Museu!</h1>
         <div class="userinfo-area">
             <div class="userinfo-box">
                 <label for="nome">Nome:</label>
-                <input type="text" name="nome">
+                <input required type="text" name="nome">
             </div>
             
             <div class="userinfo-box">
                 <label for="">Senha: </label>
-                <input type="text" name="senha">
+                <input required type="text" name="senha">
             </div>
         </div>
 
         <div class="userinfo-area">
             <div class="userinfo-box">
                 <label for="">CPF: </label>
-                <input type="text" name="cpf">
+                <input required type="text" name="cpf" maxlength ='11'>
             </div>
 
             <div class="userinfo-box">
                 <label for="">RG: </label>
-                <input type="text" name="rg">
+                <input required type="text" name="rg" maxlength='9'>
             </div>
         </div>
 
@@ -54,15 +76,30 @@
     </form>
     <?php
         if ( isset($_POST['submit']) ){
-            require("../../classes/AmigoMuseu.php");
+            require("../../classes/Conexao.php");
+            require("../../classes/AmigoDoMuseu.php");
+            
             $nome = $_POST['nome'];
             $senha = $_POST['senha'];
             $cpf = $_POST['cpf'];
             $rg = $_POST['rg'];
 
             $AmigoDoMuseu = new AmigoDoMuseu();
-            $AmigoMuseu->cadastrar($nome, $senha, $cpf, $rg);
-            header("./login.php");
+            $cadastrado = $AmigoDoMuseu->cadastrar($nome, $senha, $cpf, $rg);
+
+            if($cadastrado)
+            {
+                echo '<script>alert("cadastro sucesso")</script>';
+            }
+            else
+            {
+                echo '<script>alert("nn deu certo o cadastro")</script>';
+            }
+
+            unset($_POST['nome']);
+            unset($_POST['senha']);
+            unset($_POST['cpf']);
+            unset($_POST['rg']);
         }
     ?>
 </div>

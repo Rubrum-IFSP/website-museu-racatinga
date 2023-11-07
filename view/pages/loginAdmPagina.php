@@ -11,11 +11,12 @@
     </form>
 
     <?php
-        include("../../classes/Conexao.php");
-        include("../../classes/AdmMenu.php");
-        include("../../classes/LoginAdministrador.php");
         
         session_start();
+
+        include("../../classes/Conexao.php");
+        include("../../classes/AdmMenu.php");
+        
 
         if(isset($_POST["usuario"])) {
             $AdmMenu = new AdmMenu();
@@ -25,23 +26,32 @@
                 $user = $_POST["usuario"];
                 $pass =$_POST['senha'];
                 
-                $classeLogin = new LoginAdministrador();
-                if( $classeLogin->logarAdm($user,$pass) ) {
+                if( $AdmMenu->logarAdm($user,$pass) ) 
+                {
                     $validLogin = true;
-                } else {
+                }
+
+                else 
+                {
                     $validLogin = false;
                 }
-            } else {
-                if($_POST['usuario']=='administrador' && $_POST['senha']=='123456'){
+            } 
+            else 
+            {
+                if($_POST['usuario']=='administrador' && $_POST['senha']=='123456')
+                {
                     $validLogin = true;
-                } else { 
+                } 
+
+                else 
+                { 
                     $validLogin = false;
                 }
             }
             
             if ($validLogin){
                 $_SESSION["admLogged"] = true;
-                echo "<p><spam class='warning'>Informação errada</spam></p>";
+                echo "<p><spam class='warning'>Informação correta</spam></p>";
                 header("Location: ./admMenu.php");
             } 
             else {

@@ -40,13 +40,18 @@
             require "../../classes/Conexao.php";
             require "../../classes/Create.php";
             $class = new Create();
+            
             $evento = $_POST['eventos'];
             $desc = $_POST['desc'];
             $ano = $_POST['ano'];
             $artista = $_POST['artista'];
             $nome = $_POST['nome'];
-            $class->create($evento, $desc, $ano, $artista, $nome);
-            header("location: ./createAdm.php");
+            
+            $class->createFunction($evento, $desc, $ano, $artista, $nome);
+            unset($_POST['desc']);
+            unset($_POST['ano']);
+            unset($_POST['artista']);
+            unset($_POST['nome']);
         }
     }
 ?>
