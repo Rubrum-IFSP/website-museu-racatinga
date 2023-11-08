@@ -68,5 +68,23 @@
             }
 
         }
+
+        //recebe o $_session['username']//
+        public function mostrarDados($username){
+            $listar = mysqli_query($this->conectar(),"SELECT nome, senha, rg, cpf FROM Pessoa WHERE nome='$username'");
+
+            while($linha=mysqli_fetch_array($listar)){
+                echo "<div class='container-perfil'>";
+                    echo "<div class='informacoes-perfil'>";
+                        echo "<div class='informacoes-top'>";
+                            echo "<p><spam class='user-info-field'>Nome: </spam>".$linha[0]."</p>";
+                            echo "<p><spam class='user-info-field'>Senha: </spam>".$linha[1]."</p>";
+                            echo "<p><spam class='user-info-field'>RG: </spam>".$linha[2]."</p>";
+                            echo "<p><spam class='user-info-field'>CPF: </spam>".$linha[3]."</p>";
+                        echo "</div>";
+                    echo "</div>";
+                echo "</div>";
+            }
+        }
     }
 ?>
