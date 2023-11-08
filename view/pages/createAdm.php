@@ -1,6 +1,6 @@
 <?php
  session_start();
- if ( !isset($_SESSION["admLogged"]) ) {
+ if ( $_SESSION["admLogged"]==false ) {
      header("Location: ./loginAdmPagina.php");
  }
 ?>
@@ -13,7 +13,6 @@
     </head>
     <body>
     <header>
-        <img src="../images/logo_rubrum.png" alt="logo">
         <nav>
             <a href="./admMenu.php">Menu</a>
         </nav>
