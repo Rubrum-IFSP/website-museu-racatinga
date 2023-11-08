@@ -6,12 +6,15 @@
 
             $query = "INSERT INTO `Evento`(`nome`, `dataEvento`, `descricao`) VALUES ('$nome',date '$data','$desc')";
             $queryVerificar = mysqli_query($mysqli, "SELECT * FROM Evento where nome='$nome'");
-             mysqli_query($mysqli, $queryVerificar)
-            if()
+            if(mysqli_num_rows($queryVerificar)>0)
             {
 
-            $queryCreate = mysqli_query($mysqli, $query);
-        }
+                echo "<script>warn('Já existe um Evento com este nome')</script>";
+            }
+            else
+            {
+                $queryCreate = mysqli_query($mysqli, $query);
+            }
         }
 
         public function update($nome, $data, $desc){
