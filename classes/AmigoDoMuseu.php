@@ -8,19 +8,16 @@
             $resultNome = mysqli_query($this->conectar(), "SELECT * FROM Pessoa where nome='$nome'");
             if(mysqli_num_rows($resultNome)>0)
             {
-                echo '<script>alert("Já existe uma pessoa com este nome!")</script>'; 
                 $items =false;
             }
             $resultCpf = mysqli_query($this->conectar(), "SELECT * FROM Pessoa where cpf='$cpf'");
             if(mysqli_num_rows($resultCpf)>0)
             {
-                echo '<script>alert("Já existe uma pessoa com este CPF!")</script>'; 
                 $items =false;
             }
             $resultRg = mysqli_query($this->conectar(), "SELECT * FROM Pessoa where nome='$rg'");
             if(mysqli_num_rows($resultNome)>0)
             {
-                echo '<script>alert("Já existe uma pessoa com este RG!")</script>'; 
                 $items =false;
             }
             if($items)
@@ -28,6 +25,10 @@
             $query = "INSERT INTO `Pessoa`(`tipoUser`, `nome`, `cpf`, `senha`, `rg`) VALUES('amg','$nome','$cpf','$senha','$rg')";
             $request = mysqli_query($this->conectar(),$query);
             $cadastrado= true;
+            }
+            else
+            {
+                echo '<script>alert("Já existe uma pessoa com estas Informações(CPF/RG/Nome)!")</script>'; 
             }
             return $cadastrado;
         }
