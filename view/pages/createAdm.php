@@ -9,36 +9,62 @@
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="../css/createAdm.css">
     </head>
     <body>
-        <h1>Create</h1>
-        <form method="POST" >
-            <select name="eventos" id="eventos">
+    <header>
+        <img src="../images/logo_rubrum.png" alt="logo">
+        <nav>
+            <a href="./admMenu.php">Menu</a>
+        </nav>
+    </header>
+        <div class='container'>
+            <div class='card'>
+                <h1>Cadastro de Peça</h1>
+                <form method="POST" class='card-form' >
+                <div class="input">
+                    <select class='input-field' name="eventos" id="eventos">
 
-            <?php
-                
-                $mysqli = mysqli_connect("18.230.6.129","HT301410X","HT301410X","HT301410X");
-                $query = "SELECT nome FROM Evento";
-                $result = mysqli_query($mysqli, $query);
-                $resultCheck = mysqli_num_rows($result);
+                    <?php
+                        
+                        $mysqli = mysqli_connect("18.230.6.129","HT301410X","HT301410X","HT301410X");
+                        $query = "SELECT nome FROM Evento";
+                        $result = mysqli_query($mysqli, $query);
+                        $resultCheck = mysqli_num_rows($result);
 
-                if($resultCheck > 0 ){
-                    while($row = mysqli_fetch_assoc($result)){
-                        $selectedProduct = $row['nome'];
-                        echo "<option name='$selectedProduct' value='$selectedProduct'>$selectedProduct</option>";
-                    }
-                }
-            
-            ?>
-            </select><br>
-            
-            descricao <input type="text" name="desc" required><br>
-            ano <input type="text" name="ano" required><br>
-            artista <input type="text" name="artista" required><br>
-            nome <input type="text" name ="nome"required ><br>
+                        if($resultCheck > 0 ){
+                            while($row = mysqli_fetch_assoc($result)){
+                                $selectedProduct = $row['nome'];
+                                echo "<option name='$selectedProduct' value='$selectedProduct'>$selectedProduct</option>";
+                            }
+                        }
 
-            <input type="submit" name="submit" value="Submit">     
-        </form>
+                    ?>
+                    </select>
+                </div>    
+                <div class="input">
+                    <input type="text" name="nome" class="input-field" required/>
+                    <label class="input-label">Nome</label>
+                </div>
+
+                <div class="input">
+                    <input type="text" class="input-field" name='artista' required/>
+                    <label class="input-label">Artista</label>
+                </div>
+                <div class="input">
+                    <input type="text" class="input-field" name='ano' required/>
+                    <label class="input-label">Ano</label>
+                </div>
+                <div class="input">
+                    <input type="text" class="input-field" name='desc' required/>
+                    <label class="input-label">Descricao</label>
+                </div>
+                <div class="input">
+                    <input class='action-button' type="submit" name="submit" value="Submit"> 
+                </div>    
+                </form>
+            </div>
+        </div>
     </body>
 </html>
 <?php
