@@ -4,9 +4,10 @@
         public function create($nome, $data, $desc){
             $mysqli = $this->conectar();
 
-            $query = "INSERT INTO `Evento`(`nome`, `dataEvento`, `descricao`) VALUES ('$nome',$data,'$desc')";
+            $query = "INSERT INTO `Evento`(`nome`, `dataEvento`, `descricao`) VALUES ('$nome',date '$data','$desc')";
             $queryVerificar = mysqli_query($mysqli, "SELECT * FROM Evento where nome='$nome'");
-            if(mysqli_query($mysqli, $queryVerificar));
+             mysqli_query($mysqli, $queryVerificar)
+            if()
             {
 
             $queryCreate = mysqli_query($mysqli, $query);
@@ -18,15 +19,22 @@
             $query = "SELECT id FROM Evento where nome = '$nome'";
             $resultQuery = mysqli_query($mysqli, $query);
 
+            //finding id
             if(mysqli_num_rows($resultQuery)>0){
                 while($row = mysqli_fetch_assoc($resultQuery)){
                     $selectedProduct = $row['id'];
                     break;
                 }
             }
+
+            
             $idEvento = $selectedProduct;
-            $queryUpdate = "UPDATE `Evento` SET `nome`='$nome',`dataEvento`='$data',`descricao`='$desc' WHERE id=$idEvento";
-            $resultQueryUpdate = mysqli_query($mysqli, $queryUpdate);
+            $queryUpdate = "UPDATE `Evento` SET `nome`='$nome', dataEvento=DATE '$data',`descricao`='$desc' WHERE id=$idEvento";
+            mysqli_query($mysqli, $queryUpdate); 
+
+
+
+
         }
         public function delete(String $evento){
             $mysqli =$this->conectar();
