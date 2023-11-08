@@ -12,6 +12,10 @@
     } else if ( !isset($_GET["pagina"]) ) {
         $_GET["pagina"] = 0;
     }
+
+    if(isset($_SESSION['amgLogged']) || isset($_SESSION['admLogged'])){
+        $logged = true;
+    }
 ?>
 
 <!DOCTYPE html>
