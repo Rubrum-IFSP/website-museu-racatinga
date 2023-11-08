@@ -43,6 +43,7 @@
                 } 
                 else{
                     echo "<a href='./deslogar.php' class='open-login-button'>Deslogar</a>";
+                    echo "<p><spam class='loginInformation'>".$_SESSION['username']."</spam></p>";
                 }
             ?>
         </nav>
