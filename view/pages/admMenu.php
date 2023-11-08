@@ -27,6 +27,7 @@
             <a href="./deleteAdm.php">Deletar Peça</a>
             <a href="./updateAdm.php">Editar Peça</a>
             <a href="./acervo.php">Olhar Acervo</a>
+            <a href="../../index.php">Página Inicial</a>
         </nav>
     </header>
     

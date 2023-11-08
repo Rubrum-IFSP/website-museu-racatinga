@@ -1,16 +1,21 @@
-
+<?php
+                        session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="./view/css/index.css">
+
         <title>Museu de Racatinga</title>
     </head>
     <body>
-        <div class="amigoMuseu-wrapper">
-        <span class="material-symbols-outlined close-icon">close</span>
+    <header>
+        <img src="./view/images/logo_rubrum.png" alt="logo">
+        <nav>
+            <a href="./view/pages/acervo.php">Acervo</a>
+            <a href='../../index.php'>Página Inicial</a>
+        </nav>
+    </header>
 
         <form method="POST" class="account-wrapper login">
                 <h1>Bem Vindo de Volta!</h1>
@@ -42,8 +47,9 @@
                     $logado = $classe->logar($nome,$senha);
                     if($logado)
                     {
-                        session_start();
+
                         $_SESSION['amgLogged'] = true;
+                        $_SESSION['admLogged'] = false;
                         header("location: ../../index.php");
                     }
                     else

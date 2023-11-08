@@ -18,9 +18,13 @@
     <header>
         <img src="./view/images/logo_rubrum.png" alt="logo">
         <nav>
-            <a href="view/pages/compraIngresso.php">Ingressos </a>
+            <?php
+                if($_SESSION['admLogged']==true){
+                    echo "<a href='./view/pages/admMenu.php'>Menu Administrador</a>";
+                }
+            ?>
             <a href="./view/pages/acervo.php">Acervo</a>
-            <a class='open-login-button'>Login</a>
+            <a href='./view/components/login.php'>Login</a>
         </nav>
     </header>
 
@@ -68,10 +72,6 @@
             </div>
         </div>
     </section>
-
-    <?php
-        require './view/components/login.php';
-    ?>
 
     <footer>
         <p>Horário: Segunda à Sexta, das 09H às 16H</p>

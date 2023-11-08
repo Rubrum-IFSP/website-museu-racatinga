@@ -9,10 +9,17 @@
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="../css/deleteAdm.css">
         
     </head>
     <body>
-        <h1>DELETE</h1>
+    <header>
+        <img src="../images/logo_rubrum.png" alt="logo">
+        <nav>
+            <a href="./admMenu.php">Menu</a>
+        </nav>
+    </header>
+        <h1>Deletar Peça</h1>
         <form method="POST">
             <select name="pecas">
                 <option name="placeHolder" value="Escolha...">Escolha...</option>
