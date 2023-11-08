@@ -5,7 +5,7 @@
         public function comprar($logged, $username, $idEvento){
             if($logged)
                 {
-                $queryFindId = "SELECT id from Pessoa WHERE nome=$username";
+                $queryFindId = "SELECT id from Pessoa WHERE nome='$username'";
                 $findIdReturn = mysqli_query($this->conectar(), $queryFindId);
 
                 if(mysqli_num_rows($findIdReturn)>0)
@@ -16,16 +16,16 @@
                         break;
                     }
                     $queryVerificarIngresso = "SELECT * FROM IngressoEvento WHERE idPessoa=$selectedProduct AND idEvento = $idEvento";
-                    $returnVerificarIngresso = mysqli($this->conectar(),$queryVerificarIngresso);
+                    $returnVerificarIngresso = mysqli_query($this->conectar(),$queryVerificarIngresso);
                     if(mysqli_num_rows($returnVerificarIngresso)>0)
                     {
                         header("location: ../view/pages/ingressosPagina.php");
                     }
                     else
                     {   
-                        date_default_timezone_set('America/Sao_Paulo');
-                        $date = date('m/d/Y h:i:s a', time());
-                        $queryCreateIngresso ="INSERT INTO `IngressoEvento`(`idPessoa`, `idEvento`,`codigo`, `dataExp`) VALUES ($selectedProduct, $idEvento,,)";
+                        $codigo = $selectedProduct + $selectedProduct * ($idEvento+2*$selectedProduct);
+                        $queryCreateIngresso ="INSERT INTO `IngressoEvento`(`idPessoa`, `idEvento`,`codigo`, `dataCompra`) VALUES ($selectedProduct, $idEvento,'22222333',CURRENT_DATE)";
+                        mysqli_query($this->conectar(), $queryCreateIngresso);
                     }
                 }
             }
@@ -34,5 +34,7 @@
                 header("location: ../view/pages/ingressosPagina.php");
             }
         }
+        
+
     }
     ?>
