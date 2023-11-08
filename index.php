@@ -18,14 +18,9 @@
     <header>
         <img src="./view/images/logo_rubrum.png" alt="logo">
         <nav>
-            <?php
-                if($_SESSION['admLogged']==true){
-                    echo "<a href='./view/pages/admMenu.php'>Menu Administrador</a>";
-                }
-            ?>
             <a href="./view/pages/acervo.php">Acervo</a>
             <?php
-                if ( isset($_SESSION['admLogged']) ) {
+                if ( isset($_SESSION['admLogged']) && $_SESSION['admLogged']==true ) {
                     echo "<a href='./view/pages/admMenu.php'>Menu do Administrador</a>";
                 } else if (!$logged) {
                     echo "<a class='open-login-button'>Login</a>";

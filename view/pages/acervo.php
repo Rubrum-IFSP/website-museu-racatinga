@@ -29,7 +29,7 @@
         <nav>
             <a href="../../index.php">Home</a>
             <?php
-                if ( isset($_SESSION['admLogged']) ) {
+                if ( isset($_SESSION['admLogged']) && $_SESSION['admLogged']==true ) {
                     echo "<a href='./admMenu.php'>Menu do Administrador</a>";
                 } else if (!$logged) {
                     echo "<a class='open-login-button'>Login</a>";
