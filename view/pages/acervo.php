@@ -33,6 +33,9 @@
         <nav>
             <a href="../../index.php">Home</a>
             <?php
+                if(!isset($logged)){
+                    $logged = false;
+                }
                 if ( isset($_SESSION['admLogged']) && $_SESSION['admLogged']==true ) {
                     echo "<a href='./admMenu.php'>Menu do Administrador</a>";
                 } else if (!$logged) {
