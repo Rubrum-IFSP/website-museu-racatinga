@@ -12,7 +12,6 @@
     <header>
         <img src="./view/images/logo_rubrum.png" alt="logo">
         <nav>
-            <a href="./view/pages/acervo.php">Acervo</a>
             <a href='../../index.php'>Página Inicial</a>
         </nav>
     </header>
