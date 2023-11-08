@@ -10,14 +10,14 @@ session_start();
     </head>
     <body>
         <header>
-            <img src="./view/images/logo_rubrum.png" alt="logo">
+            <img src="../images/logo_rubrum.png" alt="logo">
             <nav>
                 <a href='../../index.php'>Página Inicial</a>
             </nav>
         </header>
         <div class="container">
             <div class="card">
-                <form method="POST" class="account-wrapper login">
+                <form method="POST" class="card-form">
                         <h1>Bem Vindo de Volta!</h1>
                         <div class="input">
                             <label class='input-label' for="nome">Nome:</label>
@@ -34,6 +34,7 @@ session_start();
                         <div class="card-info">
                             <p>Não tem uma conta? <a href="./cadastro.php" class="register-button">Registre-se agora!</a></p>
                             <p>Esqueceu sua senha? <a href="./mudarSenhaAmigo.php" class="mudar-senha-button">Mudar Senha</a></p>
+                            <p>Conectar como Administrador ?<a href="../pages/loginAdmPagina.php">Log-in</a> </p>
                         </div>
                     </form>
                     <?php

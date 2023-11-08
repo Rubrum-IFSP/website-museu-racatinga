@@ -2,16 +2,43 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/loginAdmPagina.css">
 </head>
 <body>
+<header>
+            <img src="../images/logo_rubrum.png" alt="logo">
+            <nav>
+                <a href='../../index.php'>Página Inicial</a>
+            </nav>
+        </header>
+<div class="container">
+            <div class="card">
+            <h1>Login ADM</h1>
     <form method="POST">
-        usuario : <input type="text" name="usuario">
-        senha : <input type="password" name="senha">
-        <input type="submit" name="submit">
+    <div class="input">
+        <label class='input-label' for="nome">Nome:</label>
+        <input class='input-field' type="text" name="usuario">
+    </div>
+    <div class="input">
+        <label class='input-label' for="senha">Senha:</label>
+        <input class='input-field' type="password" name="senha">
+    </div>
+<div class='action'>
+        <input class='action-button'  type="submit" name="submit">
+</div>
+<div class='card-info'>
+<p>Registro Amigo do Museu <a href="../components/cadastro.php" class="register-button">Registre-se agora!</a></p>
+
+<p>Voltar<a href="../components/login.php">Log-in</a> </p>
+</div>
     </form>
 
     <?php
-        
+        session_start();
+        if(isset($_SESSION['failedLogin']) && $_SESSION["failedLogin"]){
+            echo "<script>warn('Informações Errada(s)!')</script>";
+            $_SESSION["failedLogin"]=false;
+        }
        
 
         include("../../classes/Conexao.php");
@@ -49,13 +76,18 @@
             }
             
             if ($validLogin){
-                session_start();
+
                 header("Location: ./mudarSenhaAdm.php");
             } 
             else {
-                echo "<p><spam class='warning'>Informação errada</spam></p>";
+                unset($_POST['usuario']);
+                unset($_POST['senha']);
+                header("location: ./loginAdmPagina.php");
+                $_SESSION['failedLogin']=true;
             }
         }
     ?>
+        </div>
+    </div>
 </body>
 </html>
