@@ -1,9 +1,10 @@
 <?php
  session_start();
- if ( !isset($_SESSION["admLogged"]) ) {
+ if ( $_SESSION["admLogged"]==false ) {
      header("Location: ./loginAdmPagina.php");
  }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -12,6 +13,9 @@
         
     </head>
     <body>
+        <nav>
+            <a href="./admMenu.php">Menu</a>
+        </nav>
         <h1>UPDATE</h1>
         <form method="POST">
             <select name="pecas">

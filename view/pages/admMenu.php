@@ -1,8 +1,8 @@
-<?php 
-    session_start();
-    if ( !isset($_SESSION["admLogged"]) ) {
-        header("Location: ./loginAdmPagina.php");
-    }
+<?php
+ session_start();
+ if ( $_SESSION["admLogged"]==false ) {
+     header("Location: ./loginAdmPagina.php");
+ }
 
     require "../../classes/Conexao.php";
     require "../../classes/AdmMenu.php";
