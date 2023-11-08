@@ -1,6 +1,6 @@
 <?php
  session_start();
- if ( !isset($_SESSION["admLogged"]) ) {
+ if ( $_SESSION["admLogged"]==false ) {
      header("Location: ./loginAdmPagina.php");
  }
 ?>

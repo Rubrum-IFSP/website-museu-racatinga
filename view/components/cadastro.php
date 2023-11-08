@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -58,8 +61,9 @@
 
                     if($cadastrado)
                     {
-                        session_start();
+
                         $_SESSION['amgLogged'] = true;
+                        $_SESSION['admLogged'] =false;
                         header("location: ../../index.php");
                     }
                     else

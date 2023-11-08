@@ -1,9 +1,10 @@
 <?php
  session_start();
- if ( !isset($_SESSION["admLogged"]) ) {
+ if ( $_SESSION["admLogged"]==false ) {
      header("Location: ./loginAdmPagina.php");
  }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -13,7 +14,6 @@
     <link rel="stylesheet" href="../css/crudAdm.css">
     <title>Museu Racatinga - Remover Peça</title>
 </head>
-
 <body>
     <header>
         <nav>
