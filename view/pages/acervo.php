@@ -28,7 +28,13 @@
         <img src="../images/logo_rubrum.png" alt="logo">
         <nav>
             <a href="../../index.php">Home</a>
-            <a href="#">Login</a>
+            <?php
+                if ( isset($_SESSION['admLogged']) ) {
+                    echo "<a href='./admMenu.php'>Menu do Administrador</a>";
+                } else if (!$logged) {
+                    echo "<a class='open-login-button'>Login</a>";
+                } 
+            ?>
         </nav>
     </header>
 

@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(isset($_SESSION['amgLogged']) || isset($_SESSION['admLogged'])){
-        // caso o amigo do museu esteja loggado
+        $logged = true;
     }
 ?>
 
@@ -20,7 +20,13 @@
         <nav>
             <a href="view/pages/compraIngresso.php">Ingressos </a>
             <a href="./view/pages/acervo.php">Acervo</a>
-            <a class='open-login-button'>Login</a>
+            <?php
+                if ( isset($_SESSION['admLogged']) ) {
+                    echo "<a href='./view/pages/admMenu.php'>Menu do Administrador</a>";
+                } else if (!$logged) {
+                    echo "<a class='open-login-button'>Login</a>";
+                } 
+            ?>
         </nav>
     </header>
 

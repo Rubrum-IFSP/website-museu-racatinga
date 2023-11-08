@@ -1,0 +1,81 @@
+@import url(./admMenu.css);
+
+main {
+    justify-content: flex-start;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding: 40px;
+    width: 100%;
+    min-height: 320px;
+    max-height: 100%;
+    background-color: rgba(179, 179, 179, 0.671);
+    border-radius: 20px;
+}
+
+form div {
+    width: 100%;
+}
+
+.confirm-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+label {
+    display: block;
+    color: black;
+    font-weight: 700;
+    font-size: 1.5em;
+}
+
+.confirm-label {
+    display: inline;
+}
+
+input, 
+select {
+    width: 100%;
+    font-size: 1.3em;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+input[type=checkbox] {
+    height: 1.2em;
+    width: 1.2em;
+    outline: none;
+}
+ 
+button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.5em;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 15px;
+}
+
+button:active {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+
+@media (min-width: 1170px) {
+    form, main {
+        width: 60%;
+    }
+}

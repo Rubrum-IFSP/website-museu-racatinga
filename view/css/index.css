@@ -153,6 +153,10 @@ form button {
 }
 
 @media (max-width: 1280px) {
+    nav, nav a {
+        width: auto;
+    }
+
     section.contate-nos {
         flex-direction: column;
     }

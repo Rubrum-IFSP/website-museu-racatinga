@@ -9,36 +9,66 @@
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/crudAdm.css">
+        <title>Museu Racatinga - Adicionar Peça</title>
     </head>
+
     <body>
-        <h1>Create</h1>
-        <form method="POST" >
-            <select name="eventos" id="eventos">
+        <header>
+            <nav>
+                <a href="./admMenu.php">Voltar ao Menu</a>
+                <a href="./deleteAdm.php">Deletar Peça</a>
+                <a href="./updateAdm.php">Editar Peça</a>
+                <a href="./acervo.php">Olhar Acervo</a>
+            </nav>
+        </header>
 
-            <?php
+        <main>
+            <h1>Adicionar Peça</h1>
+            <form method="POST" >
+                <div>
+                    <label for="eventos">Evento da Peça: </label>
+                    <select name="eventos" id="eventos">
+                        <?php
+                            $mysqli = mysqli_connect("18.230.6.129","HT301410X","HT301410X","HT301410X");
+                            $query = "SELECT nome FROM Evento";
+                            $result = mysqli_query($mysqli, $query);
+                            $resultCheck = mysqli_num_rows($result);
+
+                            if($resultCheck > 0 ){
+                                while($row = mysqli_fetch_assoc($result)){
+                                    $selectedProduct = $row['nome'];
+                                    echo "<option name='$selectedProduct' value='$selectedProduct'>$selectedProduct</option>";
+                                }
+                            }
+                        ?>
+                    </select>
+                </div>
                 
-                $mysqli = mysqli_connect("18.230.6.129","HT301410X","HT301410X","HT301410X");
-                $query = "SELECT nome FROM Evento";
-                $result = mysqli_query($mysqli, $query);
-                $resultCheck = mysqli_num_rows($result);
+                <div>
+                    <label for="descricao">Descrição: </label>
+                    <input type="text" name="desc" id="descricao" required>    
+                </div>
 
-                if($resultCheck > 0 ){
-                    while($row = mysqli_fetch_assoc($result)){
-                        $selectedProduct = $row['nome'];
-                        echo "<option name='$selectedProduct' value='$selectedProduct'>$selectedProduct</option>";
-                    }
-                }
-            
-            ?>
-            </select><br>
-            
-            descricao <input type="text" name="desc" required><br>
-            ano <input type="text" name="ano" required><br>
-            artista <input type="text" name="artista" required><br>
-            nome <input type="text" name ="nome"required ><br>
+                <div>
+                    <label for="ano">Ano: </label> 
+                    <input type="text" name="ano" id="ano" required>
+                </div>
 
-            <input type="submit" name="submit" value="Submit">     
-        </form>
+                <div>
+                    <label for="artista">Artista: </label>
+                    <input type="text" name="artista" id="artista" required>                    
+                </div>
+
+                <div>
+                    <label for="nome">Nome: </label> 
+                    <input type="text" name ="nome" id="nome" required >
+                </div>
+
+                <button type="submit" name="submit">Enviar</button> 
+            </form>
+        </main>
     </body>
 </html>
 <?php

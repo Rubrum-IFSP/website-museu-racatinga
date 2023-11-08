@@ -15,8 +15,8 @@
 
             while($linha=mysqli_fetch_array($listar)){
                 echo "<div class='container-comment'>";
-                    echo "<p><spam class='comment-email'>Email: ".$linha[0]. "</spam></p>";
-                    echo "<p><spam class='comment-text'>Comentario: ".$linha[1]."</spam></p>";
+                    echo "<p><spam class='comment-email'>Email: </spam>".$linha[0]. "</p>";
+                    echo "<p class='comment-text'>".$linha[1]."</p>";
                 echo "</div>";
             }
         }

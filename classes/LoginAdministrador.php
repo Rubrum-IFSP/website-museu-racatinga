@@ -1,5 +1,5 @@
 <?php
-    class LoginAdministrador extends Conexao{
+    class LoginAdministrador extends Conexao {
         public function logarAdm($user, $pass) :bool
         {
             $mysqli = $this->conectar();
@@ -8,7 +8,6 @@
             
             $resultUser =current(mysqli_query($mysqli,$queryUser)->fetch_assoc());
             $resultSenha = current(mysqli_query($mysqli,$querySenha)->fetch_assoc());
-
 
             if($user==$resultUser && $pass ==$resultSenha) return true;
             else return false;
