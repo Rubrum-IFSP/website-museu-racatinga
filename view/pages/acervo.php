@@ -38,6 +38,9 @@
                 } else if (!$logged) {
                     echo "<a class='open-login-button'>Login</a>";
                 } 
+                else{
+                    echo "<a href='./deslogar.php' class='open-login-button'>Deslogar</a>";
+                }
             ?>
         </nav>
     </header>

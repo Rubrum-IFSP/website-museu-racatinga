@@ -32,9 +32,13 @@
             unset($_POST['senha']);
             unset($_POST['rg']);
             unset($_POST['cpf']);
-            header("location: ./admMenu.php");
 
             $_SESSION['admLogged'] = true;
+            $_SESSION['amgLogged'] = false;
+            $_SESSION['username']=$user;
+            header("location: ./admMenu.php");
+
+            
         }
     ?>
 </body>
