@@ -16,6 +16,7 @@
         <img src="./view/images/logo_rubrum.png" alt="logo">
         <nav>
             <a href="./view/pages/acervo.php">Acervo</a>
+            <a href="./view/pages/acervoEvento.php">Eventos</a>
             <?php
             $logged = false;
                 if(isset($_SESSION['amgLogged']) || isset($_SESSION['admLogged'])){

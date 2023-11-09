@@ -55,7 +55,7 @@
             while($linha=mysqli_fetch_array($listar)){
                 echo "<div class='container-event'>";
                     echo "<figure>";
-                        echo "<img src='../view/images/imagem.png'>";
+                        echo "<img src='../images/imagem.png'>";
                     echo "</figure>";
                     echo "<p><spam class='nome-event'>".$linha[0]."</spam></p>";
                     echo "<p><spam class='desc-event'>".$linha[1]."</spam></p>";
