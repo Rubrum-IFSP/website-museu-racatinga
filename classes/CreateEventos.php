@@ -1,7 +1,7 @@
 <?php
     class CreateEventos extends Conexao{
 
-        public function create($nome, $data, $desc){
+        public function create($nome, $data, $desc):bool{
             $mysqli = $this->conectar();
 
             $query = "INSERT INTO `Evento`(`nome`, `dataEvento`, `descricao`) VALUES ('$nome',date '$data','$desc')";
@@ -9,15 +9,16 @@
             if(mysqli_num_rows($queryVerificar)>0)
             {
 
-                echo "<script>warn('Já existe um Evento com este nome')</script>";
+                return false;
             }
             else
             {
                 $queryCreate = mysqli_query($mysqli, $query);
+                return true;
             }
         }
 
-        public function update($nome, $data, $desc){
+        public function update($nome,$novoNome, $data, $desc){
             $mysqli = $this->conectar();
             $query = "SELECT id FROM Evento where nome = '$nome'";
             $resultQuery = mysqli_query($mysqli, $query);
@@ -30,30 +31,20 @@
                 }
             }
 
-            
-            $idEvento = $selectedProduct;
-            $queryUpdate = "UPDATE `Evento` SET `nome`='$nome', dataEvento=DATE '$data',`descricao`='$desc' WHERE id=$idEvento";
+            $queryUpdate = "UPDATE `Evento` SET `nome`='$novoNome', `dataEvento` =DATE '$data',`descricao`='$desc' WHERE id=$selectedProduct";
+            echo $selectedProduct;
             mysqli_query($mysqli, $queryUpdate); 
 
-
-
-
         }
-        public function delete(String $evento){
+        public function delete($idEvento){
             $mysqli =$this->conectar();
-            $query = "SELECT id FROM Evento where nome = '$evento'";
-            $resultQuery = mysqli_query($mysqli, $query);
 
-            if(mysqli_num_rows($resultQuery)>0){
-                while($row = mysqli_fetch_assoc($resultQuery)){
-                    $selectedProduct = $row['id'];
-                    break;
-                }
-            }
-            $query = "DELETE FROM Pecas WHERE idEvento=$selectedProduct";
-            mysqli_query($mysqli, $query);
-            $query ="DELETE FROM Evento WHERE id=$selectedProduct";
-            mysqli_query($mysqli, $query);
+            $queryIngressos ="DELETE FROM IngressoEvento WHERE idEvento=$idEvento";
+            mysqli_query($mysqli,$queryIngressos);
+            $queryPecas = "DELETE FROM Pecas WHERE idEvento=$idEvento";
+            mysqli_query($mysqli, $queryPecas);
+            $queryEventos ="DELETE FROM Evento WHERE id=$idEvento";
+            mysqli_query($mysqli, $queryEventos);
 
         }
         

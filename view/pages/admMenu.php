@@ -26,6 +26,9 @@
             <a href="./createAdm.php">Adicionar Peça</a>
             <a href="./deleteAdm.php">Deletar Peça</a>
             <a href="./updateAdm.php">Editar Peça</a>
+            <a href="./createEvento.php">Criar Evento</a>
+            <a href="./deleteEvento.php">Deletar Evento</a>
+            <a href="./updateEvento.php">Editar Evento</a>
             <a href="./acervo.php">Olhar Acervo</a>
             <a href="../../index.php">Página Inicial</a>
         </nav>

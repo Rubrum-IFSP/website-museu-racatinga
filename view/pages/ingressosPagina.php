@@ -77,7 +77,6 @@ if(!isset($_SESSION['amgLogged']) || !$_SESSION['amgLogged']){
 
             if(!$return){
                 echo "<script>alert('Você já possui o Ingresso para este evento!')</script>";
-                header("location: ./ingressosPagina.php");
             }
 
 

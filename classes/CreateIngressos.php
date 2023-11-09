@@ -2,7 +2,7 @@
 
     class CreateIngressos extends Conexao{
         //o parametro é o $amgLogged, $username e $idEvento(passado pelo <select>) guardados no SESSION
-        public function comprar($logged, $username, $idEvento){
+        public function comprar($logged, $username, $idEvento):bool{
             if($logged)
                 {
                 $queryFindId = "SELECT id from Pessoa WHERE nome='$username'";
@@ -19,19 +19,22 @@
                     $returnVerificarIngresso = mysqli_query($this->conectar(),$queryVerificarIngresso);
                     if(mysqli_num_rows($returnVerificarIngresso)>0)
                     {
-                        header("location: ./ingressosPagina.php");
+                        
+                        return false;
+                       
                     }
                     else
                     {   
                         $codigo = ($idEvento+2)*15 + $selectedProduct;
                         $queryCreateIngresso ="INSERT INTO `IngressoEvento`(`idPessoa`, `idEvento`,`codigo`, `dataCompra`) VALUES ($selectedProduct, $idEvento,$codigo,CURRENT_DATE)";
                         mysqli_query($this->conectar(), $queryCreateIngresso);
+                        return true;
                     }
                 }
             }
             else
             {
-                header("location: ../view/pages/ingressosPagina.php");
+                return false;
             }
         }
 

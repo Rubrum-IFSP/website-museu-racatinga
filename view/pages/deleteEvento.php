@@ -26,7 +26,7 @@
         </header>
 
         <main>
-            <h1>DELETE</h1>
+            <h1>Deletar Evento</h1>
             <form method="POST">
                 <select name="eventos">
                     <option name="placeHolder" value="Escolha...">Escolha...</option>
