@@ -26,7 +26,7 @@
                 if ( isset($_SESSION['admLogged']) && $_SESSION['admLogged']==true ) {
                     echo "<a href='./view/pages/admMenu.php'>Menu do Administrador</a>";
                 } 
-                else if (!$logged) {
+                if (!$logged) {
                     echo "<a href='./view/components/login.php' class='open-login-button'>Login</a>";
                 }
                 else {

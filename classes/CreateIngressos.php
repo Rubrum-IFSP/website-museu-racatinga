@@ -19,12 +19,12 @@
                     $returnVerificarIngresso = mysqli_query($this->conectar(),$queryVerificarIngresso);
                     if(mysqli_num_rows($returnVerificarIngresso)>0)
                     {
-                        header("location: ../view/pages/ingressosPagina.php");
+                        header("location: ./ingressosPagina.php");
                     }
                     else
                     {   
-                        $codigo = $selectedProduct + $selectedProduct * ($idEvento+2*$selectedProduct);
-                        $queryCreateIngresso ="INSERT INTO `IngressoEvento`(`idPessoa`, `idEvento`,`codigo`, `dataCompra`) VALUES ($selectedProduct, $idEvento,'22222333',CURRENT_DATE)";
+                        $codigo = ($idEvento+2)*15 + $selectedProduct;
+                        $queryCreateIngresso ="INSERT INTO `IngressoEvento`(`idPessoa`, `idEvento`,`codigo`, `dataCompra`) VALUES ($selectedProduct, $idEvento,$codigo,CURRENT_DATE)";
                         mysqli_query($this->conectar(), $queryCreateIngresso);
                     }
                 }
