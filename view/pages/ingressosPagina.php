@@ -1,45 +1,65 @@
+<?php
+session_start();
+if(isset($_SESSION['admLogged']) &&  $_SESSION['admLogged']){
+    header("location: ./admMenu.php");
+
+}
+if(!isset($_SESSION['amgLogged']) || !$_SESSION['amgLogged']){
+    header("location: ../components/login.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/crudAdm.css">
     <title>Museu Racatinga - Compra Ingressos</title>
 </head>
 <body>
-    <form method="post">
-        <select name="eventos">
-            <?php    
-                session_start();
-                if(isset($_SESSION['admLogged']) &&  $_SESSION['admLogged']){
-                    header("location: ./admMenu.php");
+    <header>
+        <nav>
+            <a href="../../index.php">Página Inicial</a>
+            <a href="./acervo.php">Acervo</a>
+            <a href='./deslogar.php' class='open-login-button'>Deslogar</a>
+        </nav>
+    </header>
+    <main>
+        <form method="post">
+            <div>
+            <select name="eventos">
+                <?php    
 
-                }
-                if(!isset($_SESSION['amgLogged']) || !$_SESSION['amgLogged']){
-                    header("location: ../components/cadastro.php");
-                }
-                else{
-                
-                    $mysqli = mysqli_connect("18.230.6.129","HT301410X","HT301410X","HT301410X");
-                    $query = "SELECT nome, id FROM Evento";
-                    $result = mysqli_query($mysqli, $query);
-                    
-                    if(mysqli_num_rows($result)> 0 ){
-                        while($row = mysqli_fetch_assoc($result)){
-                            $selectedProduct = $row['nome'];
-                            $id = $row['id'];
-                            echo "<option name='$id' value='$id'>$selectedProduct</option>";
+                        $mysqli = mysqli_connect("18.230.6.129","HT301410X","HT301410X","HT301410X");
+                        $query = "SELECT nome, id FROM Evento";
+                        $result = mysqli_query($mysqli, $query);
+                        
+                        if(mysqli_num_rows($result)> 0 ){
+                            while($row = mysqli_fetch_assoc($result)){
+                                $selectedProduct = $row['nome'];
+                                $id = $row['id'];
+                                echo "<option name='$id' value='$id'>$selectedProduct</option>";
+                            }
                         }
-                    }
-                }
+                    
 
 
-            ?>
-        </select>
-        <input type="checkbox" name="check">
-        <input type="submit" name="submitButton" value='Comprar'>
-    </form>
+                ?>
+            </select>
+            </div>
+            <div class='confirm-container'>
+            
+                <input type="checkbox" name="check">
+                <label for='check' class='confirm-label'>Adquirir?</label>
+            </div>
+            <input type="submit" name="submitButton" value='Comprar'>
+        </form>
+    </main>
 </body>
+
 </html>
 
 <?php
@@ -53,7 +73,12 @@
         echo $idEvento;
         echo $username;
             $class = new CreateIngressos();
-            $class->comprar(true, $username,$idEvento);
+            $return= $class->comprar(true, $username,$idEvento);
+
+            if(!$return){
+                echo "<script>alert('Você já possui o Ingresso para este evento!')</script>";
+                header("location: ./ingressosPagina.php");
+            }
 
 
 

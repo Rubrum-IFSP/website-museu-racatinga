@@ -38,6 +38,8 @@
                 }
                 if ( isset($_SESSION['admLogged']) && $_SESSION['admLogged']==true ) {
                     echo "<a href='./admMenu.php'>Menu do Administrador</a>";
+                    echo "<a href='./deslogar.php' class='open-login-button'>Deslogar</a>";
+                    echo "<p><spam class='loginInformation'>".$_SESSION['username']."</spam></p>";
                 } else if (!$logged) {
                     echo "<a class='open-login-button'>Login</a>";
                 } 

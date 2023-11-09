@@ -58,15 +58,16 @@ session_start();
                             {
                                 if(isset($_POST['nomeLogin']) && isset($_POST['senhaLogin']))
                                 {
-                                    echo "<script>alert('Login deu errado hein')</script>";
+                                    echo "<script>alert('Informações Errada(s)')</script>";
                                     unset($_POST['nomeLogin']);
                                     unset($_POST['senhaLogin']);
                                 }
                             }
-                            unset($_POST['nomeLogin']);
-                            unset($_POST['senhaLogin']);
+                            
 
                         }
+                        unset($_POST['nomeLogin']);
+                        unset($_POST['senhaLogin']);
                     ?>
             </div>
         </div>

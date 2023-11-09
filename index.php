@@ -1,5 +1,5 @@
 <?php
-    
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +17,6 @@
         <nav>
             <a href="./view/pages/acervo.php">Acervo</a>
             <?php
-            session_start();
             $logged = false;
                 if(isset($_SESSION['amgLogged']) || isset($_SESSION['admLogged'])){
                     $logged=true;
@@ -29,10 +28,14 @@
                 if (!$logged) {
                     echo "<a href='./view/components/login.php' class='open-login-button'>Login</a>";
                 }
-                else {
+                if(isset($_SESSION['amgLogged']) && $_SESSION['amgLogged']){
+                    echo "<a href='./view/pages/ingressosPagina.php' class='open-login-button'>Comprar Ingressos</a>";
+                }
+                if($logged) {
                     echo "<a href='./view/pages/deslogar.php' class='open-login-button'>Deslogar</a>";
                     echo "<p><spam class='loginInformation'>".$_SESSION['username']."</spam></p>";
-                } 
+                }
+ 
             ?>
         </nav>
 

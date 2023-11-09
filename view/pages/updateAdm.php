@@ -88,7 +88,7 @@
                 header("location: ./updateAdm.php");
             }
             else{
-                echo "<p> Escolha uma peça valida</p>";
+                echo "<script>alert('Escolha um Evento Válido!')</script>";
             }
         }
     }
