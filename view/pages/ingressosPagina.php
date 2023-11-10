@@ -24,7 +24,11 @@ if(!isset($_SESSION['amgLogged']) || !$_SESSION['amgLogged']){
         <nav>
             <a href="../../index.php">Página Inicial</a>
             <a href="./acervo.php">Acervo</a>
+            <a href='./acervoEventos.php'>Eventos</a>
             <a href='./deslogar.php' class='open-login-button'>Deslogar</a>
+            <a href='./perfil.php' class='open-login-button'>Perfil</a>
+ 
+        
         </nav>
     </header>
     <main>

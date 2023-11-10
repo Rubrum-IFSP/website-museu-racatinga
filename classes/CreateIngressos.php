@@ -49,28 +49,32 @@
                     break;
                 }
             }
-            $queryIngressos = "SELECT IngressoEvento.codigo, IngressoEvento.dataCompra FROM IngressoEvento where IngressoEvento.idPessoa = $selectedProduct";
+            $queryIngressos = "SELECT IngressoEvento.codigo, IngressoEvento.dataCompra, IngressoEvento.id FROM IngressoEvento where IngressoEvento.idPessoa = $selectedProduct";
             $resultIngressos = mysqli_query($this->conectar(), $queryIngressos);
 
-            $resultIdEvento= mysqli_query($this->conectar(), "SELECT idEvento from IngressoEvento, Pessoa WHERE $selectedProduct = IngressoEvento.idPessoa");
+            $resultIdEvento= mysqli_query($this->conectar(), "SELECT idEvento from IngressoEvento, Pessoa WHERE $selectedProduct = IngressoEvento.idPessoa ");
             if(mysqli_num_rows($resultIdEvento)>0){
                 while ($row = mysqli_fetch_assoc($resultIdEvento)){
                     $idEvento = $row['idEvento'];
                     break;  
                 }
             }
-            $resultNomeEvento= mysqli_query($this->conectar(),"SELECT nome from Evento, IngressoEvento WHERE  $idEvento = Evento.id ");
+            $resultNomeEvento= mysqli_query($this->conectar(),"SELECT nome from Evento, IngressoEvento WHERE  IngressoEvento.idEvento = Evento.id AND IngressoEvento.idPessoa = $selectedProduct ORDER BY IngressoEvento.id ");
 
-
-
+            
+            $count = 1;
             while($linha=mysqli_fetch_array($resultIngressos)){
-                echo "<div class='container-ingresso'>";
+                echo "<div class='container-perfil'>";
+                    echo "<h3>Ingresso $count</h3>";
                     echo "<p><spam class='content-ingresso'>Codigo: </spam>".$linha[0]. "</p>";
                     echo "<p class='content-ingresso'>Data de Compra: ".$linha[1]."</p>";
                     while($linhaNomeEvento=mysqli_fetch_array($resultNomeEvento)){
                         echo "<p class='content-ingresso'>Evento: ".$linhaNomeEvento[0]."</p>";
+                        break;
                     }
+                    
                 echo "</div>";
+                $count = $count +1;
         }
         
 

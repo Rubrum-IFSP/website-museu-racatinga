@@ -75,6 +75,7 @@
 
             while($linha=mysqli_fetch_array($listar)){
                 echo "<div class='container-perfil'>";
+                    echo "<h1>Informações Pessoais</h1>";   
                     echo "<div class='informacoes-perfil'>";
                         echo "<div class='informacoes-top'>";
                             echo "<p><spam class='user-info-field'>Nome: </spam>".$linha[0]."</p>";

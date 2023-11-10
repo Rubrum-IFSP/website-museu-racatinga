@@ -32,6 +32,7 @@
         <img src="../images/logo_rubrum.png" alt="logo">
         <nav>
             <a href="../../index.php">Home</a>
+            <a href='./acervoEvento.php'>Eventos</a>
             <?php
                 if(!isset($logged)){
                     $logged = false;
@@ -45,7 +46,7 @@
                 } 
                 else{
                     echo "<a href='./deslogar.php' class='open-login-button'>Deslogar</a>";
-                    echo "<p><spam class='loginInformation'>".$_SESSION['username']."</spam></p>";
+                    echo "<a href='./perfil.php' class='open-login-button'>Perfil</a>";
                 }
             ?>
         </nav>

@@ -34,7 +34,7 @@
                 }
                 if($logged) {
                     echo "<a href='./view/pages/deslogar.php' class='open-login-button'>Deslogar</a>";
-                    echo "<p><spam class='loginInformation'>".$_SESSION['username']."</spam></p>";
+                    echo "<a href='./view/pages/perfil.php' class='open-login-button'>Perfil</a>";
                 }
  
             ?>
@@ -45,7 +45,7 @@
     <section class="landing-section">
         <h3>A história vive</h3>
         <h1>Museu de Racatinga</h1>
-        <a href="./view/pages/equipe.html">SOBRE</a>
+        <a href="./view/pages/equipe.php">SOBRE</a>
     </section>
 
     <section class="contate-nos">
