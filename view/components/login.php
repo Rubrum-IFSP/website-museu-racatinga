@@ -34,7 +34,7 @@ session_start();
                         <div class="card-info">
                             <p>Não tem uma conta? <a href="./cadastro.php" class="register-button">Registre-se agora!</a></p>
                             <p>Esqueceu sua senha? <a href="./mudarSenhaAmigo.php" class="mudar-senha-button">Mudar Senha</a></p>
-                            <p>Conectar como Administrador ?<a href="../pages/loginAdmPagina.php">Log-in</a> </p>
+                            <p>Conectar como Administrador?<a href="../pages/loginAdmPagina.php">Log-in</a> </p>
                         </div>
                     </form>
                     <?php
