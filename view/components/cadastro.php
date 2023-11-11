@@ -46,27 +46,23 @@
                     if(isset($_POST['rg']) && $_POST['cpf'])
                     {
                         require("../../classes/Conexao.php");
-                        require("../../classes/AmigoDoMuseu.php");
+                        require("../../classes/usuario/UsuarioVO.php");
+                        require("../../classes/usuario/UsuarioManager.php");
                         
                         $nome = $_POST['nome'];
                         $senha = $_POST['senha'];
                         $cpf = $_POST['cpf'];
                         $rg = $_POST['rg'];
 
-                        $AmigoDoMuseu = new AmigoDoMuseu();
-                        $cadastrado = $AmigoDoMuseu->cadastrar($nome, $senha, $cpf, $rg);
+                        $usuarioManager = new UsuarioManager();
 
-                        if($cadastrado)
+                        if($usuarioManager->cadastrar(new UsuarioVO($nome, $email, "amg", $cpf, $rg, $senha)))
                         {
-
-                            $_SESSION['amgLogged'] = true;
-                            $_SESSION['admLogged'] =false;
-                            $_SESSION['username']=$nome;
                             header("location: ../../index.php");
                         }
                         else
                         {
-                            if ( isset($_POST['nome']) && isset($_POST['senha'])){
+                            if (isset($_POST['nome']) && isset($_POST['senha'])){
                                 if(isset($_POST['rg']) && $_POST['cpf']){
                                     unset($_POST['nome']);
                                     unset($_POST['senha']);

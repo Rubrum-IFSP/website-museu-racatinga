@@ -71,9 +71,9 @@
                         echo "<p class='content-ingresso'>Evento: ".$linhaNomeEvento[0]."</p>";
                     }
                 echo "</div>";
-        }
+            }
         
 
-    }
+        }
 }
     ?>

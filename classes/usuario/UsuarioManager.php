@@ -6,8 +6,54 @@
             }
         }
 
-        public function cadastrar(Usuario $usuario) {}
-        public function logar(Usuario $usuario) {
+        public function cadastrar(UsuarioVO $usuario) {
+            $tipoUsuario = $usuario->getTipoUsuario();
+            $senha = $usuario->getSenha();
+            $nome = $usuario->getNome();
+            $cpf = $usuario->getCpf();
+            $rg = $usuario->getRg();
+
+            $cadastrado = false;
+            $items = true;
+            $resultNome = mysqli_query($this->conectar(), "SELECT * FROM Pessoa where nome='$nome'");
+            
+            if(mysqli_num_rows($resultNome)>0)
+            {
+                $items =false;
+            }
+            $resultCpf = mysqli_query($this->conectar(), "SELECT * FROM Pessoa where cpf='$cpf'");
+            if(mysqli_num_rows($resultCpf)>0)
+            {
+                $items =false;
+            }
+            $resultRg = mysqli_query($this->conectar(), "SELECT * FROM Pessoa where nome='$rg'");
+            if(mysqli_num_rows($resultRg)>0)
+            {
+                $items =false;
+            }
+            if($items)
+            {
+                $query = "INSERT INTO `Pessoa`(`tipoUser`, `nome`, `cpf`, `senha`, `rg`) VALUES('amg','$nome','$cpf','$senha','$rg')";
+                $cadastrado = mysqli_query($this->conectar(),$query);
+
+                if ($cadastrado == true) {
+                    if ($tipoUsuario == "adm") {
+                        $_SESSION["admLogged"] = true;
+                        $_SESSION["amgLogged"] = false;
+                    } else {
+                        $_SESSION["amgLogged"] = true;
+                        $_SESSION["admLogged"] = false;
+                    }
+                    $_SESSION["username"] = $nome;
+                }
+            }
+            else
+            {
+                echo '<script>alert("Já existe uma pessoa com estas Informações(CPF/RG/Nome)!")</script>'; 
+            }
+            return $cadastrado;
+        }
+        public function logar(UsuarioVO $usuario) {
             $nome = $usuario->getNome();
             $senha = $usuario->getSenha();
 
@@ -25,7 +71,7 @@
             }
             else return false;
         }
-        public function mudarSenha(Usuario $usuario) {
+        public function mudarSenha(UsuarioVO $usuario) {
             $cpf = $usuario->getCpf();
             $rg = $usuario->getRg();
             $senha = $usuario->getSenha();
@@ -60,7 +106,7 @@
                 echo "</div>";
             }
         }
-        public function editarDados(Usuario $usuario) {}
+        public function editarDados(UsuarioVO $usuario) {}
         public function getUsuario(string $nome) {}
         public function procurarAdm() {
             $mysqli = $this->conectar();

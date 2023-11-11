@@ -1,11 +1,11 @@
 <?php
-    class Comentario extends Conexao {
+    class ComentarioManager extends Conexao {
         
         public function criarComentario($email, $comentario)
         {
             $mysqli = $this->conectar();
             $query = "INSERT INTO `Comentarios`(`email`, `mensagem`) VALUES ('$email','$comentario')";
-            $result = mysqli_query($mysqli, $query);
+            return mysqli_query($mysqli, $query);
         }
 
         public function mostrarComentarios()

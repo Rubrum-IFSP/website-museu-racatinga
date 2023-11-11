@@ -1,5 +1,5 @@
 <?php
-    class Usuario {
+    class UsuarioVO {
         private $nome;
         private $email;
         private $tipoUsuario;

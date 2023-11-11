@@ -1,6 +1,5 @@
 <?php
     class Crud extends Conexao{
-
         public function showEventos(){
             $mysqli = $this->conectar();
             $query = "SELECT nome, id FROM Evento";
@@ -11,13 +10,12 @@
                     $selectedProductName[] = $row['product_name'];
                 }
             }
-
-            
-        echo "<select>";
-        foreach($selectedProductName as $optionName){
-          echo "<option value=".$optionName.">".$optionName."</option>";
-        }  
-        echo "</select>";
+                
+            echo "<select>";
+            foreach($selectedProductName as $optionName){
+                echo "<option value=".$optionName.">".$optionName."</option>";
+            }  
+            echo "</select>";
         }
     }
 ?>
