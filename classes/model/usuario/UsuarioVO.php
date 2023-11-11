@@ -1,19 +1,17 @@
 <?php
     class UsuarioVO {
         private $nome;
-        private $email;
         private $tipoUsuario;
         private $cpf;
         private $rg;
         private $senha;
 
-        public function __construct($nome, $email, $tipoUsuario, $cpf, $rg, $senha) {
-            $this->nome = $nome;
-            $this->email = $email;
+        public function __construct($tipoUsuario, $nome, $cpf, $senha, $rg) {
             $this->tipoUsuario = $tipoUsuario;
+            $this->nome = $nome;
             $this->cpf = $cpf;
-            $this->rg = $rg;
             $this->senha = $senha;
+            $this->rg = $rg;
         }
 
         public function getNome () {
@@ -22,14 +20,6 @@
 
         public function setNome ($nome) {
             $this->nome = $nome;
-        }
-
-        public function getEmail () {   
-            return $this->email;
-        }
-
-        public function setEmail ($email) { 
-            $this->email = $email;
         }
 
         public function getTipoUsuario () {

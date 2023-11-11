@@ -8,35 +8,70 @@
 
         public function cadastrar(UsuarioVO $usuario) {
             $tipoUsuario = $usuario->getTipoUsuario();
-            $senha = $usuario->getSenha();
-            $nome = $usuario->getNome();
+            $nome = strtolower($usuario->getNome());
             $cpf = $usuario->getCpf();
+            $senha = $usuario->getSenha();
             $rg = $usuario->getRg();
 
+            if ( $nome== '' || $cpf == '' || $senha == '' || $rg == '' ) {
+                $_SESSION["registroMessage"] = "Preencha todos os campos!";
+                return false;
+            }
+
             $cadastrado = false;
-            $items = true;
             $resultNome = mysqli_query($this->conectar(), "SELECT * FROM Pessoa where nome='$nome'");
             
             if(mysqli_num_rows($resultNome)>0)
             {
-                $items =false;
+                $_SESSION["registroMessage"] = "Este nome já está cadastrado.";
+                return false;
             }
             $resultCpf = mysqli_query($this->conectar(), "SELECT * FROM Pessoa where cpf='$cpf'");
             if(mysqli_num_rows($resultCpf)>0)
             {
-                $items =false;
+                $_SESSION["registroMessage"] = "Este CPF já está cadastrado.";
+                return false;
+
             }
             $resultRg = mysqli_query($this->conectar(), "SELECT * FROM Pessoa where nome='$rg'");
             if(mysqli_num_rows($resultRg)>0)
             {
-                $items =false;
+                $_SESSION["registroMessage"] = "Este RG já está cadastrado.";
+                return false;
             }
-            if($items)
-            {
-                $query = "INSERT INTO `Pessoa`(`tipoUser`, `nome`, `cpf`, `senha`, `rg`) VALUES('amg','$nome','$cpf','$senha','$rg')";
-                $cadastrado = mysqli_query($this->conectar(),$query);
 
-                if ($cadastrado == true) {
+            $query = "INSERT INTO `Pessoa`(`tipoUser`, `nome`, `cpf`, `senha`, `rg`) VALUES('amg','$nome','$cpf','$senha','$rg')";
+            $cadastrado = mysqli_query($this->conectar(),$query);
+
+            if ($cadastrado == true) {
+                if ($tipoUsuario == "adm") {
+                    $_SESSION["admLogged"] = true;
+                    $_SESSION["amgLogged"] = false;
+                } else {
+                    $_SESSION["amgLogged"] = true;
+                    $_SESSION["admLogged"] = false;
+                }
+                $_SESSION["username"] = $nome;
+                $_SESSION["userpass"] = $senha;
+            }
+            
+            return $cadastrado;
+        }
+        public function entrar(UsuarioVO $usuario) {
+            $tipoUsuario = $usuario->getTipoUsuario();
+            $nome = strtolower($usuario->getNome());
+            $senha = $usuario->getSenha();
+
+            $mysqli = $this->conectar();
+            $querySenha = "SELECT senha from Pessoa where senha='$senha'";
+            $queryUser = "SELECT nome from Pessoa where nome='$nome'";
+
+            $resultUser= mysqli_fetch_row( mysqli_query($mysqli,$queryUser) );
+            $resultSenha = mysqli_fetch_row( mysqli_query($mysqli,$querySenha) );
+
+            if($resultUser!=null && $resultSenha!=null)
+            {
+                if($nome==$resultUser[0] && $senha ==$resultSenha[0]) {
                     if ($tipoUsuario == "adm") {
                         $_SESSION["admLogged"] = true;
                         $_SESSION["amgLogged"] = false;
@@ -45,31 +80,13 @@
                         $_SESSION["admLogged"] = false;
                     }
                     $_SESSION["username"] = $nome;
+                    $_SESSION["userpass"] = $senha;
+                    return true;
                 }
             }
-            else
-            {
-                echo '<script>alert("Já existe uma pessoa com estas Informações(CPF/RG/Nome)!")</script>'; 
-            }
-            return $cadastrado;
-        }
-        public function logar(UsuarioVO $usuario) {
-            $nome = $usuario->getNome();
-            $senha = $usuario->getSenha();
-
-            $mysqli = $this->conectar();
-            $querySenha = "SELECT senha from Pessoa where senha='$senha'";
-            $queryUser = "SELECT nome from Pessoa where nome='$nome'";
-            $resultUser= mysqli_query($mysqli,$queryUser)->fetch_assoc();
-            $resultSenha = mysqli_query($mysqli,$querySenha)->fetch_assoc();
-            if($resultUser!=null && $resultSenha!=null)
-            {
-                $resultUser =current($resultUser);
-                $resultSenha = current($resultSenha);
-                if($nome==$resultUser && $senha ==$resultSenha) return true;
-                else return false;
-            }
-            else return false;
+            
+            $_SESSION["loginMessage"] = "O nome e/ou a senha inserida está errada.";
+            return false;
         }
         public function mudarSenha(UsuarioVO $usuario) {
             $cpf = $usuario->getCpf();
@@ -107,7 +124,26 @@
             }
         }
         public function editarDados(UsuarioVO $usuario) {}
-        public function getUsuario(string $nome) {}
+        public function getUsuario(string $nome, string $senha) {
+            $mysqli = $this->conectar();
+            $query = "SELECT * FROM Pessoa where nome='$nome' and senha='$senha'";
+            $resultado = mysqli_query($mysqli, $query);
+
+            if (is_bool($resultado) || is_null($resultado)) return $resultado;
+            
+            $linha = mysqli_fetch_row($resultado);
+            if ($linha != NULL) {
+                return new UsuarioVO(
+                    $linha[1],
+                    $linha[2],
+                    $linha[3],
+                    $linha[4],
+                    $linha[5]
+                );
+            } 
+
+            return false;
+        }
         public function procurarAdm() {
             $mysqli = $this->conectar();
             $query = "SELECT * FROM Pessoa where tipoUser='adm'";

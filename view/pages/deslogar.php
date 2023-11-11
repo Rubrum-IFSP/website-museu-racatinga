@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    if (session_id() == '') session_start();
     session_unset();
-    header("location: ../components/login.php");
+    header("location: ../../index.php");
 ?>

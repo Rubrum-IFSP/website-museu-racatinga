@@ -24,6 +24,7 @@ form.account-wrapper.active-wrapper {
     padding: 30px;
     transition: transform 5s ease;
     transform: scale(0);
+    z-index: 1000;
 }
 
 .amigoMuseu-wrapper.active {
@@ -46,7 +47,7 @@ form.account-wrapper.active-wrapper {
     width: 100%;
 }
 
-span.material-symbols-outlined {
+span.close-icon {
     cursor: pointer;
     position: absolute;
     font-size: 50px;
@@ -57,7 +58,7 @@ span.material-symbols-outlined {
     z-index: 10;
 }
 
-.material-symbols-outlined:hover {
+close-icon:hover {
     background-color: rgba(0, 0, 0, 0.062);
 }
 

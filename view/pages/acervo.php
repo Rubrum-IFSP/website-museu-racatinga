@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    $root = $_SERVER['DOCUMENT_ROOT'];
     require "../../classes/Conexao.php";
     require "../../classes/Acervo.php";
     
@@ -28,28 +29,9 @@
     <title>Museu de Racatinga - Acervo</title>
 </head>
 <body>
-    <header>
-        <img src="../images/logo_rubrum.png" alt="logo">
-        <nav>
-            <a href="../../index.php">Home</a>
-            <?php
-                if(!isset($logged)){
-                    $logged = false;
-                }
-                if ( isset($_SESSION['admLogged']) && $_SESSION['admLogged']==true ) {
-                    echo "<a href='./admMenu.php'>Menu do Administrador</a>";
-                    echo "<a href='./deslogar.php' class='open-login-button'>Deslogar</a>";
-                    echo "<p><spam class='loginInformation'>".$_SESSION['username']."</spam></p>";
-                } else if (!$logged) {
-                    echo "<a class='open-login-button'>Login</a>";
-                } 
-                else{
-                    echo "<a href='./deslogar.php' class='open-login-button'>Deslogar</a>";
-                    echo "<p><spam class='loginInformation'>".$_SESSION['username']."</spam></p>";
-                }
-            ?>
-        </nav>
-    </header>
+    <?php
+        require "$root/prototipo-museu-racatinga/view/components/navbar.php";
+    ?>
 
     <div class="navegacao-acervo">
         <?php
