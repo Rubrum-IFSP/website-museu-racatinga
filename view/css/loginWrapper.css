@@ -21,10 +21,11 @@ form.account-wrapper.active-wrapper {
     overflow: hidden;
     width: 100vw;
     height: 100vh;
-    padding: 30px;
+    padding: 60px 30px;
     transition: transform 5s ease;
     transform: scale(0);
     z-index: 1000;
+    overflow: auto;
 }
 
 .amigoMuseu-wrapper.active {
@@ -74,6 +75,10 @@ close-icon:hover {
     text-align: center;
 }
 
+.register h1 {
+    padding: 150px 0 20px 0;
+}
+
 .userinfo-box {
     width: 100%;
 }
@@ -115,6 +120,7 @@ close-icon:hover {
 
 .change-wrapper {
     text-align: center;
+    padding: 0 0 50px 0;
 }
 
 .register-button, .login-button {

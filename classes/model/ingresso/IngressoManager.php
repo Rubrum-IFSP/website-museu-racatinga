@@ -1,6 +1,8 @@
 <?php 
     class IngressoManager extends Conexao {
         public function comprarIngresso($username, $idEvento) {
+            if (session_id() == '') session_start();
+
             $queryFindId = "SELECT id from Pessoa WHERE nome='$username'";
             $findIdReturn = mysqli_query($this->conectar(), $queryFindId);
 
@@ -11,24 +13,16 @@
                     $selectedProduct = $row['id'];
                     break;
                 }
-                $queryVerificarIngresso = "SELECT * FROM IngressoEvento WHERE idPessoa=$selectedProduct AND idEvento = $idEvento";
-                $returnVerificarIngresso = mysqli_query($this->conectar(),$queryVerificarIngresso);
-                if(mysqli_num_rows($returnVerificarIngresso)>0)
-                {
-                    
-                    return false;
-                   
-                }
-                else
-                {   
-                    $codigo = ($idEvento+2)*15 + $selectedProduct;
-                    $queryCreateIngresso ="INSERT INTO `IngressoEvento`(`idPessoa`, `idEvento`,`codigo`, `dataCompra`) VALUES ($selectedProduct, $idEvento,$codigo,CURRENT_DATE)";
-                    mysqli_query($this->conectar(), $queryCreateIngresso);
-                    return true;
-                }
+                
+                $codigo = ($idEvento+2)*random_int(2, 100) + $selectedProduct;
+                $queryCreateIngresso ="INSERT INTO `IngressoEvento`(`idPessoa`, `idEvento`,`codigo`, `dataCompra`) VALUES ($selectedProduct, $idEvento,$codigo,CURRENT_DATE)";
+                mysqli_query($this->conectar(), $queryCreateIngresso);
+                $_SESSION["ingressoMessage"] = "Compra Realizada Com Sucesso!";
+                return true;
             }
             else
             {
+                $_SESSION["ingressoMessage"] = "Erro ao Realizar compra!";
                 return false;
             }
         }

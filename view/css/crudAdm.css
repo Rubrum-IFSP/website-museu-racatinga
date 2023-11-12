@@ -47,7 +47,7 @@ input,
 select {
     width: 100%;
     font-size: 1.3em;
-    padding: 5px;
+    padding: 8px;
     border-radius: 5px;
     border: none;
 }

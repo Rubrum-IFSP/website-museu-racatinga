@@ -1,0 +1,77 @@
+@import url(layout.css);
+
+main {
+    margin: 80px 0 0 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+h1 {
+    padding: 30px 0 20px 0;
+    text-align: center;
+    font-size: 2.4em;
+}
+
+.evento-wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 20px;
+    gap: 20px;
+}
+
+.evento-wrapper figure {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    max-height: 20em;
+}
+
+.evento-wrapper img {
+    width: auto;
+    height: 100%;
+}
+
+.information-upper p {
+    text-transform: capitalize;
+    padding: 5px;
+    font-size: 1.2em;
+}
+
+.container-event, 
+.container-event div {
+    flex-direction: column;
+    border-radius: 15px;
+    display: flex;
+    padding: 15px;
+}
+
+.container-event {
+    background-color: #58585879;
+    gap: 20px;
+    padding: 20px;
+}
+
+.container-event div {
+    justify-content: space-evenly;
+}
+
+.container-event p,
+.evento-title {
+    width: 100%;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+p.evento-title {
+    word-wrap: break-word;
+    overflow: auto;
+    font-weight: 700;
+    text-align: center;
+}

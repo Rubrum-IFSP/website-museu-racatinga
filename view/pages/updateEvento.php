@@ -15,14 +15,9 @@
     <title>Museu Racatinga - Editar Evento</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="./admMenu.php">Voltar ao Menu</a>
-            <a href="./createEvento.php">Adicionar Evento</a>
-            <a href="./deleteEvento.php">Remover Evento</a>
-            <a href="./acervo.php">Olhar Acervo</a>
-        </nav>
-    </header>
+        <?php 
+            require '../components/navbarAdm.php';
+        ?>
 
     <main>
     <h1>Editar Evento</h1>

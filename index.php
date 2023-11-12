@@ -1,6 +1,7 @@
 <?php
     session_start();
     $root = $_SERVER['DOCUMENT_ROOT'];
+    require "$root/prototipo-museu-racatinga/classes/controller/comentario/ComentarioController.php";
 ?>
 
 <!DOCTYPE html>
@@ -16,10 +17,10 @@
 <body>
     <?php 
         require($root.'/prototipo-museu-racatinga/view/components/navbar.php');
-        require($root.'/prototipo-museu-racatinga/view/components/contaAmigoMuseu.php');
     ?>
 
     <section class="landing-section">
+        <div class="background"></div>
         <h3>A história vive</h3>
         <h1>Museu de Racatinga</h1>
         <a href="./view/pages/equipe.html">SOBRE</a>
@@ -51,14 +52,12 @@
                     <button name="submitComentario" type="submit">Enviar</button>
                 </form>
                 <?php
-                   if(isset($_POST['submitComentario']) ){
-                       $email = $_POST['email'];
-                       $comentario = $_POST['fale-conosco-contato'];
-                       require("classes/Conexao.php");
-                       require("classes/Comentario.php");
-                       $Comentario = new Comentario();
-                       $Comentario->criarComentario($email,$comentario);
-                   } 
+                    if(isset($_POST['submitComentario']) ){
+                        $email = $_POST['email'];
+                        $comentario = $_POST['fale-conosco-contato'];
+                        $Comentario = new ComentarioManager();
+                        $Comentario->criarComentario($email,$comentario);
+                    } 
                 ?>
             </div>
             
@@ -77,6 +76,5 @@
         </div>
     </footer>
 
-    <script src="./view/js/amAccountWrapper.js"></script>
 </body>
 </html>

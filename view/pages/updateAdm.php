@@ -15,14 +15,9 @@
     <title>Museu Racatinga - Editar Peça</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="./admMenu.php">Voltar ao Menu</a>
-            <a href="./createAdm.php">Adicionar Peça</a>
-            <a href="./deleteAdm.php">Remover Peça</a>
-            <a href="./acervo.php">Olhar Acervo</a>
-        </nav>
-    </header>
+        <?php 
+            require '../components/navbarAdm.php';
+        ?>
 
     <main>
     <h1>Editar Peças</h1>

@@ -4,10 +4,9 @@
         header("Location: ./loginAdmPagina.php");
     }
 
-    require ("../../classes/Conexao.php");
-    require "../../classes/Comentario.php";
+    require "../../classes/controller/comentario/ComentarioController.php";
     require "../../classes/controller/usuario/UsuarioController.php";
-    $comentario = new Comentario();
+    $comentario = new ComentarioController();
     $controller = new UsuarioController();
 ?>
 

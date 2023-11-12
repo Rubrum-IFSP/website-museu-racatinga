@@ -2,9 +2,12 @@
     if (session_id() == '') session_start();
     $root = $_SERVER['DOCUMENT_ROOT'];
 ?>
-<link rel="stylesheet" href="/prototipo-museu-racatinga/view/css/navbar.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+
 <header>
+    <link rel="stylesheet" href="/prototipo-museu-racatinga/view/css/navbar.css">
+    <link rel="stylesheet" href="/prototipo-museu-racatinga/view/css/loginWrapper.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <img src="/prototipo-museu-racatinga/view/images/logo_rubrum.png" alt="logo">
     <nav>
         <div class="navbar-background"></div>
@@ -34,6 +37,13 @@
                     $logged=true;
                 }
 
+                if(isset($_SESSION['amgLogged']) || isset($_SESSION['admLogged'])){
+                    echo 
+                    "<a href='/prototipo-museu-racatinga/view/pages/ingressosPagina.php'>
+                        Ingressos
+                        <span class='material-symbols-outlined'>local_activity</span>
+                    </a>";
+                }
                 if ( isset($_SESSION['admLogged']) && $_SESSION['admLogged']==true ) {
                     echo "
                     <a href='/prototipo-museu-racatinga/view/pages/admMenu.php'>
@@ -46,13 +56,6 @@
                     <a class='open-login-button'>
                         Entrar
                         <span class='material-symbols-outlined'>login</span>
-                    </a>";
-                }
-                if(isset($_SESSION['amgLogged']) && $_SESSION['amgLogged'] == true){
-                    echo 
-                    "<a href='/prototipo-museu-racatinga/view/pages/ingressosPagina.php'>
-                        Ingressos
-                        <span class='material-symbols-outlined'>local_activity</span>
                     </a>";
                 }
                 if($logged) {
@@ -71,5 +74,7 @@
             ?>
         </div>
     </nav>
+    <?php require ($root.'/prototipo-museu-racatinga/view/components/contaAmigoMuseu.php'); ?>
+    <script src="/prototipo-museu-racatinga/view/js/amAccountWrapper.js"></script>
     <script src="/prototipo-museu-racatinga/view/js/navbar.js"></script>
 </header>

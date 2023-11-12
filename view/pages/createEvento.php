@@ -15,14 +15,9 @@
     </head>
 
     <body>
-        <header>
-            <nav>
-                <a href="./admMenu.php">Voltar ao Menu</a>
-                <a href="./deleteEvento.php">Deletar Evento</a>
-                <a href="./updateEvento.php">Editar Evento</a>
-                <a href="./acervo.php">Olhar Acervo</a>
-            </nav>
-        </header>
+        <?php 
+            require '../components/navbarAdm.php';
+        ?>
 
         <main>
             <h1>Adicionar Evento</h1>

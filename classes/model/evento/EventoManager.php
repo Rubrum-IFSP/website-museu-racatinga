@@ -49,14 +49,16 @@
             $queryEventos ="DELETE FROM Evento WHERE id=$idEvento";
             mysqli_query($mysqli, $queryEventos);
         }
-        public function listarEventos() {
+        public function listarNomeEventos() {
             $mysqli = $this->conectar();
             $query = "SELECT nome, id FROM Evento";
+
             $result = mysqli_query($mysqli, $query);
             $resultCheck = mysqli_num_rows($result);
+            
             if($resultCheck > 0 ){
                 while($row = mysqli_fetch_assoc($result)){
-                    $selectedProductName[] = $row['product_name'];
+                    $selectedProductName[] = $row['nome'];
                 }
             }
                 
@@ -65,6 +67,27 @@
                 echo "<option value=".$optionName.">".$optionName."</option>";
             }  
             echo "</select>";
+        }
+
+        public function listarEventos() {
+            $query = "SELECT nome, descricao, dataEvento FROM Evento";
+            $listar = mysqli_query($this->conectar(),$query);
+
+            while($linha=mysqli_fetch_array($listar)){
+                echo "<div class='container-event'>";
+                    echo "<div class='information-upper'>";
+                        echo "<figure>";
+                            echo "<img src='../images/imagem.png'>";
+                        echo "</figure>"; 
+                        echo "<p class='evento-title'>$linha[0]</p>";
+                        echo "<p class='evento-title'>$linha[2]</p>";
+                    echo "</div>";
+                    echo "<div class='information-down'>";
+                        echo "<p class='evento-title'>Descrição: </p>";
+                        echo "<p>$linha[1]</p>";
+                    echo "</div>";
+                echo "</div>";
+            }
         }
 
     }
