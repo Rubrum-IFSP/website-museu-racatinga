@@ -5,40 +5,64 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/crudAdm.css">
+    <style>
+        h1 {
+            color: white;
+            margin: 30px;
+        }
+        button {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h1>É necessário mudar a senha e adicionar suas informações pessoais para continuar</h1>
     <form method="POST">
-        novo usuario : <input type="text" name="user">
-        senha : <input type="text" name="senha">
-        rg: <input type="text" name="rg" maxlength ='9'>
-        cpf: <input type="text" name="cpf" maxlength ='11'>
-        <input value="Cadastrar Novo ADM" type="submit" name="submit">
+        <div>
+            <label for="nome">Nome:</label>
+            <input type="text" name="user" id="nome" required>
+        </div>
+
+        <div>
+            <label for="senha">Senha:</label>
+            <input type="text" name="senha" id="senha" required>
+        </div>
+
+        <div>
+            <label for="rg">RG:</label>
+            <input type="text" name="rg" maxlength ='9' id="rg" required>
+        </div>
+
+        <div>
+            <label for="cpf">CPF:</label>
+            <input type="text" name="cpf" maxlength ='11' id="cpf" required>
+        </div>
+        
+        <button type="submit" name="submit">Cadastrar Novo ADM</button>
     </form>
 
 
     <?php
-        include ("../../classes/Conexao.php");
-        include ("../../classes/AdmMenu.php");
+        include ("../../classes/controller/usuario/UsuarioController.php");
 
         if(isset($_POST['senha'])){
-            $user = $_POST['user'];
-            $senha = $_POST['senha'];
-            $rg = $_POST['rg'];
-            $cpf = $_POST['cpf'];
-            $classe = new AdmMenu();
-            $classe->mudarSenha($user, $senha, $rg, $cpf);
-            unset($_POST['user']);
-            unset($_POST['senha']);
-            unset($_POST['rg']);
-            unset($_POST['cpf']);
+            $usuario = new UsuarioVO(
+                "adm",
+                $_POST['user'],
+                $_POST['cpf'],
+                $_POST['senha'],
+                $_POST['rg'],
+            );
 
-            $_SESSION['admLogged'] = true;
-            $_SESSION['amgLogged'] = false;
-            $_SESSION['username']=$user;
+            $controller = new UsuarioController();
+            $controller->cadastrar($usuario);
+
+            foreach ($_POST as $key => $value) {
+                unset($_POST[$key]);
+            }
+
             header("location: ./admMenu.php");
-
-            
         }
     ?>
 </body>

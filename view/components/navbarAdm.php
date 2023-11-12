@@ -2,8 +2,8 @@
     if (session_id() == '') session_start();
     $root = $_SERVER['DOCUMENT_ROOT'];
 ?>
-<link rel="stylesheet" href="/prototipo-museu-racatinga/view/css/navbar.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
 <header>
     <img src="/prototipo-museu-racatinga/view/images/logo_rubrum.png" alt="logo">
     <nav>
@@ -27,6 +27,33 @@
                 Eventos
                 <span class="material-symbols-outlined">event</span>
             </a>
+            <hr>
+            <a href="/prototipo-museu-racatinga/view/pages/createAdm.php">
+                Adicionar Peça ao Acervo
+                <span class="material-symbols-outlined">inventory</span>
+            </a>
+            <a href="/prototipo-museu-racatinga/view/pages/deleteAdm.php">
+                Deletar Peça ao Acervo
+                <span class="material-symbols-outlined">delete_forever</span>
+            </a>
+            <a href="/prototipo-museu-racatinga/view/pages/updateAdm.php">
+                Editar Peça do Acervo
+                <span class="material-symbols-outlined">box_edit</span>
+            </a>
+            <hr>
+            <a href="/prototipo-museu-racatinga/view/pages/createEvento.php">
+                Adicionar Evento
+                <span class="material-symbols-outlined">calendar_add_on</span>
+            </a>
+            <a href="/prototipo-museu-racatinga/view/pages/deleteEvento.php">
+                Deletar Evento
+                <span class="material-symbols-outlined">free_cancellation</span>
+            </a>
+            <a href="/prototipo-museu-racatinga/view/pages/updateEvento.php">
+                Editar Evento
+                <span class="material-symbols-outlined">edit_calendar</span>
+            </a>
+
             <?php
                 $logged = false;
                 
@@ -34,13 +61,6 @@
                     $logged=true;
                 }
 
-                if ( isset($_SESSION['admLogged']) && $_SESSION['admLogged']==true ) {
-                    echo "
-                    <a href='/prototipo-museu-racatinga/view/pages/admMenu.php'>
-                        Administrador
-                        <span class='material-symbols-outlined'>settings</span>
-                    </a>";
-                } 
                 if (!$logged) {
                     echo "<hr>
                     <a class='open-login-button'>
@@ -73,3 +93,4 @@
     </nav>
     <script src="/prototipo-museu-racatinga/view/js/navbar.js"></script>
 </header>
+

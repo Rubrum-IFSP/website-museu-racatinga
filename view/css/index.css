@@ -1,6 +1,8 @@
 @import url("./layout.css");
 
-/* Landing section */
+header {
+    background: rgba(0, 0, 0, 0.555);
+}
 
 section.landing-section {
     display: flex;

@@ -1,10 +1,9 @@
 <?php 
     session_start();
     $root = $_SERVER['DOCUMENT_ROOT'];
-    require "../../classes/Conexao.php";
-    require "../../classes/Acervo.php";
+    require "$root/prototipo-museu-racatinga/classes/controller/acervo/AcervoController.php";
     
-    $acervo = new Acervo();
+    $acervo = new AcervoController();
     $maxPaginas = $acervo->getMaxPaginas();
 
     if ( isset($_GET["pagina"]) && ($_GET["pagina"] > $maxPaginas-1 || $_GET["pagina"] < 0) ){

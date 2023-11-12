@@ -18,6 +18,9 @@
         public function getUsuario(string $nome, string $senha) {
             return $this->model->getUsuario($nome, $senha);
         }
+        public function procurarAdm() {
+            return $this->model->procurarAdm();
+        }
 
     }
 ?>

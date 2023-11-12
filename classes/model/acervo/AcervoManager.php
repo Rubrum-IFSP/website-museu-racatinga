@@ -47,14 +47,14 @@
                 echo "</div>";
             }
         }
-        public function adicionarPeca(PecaVO $peca) : bool {
+        public function adicionarPeca($evento, PecaVO $peca) : bool {
             $nome = $peca->getNome();
             $desc = $peca->getDescricao();
             $ano = $peca->getAno();
             $artista = $peca->getArtista();
 
             $mysqli = $this->conectar();
-            $query = "SELECT id FROM Evento where nome = '$nome'";
+            $query = "SELECT id FROM Evento where nome = '$evento'";
             $resultQuery = mysqli_query($mysqli, $query);
             if(mysqli_num_rows($resultQuery)>0){
                 while ($row = mysqli_fetch_assoc($resultQuery)){
@@ -64,13 +64,10 @@
             }
             $idEvento = $selectedProduct;
             $resultNomePecas = mysqli_query($mysqli, "SELECT * FROM Pecas where nome='$nome'");
-            if(mysqli_num_rows($resultNomePecas)>0)
-            {
+            if(mysqli_num_rows($resultNomePecas)>0) {
                 echo '<script>alert("Já existe um item com este nome!")</script>'; 
                 return false;
-            }
-            else    
-            {
+            } else {    
                 $query = "INSERT INTO `Pecas`(`idEvento`, `descricao`, `ano`, `artista`, `nome`) VALUES ($idEvento, '$desc', '$ano', '$artista', '$nome')";
                 return mysqli_query($mysqli, $query);
             }

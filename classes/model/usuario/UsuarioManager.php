@@ -88,7 +88,7 @@
             $_SESSION["loginMessage"] = "O nome e/ou a senha inserida está errada.";
             return false;
         }
-        public function mudarSenha(UsuarioVO $usuario) {
+        public function mudarSenha(UsuarioVO $usuario, $novaSenha) {
             $cpf = $usuario->getCpf();
             $rg = $usuario->getRg();
             $senha = $usuario->getSenha();
@@ -97,7 +97,7 @@
             $resultQuery = mysqli_query($this->conectar(), $query);
             if(mysqli_num_rows($resultQuery)>0)
             {
-                $queryUpdate = "UPDATE `Pessoa` SET `senha`='$senha' WHERE rg='1' AND cpf ='1'";
+                $queryUpdate = "UPDATE `Pessoa` SET `senha`='$novaSenha' WHERE rg='1' AND cpf ='1'";
                 mysqli_query($this->conectar(), $queryUpdate);
                 return true;
             }
@@ -123,7 +123,9 @@
                 echo "</div>";
             }
         }
-        public function editarDados(UsuarioVO $usuario) {}
+        public function editarDados(UsuarioVO $usuario) {
+            
+        }
         public function getUsuario(string $nome, string $senha) {
             $mysqli = $this->conectar();
             $query = "SELECT * FROM Pessoa where nome='$nome' and senha='$senha'";

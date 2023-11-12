@@ -1,8 +1,8 @@
 <?php
- session_start();
- if ( $_SESSION["admLogged"]==false ) {
-     header("Location: ./loginAdmPagina.php");
- }
+    session_start();
+    if ( $_SESSION["admLogged"]==false ) {
+        header("Location: ./loginAdmPagina.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -15,14 +15,9 @@
     </head>
 
     <body>
-        <header>
-            <nav>
-                <a href="./admMenu.php">Voltar ao Menu</a>
-                <a href="./deleteAdm.php">Deletar Peça</a>
-                <a href="./updateAdm.php">Editar Peça</a>
-                <a href="./acervo.php">Olhar Acervo</a>
-            </nav>
-        </header>
+        <?php 
+            require '../components/navbarAdm.php';
+        ?>
 
         <main>
             <h1>Adicionar Peça</h1>
@@ -74,21 +69,21 @@
 <?php
     if(isset($_POST['desc']) && isset($_POST['ano'])){
         if(isset($_POST['artista']) && isset($_POST['nome'])){
-            require "../../classes/Conexao.php";
-            require "../../classes/Create.php";
-            $class = new Create();
+            require ("../../classes/controller/acervo/AcervoController.php");
+            $controller = new AcervoController();
             
-            $evento = $_POST['eventos'];
-            $desc = $_POST['desc'];
-            $ano = $_POST['ano'];
-            $artista = $_POST['artista'];
-            $nome = $_POST['nome'];
+            $peca = new PecaVO(
+                $_POST['nome'],
+                $_POST['desc'],
+                $_POST['ano'],
+                $_POST['artista']
+            );
             
-            $class->createFunction($evento, $desc, $ano, $artista, $nome);
-            unset($_POST['desc']);
-            unset($_POST['ano']);
-            unset($_POST['artista']);
-            unset($_POST['nome']);
+            $controller->adicionarPeca($_POST["eventos"], $peca);
+
+            foreach ($_POST as $key => $value) {
+                unset($_POST[$key]);
+            }
         }
     }
 ?>

@@ -1,19 +1,7 @@
 @import url(layout.css);
 
 body {
-    background-color: var(--primary-color);
-}
-
-header {
-    background-color: var(--secondary-color);
-    position: relative;
-    font-size: .9em;
-}
-
-nav {
-    width: 100%;
-    justify-content: center;
-    align-items: center;
+    background-color: rgb(204, 204, 204);
 }
 
 main {
@@ -25,11 +13,13 @@ main {
     gap: 40px;
     min-height: 100vh;
     min-height: 100svh;
-    background-color: rgba(255, 255, 255, 0.37);
+    background-color: var(--primary-color);
 }
 
 h1 {
+    color: white;
     text-align: center;
+    margin-top: 60px;
 }
 
 .wrapper-comentario {
@@ -65,15 +55,6 @@ h1 {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-    }
-
-    header {
-        padding: 20px;
-    }
-
-    header a {
-        min-width: max-content;
-        font-size: 1.6em;
     }
 
     main {

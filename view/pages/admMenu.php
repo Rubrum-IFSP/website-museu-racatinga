@@ -1,14 +1,14 @@
 <?php
- session_start();
- if ( $_SESSION["admLogged"]==false ) {
-     header("Location: ./loginAdmPagina.php");
- }
+    session_start();
+    if ( $_SESSION["admLogged"]==false ) {
+        header("Location: ./loginAdmPagina.php");
+    }
 
-    require "../../classes/Conexao.php";
-    require "../../classes/AdmMenu.php";
+    require ("../../classes/Conexao.php");
     require "../../classes/Comentario.php";
-    $admMenu = new admMenu();
+    require "../../classes/controller/usuario/UsuarioController.php";
     $comentario = new Comentario();
+    $controller = new UsuarioController();
 ?>
 
 <!DOCTYPE html>
@@ -21,27 +21,16 @@
     <title>ADM - Museu Racatinga</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="./createAdm.php">Adicionar Peça</a>
-            <a href="./deleteAdm.php">Deletar Peça</a>
-            <a href="./updateAdm.php">Editar Peça</a>
-            <a href="./createEvento.php">Criar Evento</a>
-            <a href="./deleteEvento.php">Deletar Evento</a>
-            <a href="./updateEvento.php">Editar Evento</a>
-            <a href="./acervo.php">Olhar Acervo</a>
-            <a href="../../index.php">Página Inicial</a>
-        </nav>
-    </header>
-    
     <?php 
-        if ( !$admMenu->procurarAdm() ) {
+        if ( !$controller->procurarAdm() ) {
             echo "
             <div class='change-pass'>
                 <p>Você está usando uma conta provisória, mude de senha para ter acesso total ao sistema</p>
                 <a href='./mudarSenhaAdm.php'>Mudar de Senha</a>
             </div>
             ";
+        } else {
+            require "../components/navBarAdm.php";
         }
     ?>
 
