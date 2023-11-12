@@ -16,14 +16,9 @@
     </head>
 
     <body>
-        <header>
-            <nav>
-                <a href="./admMenu.php">Voltar ao Menu</a>
-                <a href="./createAdm.php">Adicionar Peça</a>
-                <a href="./updateAdm.php">Editar Peça</a>
-                <a href="./acervo.php">Olhar Acervo</a>
-            </nav>
-        </header>
+        <?php 
+            require '../components/navbarAdm.php';
+        ?>
 
         <main>
             <h1>Deletar Peça</h1>
@@ -57,16 +52,13 @@
 <?php
     if(isset($_POST['submit']) && isset($_POST['check'])){
         if($_POST['pecas']!="Escolha..."){
-            $peca = $_POST['pecas'];
-            require "../../classes/Conexao.php";
-            require "../../classes/Create.php";
-            $class = new Create();
+            require "../../classes/controller/acervo/AcervoController.php";
+            $controller = new AcervoController();
+            $nomePeca = $_POST['pecas'];
 
-            $class->delete($peca);
-            header("location: ./deleteAdm.php");
-        }
-        else echo "<script>alert('Escolha um Evento Válido!')</script>";
-        }
+            $controller->deletarPeca($nomePeca);
+        } else echo "<script>alert('Escolha um Evento Válido!')</script>";
+    }
     
 
 ?>

@@ -15,14 +15,9 @@
     <title>Museu Racatinga - Editar Evento</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="./admMenu.php">Voltar ao Menu</a>
-            <a href="./createEvento.php">Adicionar Evento</a>
-            <a href="./deleteEvento.php">Remover Evento</a>
-            <a href="./acervo.php">Olhar Acervo</a>
-        </nav>
-    </header>
+        <?php 
+            require '../components/navbarAdm.php';
+        ?>
 
     <main>
     <h1>Editar Evento</h1>
@@ -47,18 +42,18 @@
             </div>
 
             <div>
-                <label for="descricao">Nome: </label>
-                <input type="text" name="nome" id="descricao" required>
+                <label for="nome">Nome: </label>
+                <input type="text" name="nome" id="nome" maxlength="100" required>
             </div>
 
             <div>
-                <label for="ano">Data: </label>
-                <input type="date" name="data" id="ano" required>
+                <label for="data">Data: </label>
+                <input type="date" name="data" id="data" required>
             </div>
             
             <div>
-                <label for="artista">Descrição: </label> 
-                <input type="text" name="desc" id="artista" required>
+                <label for="desc">Descrição: </label> 
+                <textarea type="text" name="desc" id="desc" maxlength="300" required></textarea>
             </div>
                 
 
@@ -71,22 +66,18 @@
 <?php
     if(isset($_POST['nome']) && isset($_POST['data']) && isset($_POST['desc'])){
         if($_POST['eventos']!="Escolha..."){
-            $evento = $_POST['eventos'];
-            require "../../classes/Conexao.php";
-            require "../../classes/CreateEventos.php";
-            $class = new CreateEventos();
+            require "../../classes/controller/evento/EventoController.php";
 
-            $nome =$_POST['eventos'];
-            $novoNome = $_POST['nome'];
-            $data = $_POST['data'];
-            $desc = $_POST['desc'];
+            $nomeEvento = $_POST['eventos'];
+            $controller = new EventoController();
 
-            $class->update($nome,$novoNome, $data, $desc);
-            header("location: /.updateEvento.php");
-            
-        }
-        else echo "<script>alert('Escolha um Evento Válido!')</script>";
-        }
-    
+            $novoEvento = new EventoVO(
+                $_POST['nome'],
+                $_POST['desc'],
+                $_POST['data']
+            );
 
+            $controller->editarEvento($nomeEvento, $novoEvento);
+        } else echo "<script>alert('Escolha um Evento Válido!')</script>";
+    }
 ?>

@@ -21,9 +21,11 @@ form.account-wrapper.active-wrapper {
     overflow: hidden;
     width: 100vw;
     height: 100vh;
-    padding: 30px;
+    padding: 60px 30px;
     transition: transform 5s ease;
     transform: scale(0);
+    z-index: 1000;
+    overflow: auto;
 }
 
 .amigoMuseu-wrapper.active {
@@ -46,7 +48,7 @@ form.account-wrapper.active-wrapper {
     width: 100%;
 }
 
-span.material-symbols-outlined {
+span.close-icon {
     cursor: pointer;
     position: absolute;
     font-size: 50px;
@@ -57,7 +59,7 @@ span.material-symbols-outlined {
     z-index: 10;
 }
 
-.material-symbols-outlined:hover {
+close-icon:hover {
     background-color: rgba(0, 0, 0, 0.062);
 }
 
@@ -71,6 +73,10 @@ span.material-symbols-outlined {
 .account-wrapper h1 {
     font-size: 2.1em;
     text-align: center;
+}
+
+.register h1 {
+    padding: 150px 0 20px 0;
 }
 
 .userinfo-box {
@@ -114,6 +120,7 @@ span.material-symbols-outlined {
 
 .change-wrapper {
     text-align: center;
+    padding: 0 0 50px 0;
 }
 
 .register-button, .login-button {

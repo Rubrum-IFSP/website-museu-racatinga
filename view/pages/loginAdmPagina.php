@@ -6,11 +6,11 @@
 </head>
 <body>
 <header>
-            <img src="../images/logo_rubrum.png" alt="logo">
-            <nav>
-                <a href='../../index.php'>Página Inicial</a>
-            </nav>
-        </header>
+    <img src="../images/logo_rubrum.png" alt="logo">
+        <nav>
+            <a href='../../index.php'>Página Inicial</a>
+        </nav>
+    </header>
 <div class="container">
             <div class="card">
             <h1>Login ADM</h1>

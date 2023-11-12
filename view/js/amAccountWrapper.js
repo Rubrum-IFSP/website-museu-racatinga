@@ -12,11 +12,6 @@ const closeButton = document.querySelector('.close-icon');
 
 loginWrapper.classList.add('active-wrapper');
 
-const css = document.createElement('link');
-css.rel = "stylesheet";
-css.href = "view/css/loginWrapper.css";
-head.appendChild(css);
-
 const closeIcon = document.createElement('link');
 closeIcon.rel = "stylesheet";
 closeIcon.href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0";

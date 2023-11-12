@@ -21,7 +21,6 @@ img {
 	display: block;
 }
 
-
 input {
 	appearance: none;
 	border-radius: 0;
@@ -33,6 +32,7 @@ input {
 	flex-direction: column;
 	width: 100%;
 	max-width: 425px;
+	background-color: rgb(30, 221, 212);
 	background-color: #344734;
 	border-radius: 10px;
 	box-shadow: 0 10px 20px 0 rgba(#999, .25);

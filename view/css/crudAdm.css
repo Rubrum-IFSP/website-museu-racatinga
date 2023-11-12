@@ -44,10 +44,11 @@ label {
 }
 
 input, 
-select {
+select,
+textarea {
     width: 100%;
     font-size: 1.3em;
-    padding: 5px;
+    padding: 8px;
     border-radius: 5px;
     border: none;
 }
@@ -56,6 +57,11 @@ input[type=checkbox] {
     height: 1.2em;
     width: 1.2em;
     outline: none;
+}
+
+textarea {
+    resize: none;
+    height: 400px;
 }
  
 button {

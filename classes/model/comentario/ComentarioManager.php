@@ -1,11 +1,11 @@
 <?php
-    class Comentario extends Conexao{
+    class ComentarioManager extends Conexao {
         
         public function criarComentario($email, $comentario)
         {
             $mysqli = $this->conectar();
             $query = "INSERT INTO `Comentarios`(`email`, `mensagem`) VALUES ('$email','$comentario')";
-            $result = mysqli_query($mysqli, $query);
+            return mysqli_query($mysqli, $query);
         }
 
         public function mostrarComentarios()
@@ -15,7 +15,7 @@
 
             while($linha=mysqli_fetch_array($listar)){
                 echo "<div class='container-comment'>";
-                    echo "<p><spam class='comment-email'>Email: </spam>".$linha[0]. "</p>";
+                    echo "<p class='email-text'><spam class='comment-email'>Email: </spam>".$linha[0]. "</p>";
                     echo "<p class='comment-text'>".$linha[1]."</p>";
                 echo "</div>";
             }

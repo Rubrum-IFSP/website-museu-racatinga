@@ -21,53 +21,11 @@ body {
     margin: 0;
 }
 
-header,
 nav,
 footer {
     display: flex;
     flex-direction: row;
     align-items: center;
-}
-
-header {
-    position: absolute;
-    top: 0;
-    min-width: 100%;
-    justify-content: space-between;
-    padding: 10px;
-    background: rgba(0, 0, 0, .1);
-}
-
-header img {
-    margin-left: 20px;
-    border-radius: 50px;
-    width: 60px;
-    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, .25);
-}
-
-nav {
-    width: 30%;
-    gap: 1em;
-    justify-content: space-evenly;
-}
-
-nav a {
-    color: white;
-    text-align: center;
-    background-color: black;
-    padding: 10px;
-    border-radius: 15px;
-    border: 2px solid black;
-    text-decoration: none;
-    font-size: 1.1em;
-    width: 200px;
-    cursor: pointer;
-    transition: .25s;
-}
-
-nav a:hover {
-    color: black;
-    background-color: white;
 }
 
 
@@ -83,10 +41,6 @@ footer {
 }
 
 @media (max-width: 1280px) {
-    header {
-        justify-content: space-around;
-    }
-
     footer {
         flex-direction: column;
     }

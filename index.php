@@ -1,5 +1,7 @@
 <?php
     session_start();
+    $root = $_SERVER['DOCUMENT_ROOT'];
+    require "$root/prototipo-museu-racatinga/classes/controller/comentario/ComentarioController.php";
 ?>
 
 <!DOCTYPE html>
@@ -9,40 +11,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./view/css/index.css">
+    <link rel="stylesheet" type="text/css" href="./view/css/loginWrapper.css">
     <title>Museu de Racatinga</title>
 </head>
 <body>
-    <header>
-        <img src="./view/images/logo_rubrum.png" alt="logo">
-        <nav>
-            <a href="./view/pages/acervo.php">Acervo</a>
-            <a href="./view/pages/acervoEvento.php">Eventos</a>
-            <?php
-            $logged = false;
-                if(isset($_SESSION['amgLogged']) || isset($_SESSION['admLogged'])){
-                    $logged=true;
-                }
-
-                if ( isset($_SESSION['admLogged']) && $_SESSION['admLogged']==true ) {
-                    echo "<a href='./view/pages/admMenu.php'>Menu do Administrador</a>";
-                } 
-                if (!$logged) {
-                    echo "<a href='./view/components/login.php' class='open-login-button'>Login</a>";
-                }
-                if(isset($_SESSION['amgLogged']) && $_SESSION['amgLogged']){
-                    echo "<a href='./view/pages/ingressosPagina.php' class='open-login-button'>Comprar Ingressos</a>";
-                }
-                if($logged) {
-                    echo "<a href='./view/pages/deslogar.php' class='open-login-button'>Deslogar</a>";
-                    echo "<a href='./view/pages/perfil.php' class='open-login-button'>Perfil</a>";
-                }
- 
-            ?>
-        </nav>
-
-    </header>
+    <?php 
+        require($root.'/prototipo-museu-racatinga/view/components/navbar.php');
+    ?>
 
     <section class="landing-section">
+        <div class="background"></div>
         <h3>A história vive</h3>
         <h1>Museu de Racatinga</h1>
         <a href="./view/pages/equipe.php">SOBRE</a>
@@ -74,14 +52,12 @@
                     <button name="submitComentario" type="submit">Enviar</button>
                 </form>
                 <?php
-                   if(isset($_POST['submitComentario']) ){
-                       $email = $_POST['email'];
-                       $comentario = $_POST['fale-conosco-contato'];
-                       require("classes/Conexao.php");
-                       require("classes/Comentario.php");
-                       $Comentario = new Comentario();
-                       $Comentario->criarComentario($email,$comentario);
-                   } 
+                    if(isset($_POST['submitComentario']) ){
+                        $email = $_POST['email'];
+                        $comentario = $_POST['fale-conosco-contato'];
+                        $Comentario = new ComentarioManager();
+                        $Comentario->criarComentario($email,$comentario);
+                    } 
                 ?>
             </div>
             
@@ -100,6 +76,5 @@
         </div>
     </footer>
 
-    <script src="./view/js/index.js"></script>
 </body>
 </html>

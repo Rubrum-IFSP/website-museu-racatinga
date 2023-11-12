@@ -1,13 +1,8 @@
 <?php
-session_start();
-if(isset($_SESSION['admLogged']) &&  $_SESSION['admLogged']){
-    header("location: ./admMenu.php");
-
-}
-if(!isset($_SESSION['amgLogged']) || !$_SESSION['amgLogged']){
-    header("location: ../components/login.php");
-}
-
+    session_start();
+    if(!isset($_SESSION['amgLogged']) || !isset($_SESSION['admLogged'])){
+        header("location: ../../index.php");
+    }    
 ?>
 
 <!DOCTYPE html>
@@ -18,25 +13,38 @@ if(!isset($_SESSION['amgLogged']) || !$_SESSION['amgLogged']){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/crudAdm.css">
     <title>Museu Racatinga - Compra Ingressos</title>
+    <style>
+        form {
+            margin-top: 80px;
+        }
+        h1 {
+            margin-top: 0;
+        }
+        .message {
+            width: 100%;
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: 700;
+            color: crimson;
+            margin: 10px 0 30px 0;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="../../index.php">Página Inicial</a>
-            <a href="./acervo.php">Acervo</a>
-            <a href='./acervoEventos.php'>Eventos</a>
-            <a href='./deslogar.php' class='open-login-button'>Deslogar</a>
-            <a href='./perfil.php' class='open-login-button'>Perfil</a>
- 
-        
-        </nav>
-    </header>
+    <?php require "../components/navbar.php"; ?>
     <main>
-        <form method="post">
+        <form method="POST" action="./compraIngresso.php">
+            <h1>Comprar Ingresso Para Evento</h1>
             <div>
-            <select name="eventos">
-                <?php    
-
+                <?php
+                    if (isset($_SESSION["ingressoMessage"])) {
+                        echo "<p class='message'>$_SESSION[ingressoMessage]</p>";
+                        unset($_SESSION["ingressoMessage"]);
+                    }
+                ?>
+                <label for="evento">Nome do Evento: </label>
+                <select name="eventos" id="evento">
+                    <?php    
                         $mysqli = mysqli_connect("18.230.6.129","HT301410X","HT301410X","HT301410X");
                         $query = "SELECT nome, id FROM Evento";
                         $result = mysqli_query($mysqli, $query);
@@ -48,17 +56,17 @@ if(!isset($_SESSION['amgLogged']) || !$_SESSION['amgLogged']){
                                 echo "<option name='$id' value='$id'>$selectedProduct</option>";
                             }
                         }
-                    
-
-
-                ?>
-            </select>
+                    ?>
+                </select>
+                <label for="qtd">Quantidade de Ingressos: </label>
+                <input type="number" name="quantidade-ingressos" id="qtd" value="1" min="1" max="10" require/>
             </div>
+
             <div class='confirm-container'>
-            
-                <input type="checkbox" name="check">
-                <label for='check' class='confirm-label'>Adquirir?</label>
+                <label for='check' class='confirm-label'>Confirmar Compra</label>
+                <input type="checkbox" name="check" id="check">
             </div>
+
             <input type="submit" name="submitButton" value='Comprar'>
         </form>
     </main>
@@ -66,26 +74,7 @@ if(!isset($_SESSION['amgLogged']) || !$_SESSION['amgLogged']){
 
 </html>
 
-<?php
-
-    require "../../classes/Conexao.php";
-    require "../../classes/CreateIngressos.php";
-    
-    if(isset($_POST['eventos']) && isset($_POST['check'])){
-        $idEvento = $_POST['eventos'];
-        $username = $_SESSION['username'];
-        echo $idEvento;
-        echo $username;
-            $class = new CreateIngressos();
-            $return= $class->comprar(true, $username,$idEvento);
-
-            if(!$return){
-                echo "<script>alert('Você já possui o Ingresso para este evento!')</script>";
-            }
-
-
-
-    }
+<?php    
 
     // aq é a compra do ingresso, vc vai ter um form,***************** APENAS AMIGOS DO MUSEU PODEM ENTRAR NA PÁGINA INGRESSOS****************************
     // 1 input = <select> com o nome dos eventos * <option value='evento1' name='$id'>

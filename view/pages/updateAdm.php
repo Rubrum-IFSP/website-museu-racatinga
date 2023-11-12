@@ -1,8 +1,8 @@
 <?php
- session_start();
- if ( $_SESSION["admLogged"]==false ) {
-     header("Location: ./loginAdmPagina.php");
- }
+    session_start();
+    if ( $_SESSION["admLogged"]==false ) {
+        header("Location: ./loginAdmPagina.php");
+    }
 ?>
 
 
@@ -15,14 +15,9 @@
     <title>Museu Racatinga - Editar Peça</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="./admMenu.php">Voltar ao Menu</a>
-            <a href="./createAdm.php">Adicionar Peça</a>
-            <a href="./deleteAdm.php">Remover Peça</a>
-            <a href="./acervo.php">Olhar Acervo</a>
-        </nav>
-    </header>
+        <?php 
+            require '../components/navbarAdm.php';
+        ?>
 
     <main>
     <h1>Editar Peças</h1>
@@ -45,27 +40,26 @@
                     ?>
                 </select>
             </div>
-
+            
             <div>
-                <label for="descricao">Descrição</label>
-                <input type="text" name="desc" id="descricao" required>
-            </div>
-
-            <div>
-                <label for="ano">Ano</label>
-                <input type="text" name="ano" id="ano" required>
+                <label for="nome">Nome:  </label>
+                <input type="text" name ="nome" id="nome" maxlength="100" required >
             </div>
             
             <div>
-                <label for="artista">Artista</label> 
-                <input type="text" name="artista" id="artista" required>
-            </div>
-                
-            <div>
-                <label for="nome">Nome:  </label>
-                <input type="text" name ="nome" id="nome" required >
+                <label for="artista">Artista: </label> 
+                <input type="text" name="artista" id="artista" maxlength="100" required>
             </div>
 
+            <div>
+                <label for="ano">Ano: </label>
+                <input type="date" name="ano" id="ano" required>
+            </div>
+
+            <div>
+                <label for="descricao">Descrição: </label>
+                <textarea type="text" name="desc" id="descricao" maxlength="300" required> </textarea>
+            </div>
 
             <button type="submit">ALTERAR</button>
         </form>
@@ -76,16 +70,18 @@
     if(isset($_POST['desc']) && isset($_POST['ano'])){
         if(isset($_POST['artista']) && isset($_POST['nome'])){
             if($_POST['pecas']!="Escolha..."){
-                require "../../classes/Conexao.php";
-                require "../../classes/Create.php";
-                $class = new Create();
-                $peca = $_POST['pecas'];
-                $desc = $_POST['desc'];
-                $ano = $_POST['ano'];
-                $artista = $_POST['artista'];
-                $nome = $_POST['nome'];
-                $class->update($peca, $desc, $ano, $artista, $nome);
-                header("location: ./updateAdm.php");
+                require "../../classes/controller/acervo/AcervoController.php";
+                $controller = new AcervoController();
+                $nomePeca = $_POST['pecas'];
+
+                $novaPeca = new PecaVO(
+                    $nome = $_POST['nome'],
+                    $desc = $_POST['desc'],
+                    $ano = $_POST['ano'],
+                    $artista = $_POST['artista']
+                );
+
+                $controller->editarPeca($nomePeca, $novaPeca);
             }
             else{
                 echo "<script>alert('Escolha um Evento Válido!')</script>";
