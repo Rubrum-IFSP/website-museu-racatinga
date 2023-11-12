@@ -92,7 +92,7 @@
             $queryUpdate = "UPDATE `Pecas` SET `descricao`='$desc',`ano`='$ano',`artista`='$artista',`nome`='$nome' WHERE id = $idPeca";
             return mysqli_query($mysqli, $queryUpdate);
         }
-        public function deletearPeca($nomePeca) {
+        public function deletarPeca($nomePeca) {
             $mysqli =$this->conectar();
             $query = "DELETE FROM Pecas where nome='$nomePeca'";
             return mysqli_query($mysqli, $query);

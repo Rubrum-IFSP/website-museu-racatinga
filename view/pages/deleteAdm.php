@@ -52,16 +52,13 @@
 <?php
     if(isset($_POST['submit']) && isset($_POST['check'])){
         if($_POST['pecas']!="Escolha..."){
-            $peca = $_POST['pecas'];
-            require "../../classes/Conexao.php";
-            require "../../classes/Create.php";
-            $class = new Create();
+            require "../../classes/controller/acervo/AcervoController.php";
+            $controller = new AcervoController();
+            $nomePeca = $_POST['pecas'];
 
-            $class->delete($peca);
-            header("location: ./deleteAdm.php");
-        }
-        else echo "<script>alert('Escolha um Evento Válido!')</script>";
-        }
+            $controller->deletarPeca($nomePeca);
+        } else echo "<script>alert('Escolha um Evento Válido!')</script>";
+    }
     
 
 ?>

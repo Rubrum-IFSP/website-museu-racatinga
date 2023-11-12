@@ -89,6 +89,22 @@
                 echo "</div>";
             }
         }
+        public function getEvento($nomeEvento) : EventoVO | bool {
+            $mysqli = $this->conectar();
+            $query = "SELECT * FROM Evento where nome = '$nomeEvento'";
+            $resultQuery = mysqli_query($mysqli, $query);
+
+            if(mysqli_num_rows($resultQuery)>0){
+                while($row = mysqli_fetch_assoc($resultQuery)){
+                    return new EventoVO(
+                        $row["nome"],
+                        $row["descricao"],
+                        $row["dataEvento"]
+                    );
+                }
+            }
+            return false;
+        }
 
     }
 ?>

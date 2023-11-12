@@ -40,25 +40,25 @@
                         ?>
                     </select>
                 </div>
-                
-                <div>
-                    <label for="descricao">Descrição: </label>
-                    <input type="text" name="desc" id="descricao" required>    
-                </div>
 
                 <div>
-                    <label for="ano">Ano: </label> 
-                    <input type="text" name="ano" id="ano" required>
+                    <label for="nome">Nome: </label> 
+                    <input type="text" name ="nome" id="nome" maxlength="100" required >
                 </div>
 
                 <div>
                     <label for="artista">Artista: </label>
                     <input type="text" name="artista" id="artista" required>                    
                 </div>
+                
+                <div>
+                    <label for="ano">Ano: </label> 
+                    <input type="date" name="ano" id="ano" required>
+                </div>
 
                 <div>
-                    <label for="nome">Nome: </label> 
-                    <input type="text" name ="nome" id="nome" required >
+                    <label for="descricao">Descrição: </label>
+                    <textarea type="text" name="desc" id="descricao" maxlength="300" required> </textarea>
                 </div>
 
                 <button type="submit" name="submit">Enviar</button> 

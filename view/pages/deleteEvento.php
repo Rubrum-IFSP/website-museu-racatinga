@@ -1,8 +1,8 @@
 <?php
- session_start();
- if ( $_SESSION["admLogged"]==false ) {
-     header("Location: ./loginAdmPagina.php");
- }
+    if (session_id() == '') session_start();
+    if ( $_SESSION["admLogged"]==false ) {
+        header("Location: ./loginAdmPagina.php");
+    }
 ?>
 
 
@@ -42,9 +42,9 @@
 
                 <div class="confirm-container">
                     <label for="confirmar" class="confirm-label">Confirmar Ação?</label>
-                    <input required type="checkbox" name="check" id="confirmar" value="confirmacao">
+                    <input required type="checkbox" name="check" id="confirmar" value="confirmacao" maxlength="300">
                 </div>
-
+                        
                 <button name="submit" type="submit">DELETAR</button>
             </form>
         </main>
@@ -54,15 +54,15 @@
     if(isset($_POST['submit']) && isset($_POST['check'])){
         if($_POST['eventos']!="Escolha..."){
             $evento = $_POST['eventos'];
-            require "../../classes/Conexao.php";
-            require "../../classes/CreateEventos.php";
-            $class = new CreateEventos();
 
-            $class->delete($evento);
-            header("location: ./deleteEvento.php");
-        }
-        else echo "<script>alert('Escolha um Evento Válido!')</script>";
-        }
+            require "../../classes/controller/evento/EventoController.php";
+            $controller = new EventoController();
+
+            $controller->removerEvento($evento);
+        } else{
+            echo "<script>alert('Escolha um Evento Válido!')</script>";
+        } 
+    }
     
 
 ?>

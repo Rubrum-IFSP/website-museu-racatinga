@@ -20,5 +20,11 @@
         public function adicionarPeca($evento, PecaVO $peca) {
             return $this->model->adicionarPeca($evento, $peca);
         }
+        public function deletarPeca($nomePeca) {
+            return $this->model->deletarPeca($nomePeca);
+        }
+        public function editarPeca($nomePeca, PecaVO $novaPeca) {
+            return $this->model->editarPeca($nomePeca, $novaPeca);
+        }
     }
 ?>

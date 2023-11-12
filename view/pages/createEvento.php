@@ -23,8 +23,8 @@
             <h1>Adicionar Evento</h1>
             <form method="POST" >  
                 <div>
-                    <label for="descricao">Nome: </label>
-                    <input type="text" name="nome" id="descricao" required>    
+                    <label for="nome">Nome: </label>
+                    <input type="text" name="nome" id="nome" maxlength="100" required>    
                 </div>
 
                 <div>
@@ -33,8 +33,8 @@
                 </div>
 
                 <div>
-                    <label for="Descrição">Descrição: </label>
-                    <input type="text" name="desc" id="artista" required>                    
+                    <label for="desc">Descrição: </label>
+                    <textarea type="text" name="desc" id="desc" maxlength="300" required></textarea>                  
                 </div>
 
                 <button type="submit" name="submit">Enviar</button> 
@@ -44,17 +44,17 @@
 </html>
 <?php
     if(isset($_POST['nome']) && isset($_POST['data']) && isset($_POST['desc'])){
-        require "../../classes/Conexao.php";
-        require "../../classes/createEventos.php";
+        require "../../classes/controller/evento/EventoController.php";
 
-        $class= new CreateEventos();
+        $controller = new EventoController();
 
-        $nome = $_POST['nome'];
-        $data = $_POST['data'];
-        $desc = $_POST['desc'];
+        $evento = new EventoVO(
+            $_POST['nome'],
+            $_POST['desc'],
+            $_POST['data']
+        );
 
-        $verify= $class->create($nome,$data,$desc);
-        if(!$verify){
+        if(!$controller->adicionarEvento($evento)) {
             echo "<script>alert('Já existe um Evento com este nome')</script>";
         }
     }
