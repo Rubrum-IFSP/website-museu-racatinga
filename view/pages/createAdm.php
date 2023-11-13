@@ -83,7 +83,7 @@
                 $_POST['desc'],
                 $_POST['ano'],
                 $_POST['artista'],
-                $_POST['imagem']
+                $_POST["imagem"]
                 
             );
             

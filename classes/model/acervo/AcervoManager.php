@@ -74,6 +74,7 @@
                 $query = $db->prepare("INSERT INTO Pecas(idEvento,descricao,ano,artista,nome,imagem) VALUES (?,?,?,?,?,?)");
         
                 return $query->execute([$idEvento,$desc,$ano,$artista,$nome,$imagem]);
+                
             }
             
         }
