@@ -1,7 +1,7 @@
 <?php
     session_start();
     if ( $_SESSION["admLogged"]==false ) {
-  
+        header("Location: ./loginAdmPagina.php");
     }
 ?>
 
@@ -21,7 +21,7 @@
 
         <main>
             <h1>Adicionar Peça</h1>
-            <form method="POST" >
+            <form method="POST"  enctype="multipart/form-data">
                 <div>
                     <label for="eventos">Evento da Peça: </label>
                     <select name="eventos" id="eventos">
@@ -75,23 +75,48 @@
         if(isset($_POST['artista']) && isset($_POST['nome'])){
             require ("../../classes/controller/acervo/AcervoController.php");
             $controller = new AcervoController();
-            
 
+            $fileName = $_FILES['imagem']['name'];
+            $fileSize = $_FILES['imagem']['size'];
+            $tmpName = $_FILES['imagem']['tmp_name'];
 
-            $peca = new PecaVO(
-                $_POST['nome'],
-                $_POST['desc'],
-                $_POST['ano'],
-                $_POST['artista'],
-                $_POST["imagem"]
-                
-            );
-            
-            $controller->adicionarPeca($_POST["eventos"], $peca);
+            $validImageExtension = ['jpg', 'jpeg', 'png'];
 
-            foreach ($_POST as $key => $value) {
-                unset($_POST[$key]);
+            $imageExtension = explode('.',$fileName);
+            $imageExtension =strtolower(end($imageExtension));
+
+            if(!in_array($imageExtension, $validImageExtension)){
+                echo "<script> alert('we only accept png, jpg and jpeg')</script>";
             }
-        }
-    }
+            else if ($fileSize>1000000){
+                echo "<script> alert('image too large')</script>";
+            }
+            else{
+                $newImageName = uniqid();
+                $newImageName .= '.'.$imageExtension;
+
+                move_uploaded_file($tmpName,'imgAcervo/'.$newImageName);
+            }
+
+                $peca = new PecaVO(
+                    $_POST['nome'],
+                    $_POST['desc'],
+                    $_POST['ano'],
+                    $_POST['artista'],
+                    $newImageName
+                        
+                    );
+                    
+                $controller->adicionarPeca($_POST["eventos"],$peca);
+        
+                foreach ($_POST as $key => $value) {
+                    unset($_POST[$key]);
+                    }
+                
+                }
+            }
+
+            
+
+        
 ?>

@@ -21,7 +21,7 @@
 
     <main>
     <h1>Editar Peças</h1>
-        <form method="POST">
+        <form method="POST"enctype="multipart/form-data">
             <div>
                 <label for="pecas">Escolher Peça: </label>
                 <select name="pecas" id="pecas">
@@ -60,6 +60,10 @@
                 <label for="descricao">Descrição: </label>
                 <textarea type="text" name="desc" id="descricao" maxlength="300" required> </textarea>
             </div>
+            <div>
+                    <label for="imagem">Imagem: </label>
+                    <input type="file" name="imagem" id ="imagem" required>
+                </div>
 
             <button type="submit">ALTERAR</button>
         </form>
@@ -72,14 +76,40 @@
             if($_POST['pecas']!="Escolha..."){
                 require "../../classes/controller/acervo/AcervoController.php";
                 $controller = new AcervoController();
+                
                 $nomePeca = $_POST['pecas'];
 
+                $fileName = $_FILES['imagem']['name'];
+                $fileSize = $_FILES['imagem']['size'];
+                $tmpName = $_FILES['imagem']['tmp_name'];
+
+                $validImageExtension = ['jpg', 'jpeg', 'png'];
+
+                $imageExtension = explode('.',$fileName);
+                $imageExtension =strtolower(end($imageExtension));
+
+                if(!in_array($imageExtension, $validImageExtension)){
+                    echo "<script> alert('we only accept png, jpg and jpeg')</script>";
+                }
+                else if ($fileSize>1000000){
+                    echo "<script> alert('image too large')</script>";
+                }
+                else{
+                    $newImageName = uniqid();
+                    $newImageName .= '.'.$imageExtension;
+
+                    move_uploaded_file($tmpName,'imgAcervo/'.$newImageName);
+                }
+
                 $novaPeca = new PecaVO(
-                    $nome = $_POST['nome'],
-                    $desc = $_POST['desc'],
-                    $ano = $_POST['ano'],
-                    $artista = $_POST['artista']
+                    $_POST['nome'],
+                    $_POST['desc'],
+                    $_POST['ano'],
+                    $_POST['artista'],
+                    $newImageName
+                        
                 );
+
 
                 $controller->editarPeca($nomePeca, $novaPeca);
             }

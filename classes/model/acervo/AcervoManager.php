@@ -27,12 +27,12 @@
         public function listar() {
             $offsetAtual = $this->pagina*$this->limitePecas;
 
-            $listar = mysqli_query($this->conexao,"SELECT `descricao`, `ano`, `artista`, `nome` FROM `Pecas` LIMIT $offsetAtual, $this->limitePecas ;");
+            $listar = mysqli_query($this->conexao,"SELECT `descricao`, `ano`, `artista`, `nome`, `imagem` FROM `Pecas` LIMIT $offsetAtual, $this->limitePecas ;");
 
             while($linha=mysqli_fetch_array($listar)){
                 echo "<div class='container-peca'>";
                     echo "<figure>";
-                        echo "<img src='../images/imagem.png'>";
+                        echo "<img src='./imgAcervo/$linha[4]'/>";
                         echo "<figcaption>".$linha[3]."</figcaption>";
                     echo "</figure>";
                     echo "<div class='informacoes-peca'>";
@@ -76,6 +76,7 @@
                 return $query->execute([$idEvento,$desc,$ano,$artista,$nome,$imagem]);
                 
             }
+            
             
         }
         public function editarPeca($nomePeca, PecaVO $novaPeca) : bool {
