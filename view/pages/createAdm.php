@@ -1,7 +1,7 @@
 <?php
     session_start();
     if ( $_SESSION["admLogged"]==false ) {
-        header("Location: ./loginAdmPagina.php");
+  
     }
 ?>
 
@@ -60,6 +60,10 @@
                     <label for="descricao">Descrição: </label>
                     <textarea type="text" name="desc" id="descricao" maxlength="300" required> </textarea>
                 </div>
+                <div>
+                    <label for="imagem">Imagem: </label>
+                    <input type="file" name="imagem" id ="imagem" required>
+                </div>
 
                 <button type="submit" name="submit">Enviar</button> 
             </form>
@@ -72,11 +76,15 @@
             require ("../../classes/controller/acervo/AcervoController.php");
             $controller = new AcervoController();
             
+
+
             $peca = new PecaVO(
                 $_POST['nome'],
                 $_POST['desc'],
                 $_POST['ano'],
-                $_POST['artista']
+                $_POST['artista'],
+                $_POST['imagem']
+                
             );
             
             $controller->adicionarPeca($_POST["eventos"], $peca);

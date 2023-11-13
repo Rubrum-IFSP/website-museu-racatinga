@@ -52,6 +52,7 @@
             $desc = $peca->getDescricao();
             $ano = $peca->getAno();
             $artista = $peca->getArtista();
+            $imagem = $peca->getImagem();
 
             $mysqli = $this->conectar();
             $query = "SELECT id FROM Evento where nome = '$evento'";
@@ -68,9 +69,13 @@
                 echo '<script>alert("Já existe um item com este nome!")</script>'; 
                 return false;
             } else {    
-                $query = "INSERT INTO `Pecas`(`idEvento`, `descricao`, `ano`, `artista`, `nome`) VALUES ($idEvento, '$desc', '$ano', '$artista', '$nome')";
-                return mysqli_query($mysqli, $query);
+                $db = new PDO('mysql:host=18.230.6.129;dbname=HT301410X', 'HT301410X', 'HT301410X');
+        
+                $query = $db->prepare("INSERT INTO Pecas(idEvento,descricao,ano,artista,nome,imagem) VALUES (?,?,?,?,?,?)");
+        
+                return $query->execute([$idEvento,$desc,$ano,$artista,$nome,$imagem]);
             }
+            
         }
         public function editarPeca($nomePeca, PecaVO $novaPeca) : bool {
             $nome = $novaPeca->getNome();
