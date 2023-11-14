@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="/prototipo-museu-racatinga/view/css/navbar.css">
     <link rel="stylesheet" href="/prototipo-museu-racatinga/view/css/loginWrapper.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <img src="/prototipo-museu-racatinga/view/images/logo_rubrum.png" alt="logo">
+    <a href="/prototipo-museu-racatinga/index.php"><img src="/prototipo-museu-racatinga/view/images/logo_rubrum.png" alt="logo"></a>
     <nav>
         <div class="navbar-background"></div>
         <span class="material-symbols-outlined menu-icon">menu</span>
         <div class="navbar-options">
             <div class="navbar-header">
                 <span class="material-symbols-outlined close-nav-icon">close</span>
-                <img src="/prototipo-museu-racatinga/view/images/logo_rubrum.png" alt="">
+                <a href="/prototipo-museu-racatinga/index.php"><img src="/prototipo-museu-racatinga/view/images/logo_rubrum.png" alt=""></a>
             </div>
 
             <a href="/prototipo-museu-racatinga/index.php">

@@ -16,34 +16,51 @@
             }
         }
 
-        public function getPeca($id) {}
+        public function getPeca($id) {
+            $mysqli = $this->conectar();
+            $query = "SELECT * FROM Pecas where id='$id'";
+            $resultado = mysqli_query($mysqli, $query);
 
+            if (is_bool($resultado) || is_null($resultado)) return $resultado;
+            
+            $linha = mysqli_fetch_row($resultado);
+            if ($linha != NULL) {
+                return new PecaVO(
+                    $linha[5],
+                    $linha[2],
+                    $linha[3],
+                    $linha[4],
+                    $linha[5]
+                );
+            } 
+
+            return false;
+        }
         public function getMaxPaginas() {
             $totalPecas = mysqli_query($this->conexao, "SELECT `id` FROM `Pecas`");
             $this->totalPaginas = ceil( $totalPecas->num_rows/$this->limitePecas );
             return $this->totalPaginas;
         }
-
         public function listar() {
             $offsetAtual = $this->pagina*$this->limitePecas;
 
-            $listar = mysqli_query($this->conexao,"SELECT `descricao`, `ano`, `artista`, `nome` FROM `Pecas` LIMIT $offsetAtual, $this->limitePecas ;");
+            $listar = mysqli_query($this->conexao,"SELECT `id`, `descricao`, `ano`, `artista`, `nome` FROM `Pecas` LIMIT $offsetAtual, $this->limitePecas ;");
 
             while($linha=mysqli_fetch_array($listar)){
                 echo "<div class='container-peca'>";
                     echo "<figure>";
                         echo "<img src='../images/imagem.png'>";
-                        echo "<figcaption>".$linha[3]."</figcaption>";
+                        echo "<div class='informacoes-peca'>";
+                            echo "<h2><spam class='peca-titulo'>".$linha[4]."</spam></h2>";
+                            echo "<div class='informacoes-top'>";
+                                echo "<p><spam class='peca-titulo'>Artista: </spam>".$linha[3]."</p>";
+                                echo "<p><spam class='peca-titulo'>Ano de criação: </spam>".$linha[2]."</p>";
+                            echo "</div>";
+                            echo "<div class='informacoes-bottom'>";
+                                echo "<a href='./verPeca.php?peca=$linha[0]'><button class='saiba-mais'>Saiba Mais</button></a>";
+                            echo "</div>";
+                        echo "</div>";
                     echo "</figure>";
-                    echo "<div class='informacoes-peca'>";
-                        echo "<div class='informacoes-top'>";
-                            echo "<p><spam class='peca-titulo'>Artista: </spam>".$linha[2]."</p>";
-                            echo "<p><spam class='peca-titulo'>Ano de criação: </spam>".$linha[1]."</p>";
-                        echo "</div>";
-                        echo "<div class='informacoes-bottom'>";
-                            echo "<p>".$linha[0]."</p>";
-                        echo "</div>";
-                    echo "</div>";
                 echo "</div>";
             }
         }

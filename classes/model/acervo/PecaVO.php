@@ -4,6 +4,7 @@
         private string $descricao;
         private $ano;
         private string $artista;
+        private $foto;
 
         public function getNome() {
             return $this->nome;
@@ -28,6 +29,12 @@
         }
         public function setArtista($artista) {
             $this->artista = $artista;
+        }
+        public function getFoto() {
+            return $this->foto;
+        }
+        public function setFoto($foto) {
+           $this->foto = $foto; 
         }
 
         public function __construct($nome, $descricao, $ano, $artista) {
