@@ -1,7 +1,7 @@
 <?php
     session_start();
     if ( $_SESSION["admLogged"]==false ) {
-        header("Location: ./loginAdmPagina.php");
+
     }
 ?>
 
@@ -21,7 +21,7 @@
 
         <main>
             <h1>Adicionar Peça</h1>
-            <form method="POST"  enctype="multipart/form-data">
+            <form method="POST" enctype="multipart/form-data">
                 <div>
                     <label for="eventos">Evento da Peça: </label>
                     <select name="eventos" id="eventos">
@@ -97,26 +97,21 @@
 
                 move_uploaded_file($tmpName,'imgAcervo/'.$newImageName);
             }
-
-                $peca = new PecaVO(
-                    $_POST['nome'],
-                    $_POST['desc'],
-                    $_POST['ano'],
-                    $_POST['artista'],
-                    $newImageName
-                        
-                    );
-                    
-                $controller->adicionarPeca($_POST["eventos"],$peca);
-        
-                foreach ($_POST as $key => $value) {
-                    unset($_POST[$key]);
-                    }
-                
-                }
-            }
-
             
+            $peca = new PecaVO(
+                $_POST['nome'],
+                $_POST['desc'],
+                $_POST['ano'],
+                $_POST['artista'],
+                $newImageName
 
-        
+            );
+            
+            $controller->adicionarPeca($_POST["eventos"], $peca);
+
+            foreach ($_POST as $key => $value) {
+                unset($_POST[$key]);
+            }
+        }
+    }
 ?>

@@ -10,10 +10,13 @@
         public function __construct() {
             $this->model = new AcervoManager();
         }
+
+        public function getPeca($id) {
+            return $this->model->getPeca($id);
+        }
         public function getMaxPaginas() : float {
             return $this->model->getMaxPaginas();
         }
-
         public function listar() {
             return $this->model->listar();
         }

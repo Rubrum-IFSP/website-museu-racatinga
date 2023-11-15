@@ -4,7 +4,7 @@
         private string $descricao;
         private $ano;
         private string $artista;
-        private string $imagem;
+        private $foto;
 
         public function getNome() {
             return $this->nome;
@@ -21,9 +21,6 @@
         public function getAno() {
             return $this->ano;
         }
-        public function getImagem(){
-            return $this->imagem;
-        }
         public function setAno($ano) {
             $this->ano = $ano;
         }
@@ -33,13 +30,19 @@
         public function setArtista($artista) {
             $this->artista = $artista;
         }
+        public function getFoto() {
+            return $this->foto;
+        }
+        public function setFoto($foto) {
+           $this->foto = $foto; 
+        }
 
-        public function __construct($nome, $descricao, $ano, $artista,$imagem) {
+        public function __construct($nome, $descricao, $ano, $artista,$foto) {
             $this->nome = $nome;
             $this->descricao = $descricao;
             $this->ano = $ano;
             $this->artista = $artista;
-            $this->imagem = $imagem;
+            $this->foto = $foto;
         }
     }
 ?>

@@ -1,7 +1,7 @@
 <?php
     session_start();
     if ( $_SESSION["admLogged"]==false ) {
-        header("Location: ./loginAdmPagina.php");
+
     }
 ?>
 
@@ -21,7 +21,7 @@
 
     <main>
     <h1>Editar Peças</h1>
-        <form method="POST"enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data">
             <div>
                 <label for="pecas">Escolher Peça: </label>
                 <select name="pecas" id="pecas">
@@ -76,18 +76,17 @@
             if($_POST['pecas']!="Escolha..."){
                 require "../../classes/controller/acervo/AcervoController.php";
                 $controller = new AcervoController();
-                
                 $nomePeca = $_POST['pecas'];
 
                 $fileName = $_FILES['imagem']['name'];
                 $fileSize = $_FILES['imagem']['size'];
                 $tmpName = $_FILES['imagem']['tmp_name'];
-
+    
                 $validImageExtension = ['jpg', 'jpeg', 'png'];
-
+    
                 $imageExtension = explode('.',$fileName);
                 $imageExtension =strtolower(end($imageExtension));
-
+    
                 if(!in_array($imageExtension, $validImageExtension)){
                     echo "<script> alert('we only accept png, jpg and jpeg')</script>";
                 }
@@ -97,19 +96,18 @@
                 else{
                     $newImageName = uniqid();
                     $newImageName .= '.'.$imageExtension;
-
+    
                     move_uploaded_file($tmpName,'imgAcervo/'.$newImageName);
                 }
 
                 $novaPeca = new PecaVO(
-                    $_POST['nome'],
-                    $_POST['desc'],
-                    $_POST['ano'],
-                    $_POST['artista'],
+                    $nome = $_POST['nome'],
+                    $desc = $_POST['desc'],
+                    $ano = $_POST['ano'],
+                    $artista = $_POST['artista'],
                     $newImageName
-                        
-                );
 
+                );
 
                 $controller->editarPeca($nomePeca, $novaPeca);
             }
