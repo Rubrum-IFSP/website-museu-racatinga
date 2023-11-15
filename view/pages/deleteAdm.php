@@ -1,7 +1,7 @@
 <?php
  session_start();
  if ( $_SESSION["admLogged"]==false ) {
-
+ header("Location: ./loginAdmPagina.php");
  }
 ?>
 
