@@ -39,6 +39,7 @@
         ?>
     </div>
 
+
     <div class="wrapper-peca">
         <?php 
             $acervo->listar();

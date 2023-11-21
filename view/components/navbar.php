@@ -60,7 +60,7 @@
                 }
                 if($logged) {
                     echo "<hr>
-                    <a>".
+                    <a href='/prototipo-museu-racatinga/view/pages/perfil.php?user=self'>".
                         $_SESSION['username'].
                         "<span class='material-symbols-outlined'>
                         account_circle</span>

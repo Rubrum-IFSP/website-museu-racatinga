@@ -1,5 +1,13 @@
 @import url(./admMenu.css);
 
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
 main {
     justify-content: flex-start;
 }

@@ -126,9 +126,9 @@
         public function editarDados(UsuarioVO $usuario) {
             
         }
-        public function getUsuario(string $nome, string $senha) {
+        public function getUsuario($nome) {
             $mysqli = $this->conectar();
-            $query = "SELECT * FROM Pessoa where nome='$nome' and senha='$senha'";
+            $query = "SELECT * FROM Pessoa where nome='$nome'";
             $resultado = mysqli_query($mysqli, $query);
 
             if (is_bool($resultado) || is_null($resultado)) return $resultado;
@@ -144,6 +144,7 @@
                 );
             } 
 
+            throw new Exception("Usuário não encontrado.");
             return false;
         }
         public function procurarAdm() {
