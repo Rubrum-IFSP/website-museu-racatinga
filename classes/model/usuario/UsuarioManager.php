@@ -57,14 +57,10 @@
             
             return $cadastrado;
         }
-        public function entrar(UsuarioVO $usuario) {
-            $tipoUsuario = $usuario->getTipoUsuario();
-            $nome = strtolower($usuario->getNome());
-            $senha = $usuario->getSenha();
-
+        public function entrar($nome, $senha) {
             $mysqli = $this->conectar();
-            $querySenha = "SELECT senha from Pessoa where senha='$senha'";
-            $queryUser = "SELECT nome from Pessoa where nome='$nome'";
+            $querySenha = "SELECT senha from Pessoa where nome='$nome' and senha='$senha'";
+            $queryUser = "SELECT nome from Pessoa where nome='$nome' and senha='$senha'";
 
             $resultUser= mysqli_fetch_row( mysqli_query($mysqli,$queryUser) );
             $resultSenha = mysqli_fetch_row( mysqli_query($mysqli,$querySenha) );
@@ -72,6 +68,9 @@
             if($resultUser!=null && $resultSenha!=null)
             {
                 if($nome==$resultUser[0] && $senha ==$resultSenha[0]) {
+                    $queryTipoUsuario = "SELECT tipoUser from Pessoa where nome='$nome' and senha='$senha'";
+                    $tipoUsuario = mysqli_fetch_row( mysqli_query($mysqli,$queryTipoUsuario) )[0];
+
                     if ($tipoUsuario == "adm") {
                         $_SESSION["admLogged"] = true;
                         $_SESSION["amgLogged"] = false;
@@ -145,7 +144,6 @@
             } 
 
             throw new Exception("Usuário não encontrado.");
-            return false;
         }
         public function procurarAdm() {
             $mysqli = $this->conectar();

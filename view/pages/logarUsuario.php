@@ -18,16 +18,13 @@
     } else if ( isset($_POST["login"]) ) {
         $nome = $_POST['nomeLogin'];
         $senha = $_POST['senhaLogin'];
-
-        $usuario = $usuarioController->getUsuario($nome, $senha);
-        if( $usuario != false ) {
-            $usuarioController->entrar($usuario);
-        }
+ 
+        $usuarioController->entrar($nome, $senha);
     }
 
     foreach ($_POST as $key => $value) {
         unset($_POST[$key]);
     }
 
-    header("Location: $path/prototipo-museu-racatinga/index.php");
+    header("Location: {$_SERVER['HTTP_REFERER']}");
 ?>

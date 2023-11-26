@@ -10,6 +10,9 @@ const registerButton = document.querySelector('.register-button');
 const openButton = document.querySelector('.open-login-button');
 const closeButton = document.querySelector('.close-icon');
 
+const loginMessage = document.querySelector('.loginMessage');
+const registroMessage = document.querySelector('.registroMessage');
+
 loginWrapper.classList.add('active-wrapper');
 
 const closeIcon = document.createElement('link');
@@ -35,4 +38,14 @@ if ( openButton ) {
     openButton.addEventListener("click", e => {
         wrapper.classList.add('active');
     });
+}
+
+if ( loginMessage != null ) {
+    wrapper.classList.add('active');
+    loginWrapper.classList.add('active-wrapper');
+    registerWrapper.classList.remove('active-wrapper');
+} else if (registroMessage != null) {
+    wrapper.classList.add('active');
+    registerWrapper.classList.add('active-wrapper');
+    loginWrapper.classList.remove('active-wrapper');
 }
