@@ -37,11 +37,12 @@
            $this->foto = $foto; 
         }
 
-        public function __construct($nome, $descricao, $ano, $artista) {
+        public function __construct($nome, $descricao, $ano, $artista,$foto) {
             $this->nome = $nome;
             $this->descricao = $descricao;
             $this->ano = $ano;
             $this->artista = $artista;
+            $this->foto = $foto;
         }
     }
 ?>

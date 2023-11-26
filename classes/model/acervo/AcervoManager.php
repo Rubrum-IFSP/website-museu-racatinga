@@ -44,12 +44,12 @@
         public function listar() {
             $offsetAtual = $this->pagina*$this->limitePecas;
 
-            $listar = mysqli_query($this->conexao,"SELECT `id`, `descricao`, `ano`, `artista`, `nome` FROM `Pecas` LIMIT $offsetAtual, $this->limitePecas ;");
+            $listar = mysqli_query($this->conexao,"SELECT `id`, `descricao`, `ano`, `artista`, `nome`, `imagem` FROM `Pecas` LIMIT $offsetAtual, $this->limitePecas ;");
 
             while($linha=mysqli_fetch_array($listar)){
                 echo "<div class='container-peca'>";
                     echo "<figure>";
-                        echo "<img src='../images/imagem.png'>";
+                        echo "<img src='./imgAcervo/$linha[5]'>";
                         echo "<div class='informacoes-peca'>";
                             echo "<h2><spam class='peca-titulo'>".$linha[4]."</spam></h2>";
                             echo "<div class='informacoes-top'>";
@@ -69,6 +69,7 @@
             $desc = $peca->getDescricao();
             $ano = $peca->getAno();
             $artista = $peca->getArtista();
+            $foto = $peca->getFoto();
 
             $mysqli = $this->conectar();
             $query = "SELECT id FROM Evento where nome = '$evento'";
@@ -85,7 +86,7 @@
                 echo '<script>alert("Já existe um item com este nome!")</script>'; 
                 return false;
             } else {    
-                $query = "INSERT INTO `Pecas`(`idEvento`, `descricao`, `ano`, `artista`, `nome`) VALUES ($idEvento, '$desc', '$ano', '$artista', '$nome')";
+                $query = "INSERT INTO `Pecas`(`idEvento`, `descricao`, `ano`, `artista`, `nome`,`imagem`) VALUES ($idEvento, '$desc', '$ano', '$artista', '$nome','$foto')";
                 return mysqli_query($mysqli, $query);
             }
         }
@@ -94,24 +95,38 @@
             $desc = $novaPeca->getDescricao();
             $ano = $novaPeca->getAno();
             $artista = $novaPeca->getArtista();
+            $foto = $novaPeca->getFoto();
 
             $mysqli = $this->conectar();
-            $query = "SELECT id FROM Pecas where nome = '$nomePeca'";
+            $query = "SELECT id , imagem FROM Pecas where nome = '$nomePeca'";
             $resultQuery = mysqli_query($mysqli, $query);
 
             if(mysqli_num_rows($resultQuery)>0){
                 while($row = mysqli_fetch_assoc($resultQuery)){
                     $selectedProduct = $row['id'];
+                    $selectedImage = $row['imagem'];
                     break;
                 }
             }
+            unlink("../../imgAcervo/../view/pages/imgAcervo/$selectedImage");
             $idPeca = $selectedProduct;
-            $queryUpdate = "UPDATE `Pecas` SET `descricao`='$desc',`ano`='$ano',`artista`='$artista',`nome`='$nome' WHERE id = $idPeca";
+            $queryUpdate = "UPDATE `Pecas` SET `descricao`='$desc',`ano`='$ano',`artista`='$artista',`nome`='$nome', `imagem`='$foto' WHERE id = $idPeca";
             return mysqli_query($mysqli, $queryUpdate);
         }
         public function deletarPeca($nomePeca) {
             $mysqli =$this->conectar();
             $query = "DELETE FROM Pecas where nome='$nomePeca'";
+
+            $queryImagem = "SELECT imagem FROM Pecas where nome = '$nomePeca'";
+            $resultQuery = mysqli_query($mysqli, $queryImagem);
+
+            if(mysqli_num_rows($resultQuery)>0){
+                while($row = mysqli_fetch_assoc($resultQuery)){
+                    $selectedImage = $row['imagem'];
+                    break;
+                }
+            }
+            unlink("../../imgAcervo/../view/pages/imgAcervo/$selectedImage");
             return mysqli_query($mysqli, $query);
         }
     }
