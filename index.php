@@ -36,8 +36,6 @@
             <h2>Tendo algum problema?</h2>
 
             <div class="contato-container">
-                <img src="./view/images/default_profile_pic.png" alt="profile-pic">
-
                 <form method="POST">
                     <div>
                         <label for="email-contato">Email:</label>

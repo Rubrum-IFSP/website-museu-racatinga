@@ -43,7 +43,7 @@
                 return false;
             }
 
-            $query = "INSERT INTO `Pessoa`(`tipoUser`, `nome`, `cpf`, `senha`, `rg`, `nick`) VALUES('amg','$nome','$cpf','$senha','$rg', '$username')";
+            $query = "INSERT INTO `Pessoa`(`tipoUser`, `nome`, `cpf`, `senha`, `rg`, `nick`) VALUES('$tipoUsuario','$nome','$cpf','$senha','$rg', '$username')";
             $cadastrado = mysqli_query($this->conectar(),$query);
 
             if ($cadastrado == true) {

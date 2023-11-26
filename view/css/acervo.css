@@ -1,7 +1,7 @@
 @import url("./layout.css");
 
 body {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,6 +12,10 @@ body {
 header {
     position: relative;
     background-color: var(--secondary-color);
+}
+
+h1 {
+    text-align: center;
 }
 
 .wrapper-peca {
@@ -69,7 +73,6 @@ header {
 
 .container-peca figure {
     position: absolute;
-    top: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -141,6 +144,10 @@ header {
 }
 
 @media (max-width: 1025px) {
+    h1 {
+        font-size: 1.6em;
+    }
+
     .wrapper-peca {
         grid-template-columns: 1fr;
     }

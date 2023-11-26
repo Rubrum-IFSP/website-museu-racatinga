@@ -23,10 +23,13 @@
         .message {
             width: 100%;
             text-align: center;
-            font-size: 2.5em;
+            font-size: 1.5em;
             font-weight: 700;
-            color: crimson;
+            background-color: crimson;
+            color: white;
             margin: 10px 0 30px 0;
+            padding: 5px;
+            border-radius: 10px;
         }
     </style>
 </head>

@@ -34,7 +34,7 @@
 
     <div class="navegacao-acervo">
         <?php
-            echo "<h1>Página</h1> <div><p>", $_GET["pagina"] + 1, " de ", $maxPaginas, "</p></div>"; 
+            echo "<h1>Acervo Museu Paulo Agostinho Sobrinho</h1> <div><p>", $_GET["pagina"] + 1, " de ", $maxPaginas, "</p></div>"; 
             include "../components/barraNavegacaoAcervo.php";
         ?>
     </div>

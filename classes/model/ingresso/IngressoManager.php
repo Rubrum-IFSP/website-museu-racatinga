@@ -17,7 +17,7 @@
                 $codigo = ($idEvento+2)*random_int(2, 100) + $selectedProduct;
                 $queryCreateIngresso ="INSERT INTO `IngressoEvento`(`idPessoa`, `idEvento`,`codigo`, `dataCompra`) VALUES ($selectedProduct, $idEvento,$codigo,CURRENT_DATE)";
                 mysqli_query($this->conectar(), $queryCreateIngresso);
-                $_SESSION["ingressoMessage"] = "Compra Realizada Com Sucesso!";
+                $_SESSION["ingressoMessage"] = "Compra Realizada Com Sucesso!<br>(Ingressos comprados podem ser vistos em seu perfil)";
                 return true;
             }
             else

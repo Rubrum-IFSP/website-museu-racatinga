@@ -1,32 +1,66 @@
 <?php
     session_start();
 ?>
+    
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/crudAdm.css">
     <style>
-        h1 {
-            color: white;
-            margin: 30px;
+        body {
+            background-color: var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
         }
+
+        h1 {
+            width: 100%;
+            color: white;
+            padding: 5px;
+            font-size: 1.5em;
+            background-color: red;
+            margin-top: 0;
+        }
+
+        form {
+            border-radius: 0;
+        }
+
         button {
             cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <h1>É necessário mudar a senha e adicionar suas informações pessoais para continuar</h1>
-    <form method="POST">
+    <?php 
+        echo"<h1>";
+        if ( !isset($_SESSION["registroMessage"]) ) {
+            echo "É necessário mudar a senha e adicionar suas informações pessoais para continuar";
+        } else {
+            echo $_SESSION["registroMessage"];
+            unset($_SESSION["registroMessage"]);
+        }
+        echo "</h1>";
+    ?>
+    <form method="POST" action="logarAdm.php">
         <div>
             <label for="nome">Nome:</label>
             <input type="text" name="user" id="nome" required>
         </div>
 
         <div>
+            <label for="username">Nome de Usuário:</label>
+            <input type="text" name="username" id="username" required>
+        </div>
+
+        <div>
             <label for="senha">Senha:</label>
-            <input type="text" name="senha" id="senha" required>
+            <input type="password" name="senha" id="senha" required>
         </div>
 
         <div>
@@ -39,31 +73,7 @@
             <input type="text" name="cpf" maxlength ='11' id="cpf" required>
         </div>
         
-        <button type="submit" name="submit">Cadastrar Novo ADM</button>
+        <button type="submit" name="cadastrar">Cadastrar Novo ADM</button>
     </form>
-
-
-    <?php
-        include ("../../classes/controller/usuario/UsuarioController.php");
-
-        if(isset($_POST['senha'])){
-            $usuario = new UsuarioVO(
-                "adm",
-                $_POST['user'],
-                $_POST['cpf'],
-                $_POST['senha'],
-                $_POST['rg'],
-            );
-
-            $controller = new UsuarioController();
-            $controller->cadastrar($usuario);
-
-            foreach ($_POST as $key => $value) {
-                unset($_POST[$key]);
-            }
-
-            header("location: ./admMenu.php");
-        }
-    ?>
 </body>
 </html>

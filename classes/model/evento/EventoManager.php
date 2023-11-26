@@ -1,6 +1,6 @@
 <?php 
     class EventoManager extends Conexao {
-        public function AdicionarEvento(EventoVO $evento) {
+        public function adicionarEvento(EventoVO $evento) {
             $mysqli = $this->conectar();
             $nome = $evento->getNome();
             $data = $evento->getData();
@@ -92,7 +92,7 @@
                 echo "</div>";
             }
         }
-        public function getEvento($nomeEvento) : EventoVO {
+        public function getEvento($nomeEvento) {
             $mysqli = $this->conectar();
             $query = "SELECT * FROM Evento where nome = '$nomeEvento'";
             $resultQuery = mysqli_query($mysqli, $query);
