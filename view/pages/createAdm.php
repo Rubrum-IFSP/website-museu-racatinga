@@ -53,7 +53,7 @@
                 
                 <div>
                     <label for="ano">Ano: </label> 
-                    <input type="date" name="ano" id="ano" required>
+                    <input type="number" name="ano" id="ano" required>
                 </div>
 
                 <div>
@@ -62,7 +62,7 @@
                 </div>
                 <div>
                     <label for="imagem">Imagem: </label>
-                    <input type="file" name="imagem" id ="imagem" required>
+                    <input type="file" accept="image/*" name="imagem" id ="imagem" required>
                 </div>
 
                 <button type="submit" name="submit">Enviar</button> 
@@ -95,7 +95,7 @@
                 $newImageName = uniqid();
                 $newImageName .= '.'.$imageExtension;
 
-                move_uploaded_file($tmpName,'imgAcervo/'.$newImageName);
+                move_uploaded_file($tmpName,'../imgAcervo/'.$newImageName);
             }
             
             $peca = new PecaVO(
@@ -104,7 +104,6 @@
                 $_POST['ano'],
                 $_POST['artista'],
                 $newImageName
-
             );
             
             $controller->adicionarPeca($_POST["eventos"], $peca);

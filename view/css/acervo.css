@@ -20,7 +20,7 @@ header {
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
     padding: 20px;
-    gap: 20px;
+    gap: 40px;
 }
 
 .navegacao-acervo {
@@ -44,22 +44,32 @@ header {
 
 .container-peca,
 .informacoes-peca  {
-    background: #585858b7;
     display: flex;
-    padding: 15px;
+    height: 400px;
+    width: 400px;
+    transition: transform .18s ease;
+    transform: scale(1);
 }
 
 .container-peca {
+    justify-content: center;
+    align-items: center;
     position: relative;
-    height: 350px;
-    width: 350px;
     border-radius: 15px;
+    overflow: hidden;
+    transform-origin: center;
+    cursor: default;
+    background: var(--secondary-color);
+}
+
+.container-peca:hover,
+.informacoes-peca {
+    transform: scale(1.1);
 }
 
 .container-peca figure {
     position: absolute;
     top: 0;
-    left: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -92,14 +102,16 @@ header {
 .informacoes-peca {
     display: flex;
     position: absolute;
+    top: 0;
+    left: 0;
     flex-direction: column;
     justify-content: space-evenly;
     font-size: 1.3em;
-    height: 100%;
-    width: 100%;
     gap: 15px;
     opacity: 0;
-    transition: .25s;
+    transition: opacity .15s;
+    padding: 20px;
+    background: #585858b7;
 }
 
 .container-peca:hover .informacoes-peca {
@@ -133,7 +145,8 @@ header {
         grid-template-columns: 1fr;
     }
 
-    .container-peca {
+    .container-peca,
+    .informacoes-peca {
         height: 300px;
         width: 300px;
     }

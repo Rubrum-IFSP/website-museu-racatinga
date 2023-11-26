@@ -49,18 +49,22 @@
             while($linha=mysqli_fetch_array($listar)){
                 echo "<div class='container-peca'>";
                     echo "<figure>";
-                        echo "<img src='./imgAcervo/$linha[5]'>";
-                        echo "<div class='informacoes-peca'>";
-                            echo "<h2><spam class='peca-titulo'>".$linha[4]."</spam></h2>";
-                            echo "<div class='informacoes-top'>";
-                                echo "<p><spam class='peca-titulo'>Artista: </spam>".$linha[3]."</p>";
-                                echo "<p><spam class='peca-titulo'>Ano de criação: </spam>".$linha[2]."</p>";
-                            echo "</div>";
-                            echo "<div class='informacoes-bottom'>";
-                                echo "<a href='./verPeca.php?peca=$linha[0]'><button class='saiba-mais'>Saiba Mais</button></a>";
-                            echo "</div>";
-                        echo "</div>";
+                        if ($linha[5] != null) {
+                            echo "<img src='../imgAcervo/$linha[5]'>";
+                        } else {
+                            echo "<img src='../images/imagem.png'>";
+                        }
                     echo "</figure>";
+                    echo "<div class='informacoes-peca'>";
+                        echo "<h2><spam class='peca-titulo'>".$linha[4]."</spam></h2>";
+                        echo "<div class='informacoes-top'>";
+                            echo "<p><spam class='peca-titulo'>Artista: </spam>".$linha[3]."</p>";
+                            echo "<p><spam class='peca-titulo'>Ano de criação: </spam>".$linha[2]."</p>";
+                        echo "</div>";
+                        echo "<div class='informacoes-bottom'>";
+                            echo "<a href='./verPeca.php?peca=$linha[0]'><button class='saiba-mais'>Saiba Mais</button></a>";
+                        echo "</div>";
+                    echo "</div>";
                 echo "</div>";
             }
         }
