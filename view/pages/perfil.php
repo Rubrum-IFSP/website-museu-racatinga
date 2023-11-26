@@ -41,14 +41,14 @@
     
     <main>
         <div>
-            <h1><?php echo $username?></h1>
-            <h2>(username)</h2>
+            <h1><?php echo $usuario->getNome() ?></h1>
+            <h2><?php echo $username ?></h2>
         </div>
 
         <?php 
             if ( $ownProfile || $_SESSION["admLogged"] ) {
                 echo "<div><button>Informações Pessoais</button></div>";
-                echo "<div>$</div>";
+                echo "<div>".$ingressoController->mostrarIngressos($username)."</div>";
             }
         ?>
     </main>

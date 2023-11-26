@@ -10,5 +10,9 @@
         public function comprarIngresso($username, $idEvento) {
             return $this->model->comprarIngresso($username, $idEvento);
         }
+
+        public function mostrarIngressos($username) {
+            return $this->model->mostrarIngressos($username);
+        }
     }
 ?>

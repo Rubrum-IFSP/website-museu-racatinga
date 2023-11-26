@@ -45,7 +45,7 @@
 
         <div class="userinfo-area">
             <div class="userinfo-box">
-                <label for="nome">Nome:</label>
+                <label for="nome">Nome Completo:</label>
                 <input type="text" name="nomeRegistro" >
             </div>
 

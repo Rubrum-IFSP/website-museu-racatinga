@@ -3,7 +3,7 @@
         public function comprarIngresso($username, $idEvento) {
             if (session_id() == '') session_start();
 
-            $queryFindId = "SELECT id from Pessoa WHERE nome='$username'";
+            $queryFindId = "SELECT id from Pessoa WHERE nick='$username'";
             $findIdReturn = mysqli_query($this->conectar(), $queryFindId);
 
             if(mysqli_num_rows($findIdReturn)>0)
@@ -22,12 +22,12 @@
             }
             else
             {
-                $_SESSION["ingressoMessage"] = "Erro ao Realizar compra!";
+                $_SESSION["ingressoMessage"] = "Erro ao Realizar compra.";
                 return false;
             }
         }
         public function mostrarIngressos($username) {
-            $query = "SELECT id FROM Pessoa where nome = '$username'";
+            $query = "SELECT id FROM Pessoa where nick = '$username'";
             $resultQuery = mysqli_query($this->conectar(), $query);
 
             if(mysqli_num_rows($resultQuery)>0){
@@ -45,7 +45,10 @@
                     $idEvento = $row['idEvento'];
                     break;  
                 }
+            } else {
+                return false;
             }
+
             $resultNomeEvento= mysqli_query($this->conectar(),"SELECT nome from Evento, IngressoEvento WHERE  $idEvento = Evento.id ");
 
             while($linha=mysqli_fetch_array($resultIngressos)){
