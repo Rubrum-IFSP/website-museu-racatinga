@@ -11,12 +11,13 @@
             $_POST['nomeRegistro'],
             $_POST['cpfRegistro'],
             $_POST['senhaRegistro'],
-            $_POST['rgRegistro']
+            $_POST['rgRegistro'],
+            $_POST['usernameRegistro']
         );
 
         $usuarioController->cadastrar($usuario);
     } else if ( isset($_POST["login"]) ) {
-        $nome = $_POST['nomeLogin'];
+        $nome = strtolower( $_POST['nomeLogin'] );
         $senha = $_POST['senhaLogin'];
  
         $usuarioController->entrar($nome, $senha);

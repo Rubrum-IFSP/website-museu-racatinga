@@ -8,24 +8,26 @@
 
         public function cadastrar(UsuarioVO $usuario) {
             $tipoUsuario = $usuario->getTipoUsuario();
-            $nome = strtolower($usuario->getNome());
+            $nome = $usuario->getNome();
+            $username = strtolower($usuario->getUsername());
             $cpf = $usuario->getCpf();
             $senha = $usuario->getSenha();
             $rg = $usuario->getRg();
 
-            if ( $nome== '' || $cpf == '' || $senha == '' || $rg == '' ) {
+            if ( $nome== '' || $username == '' || $cpf == '' || $senha == '' || $rg == '' ) {
                 $_SESSION["registroMessage"] = "Preencha todos os campos!";
                 return false;
             }
 
             $cadastrado = false;
-            $resultNome = mysqli_query($this->conectar(), "SELECT * FROM Pessoa where nome='$nome'");
-            
+
+            $resultNome = mysqli_query($this->conectar(), "SELECT * FROM Pessoa where nick='$username'");
             if(mysqli_num_rows($resultNome)>0)
             {
-                $_SESSION["registroMessage"] = "Este nome já está cadastrado.";
+                $_SESSION["registroMessage"] = "Este nome de usuário já está cadastrado.";
                 return false;
             }
+
             $resultCpf = mysqli_query($this->conectar(), "SELECT * FROM Pessoa where cpf='$cpf'");
             if(mysqli_num_rows($resultCpf)>0)
             {
@@ -33,6 +35,7 @@
                 return false;
 
             }
+
             $resultRg = mysqli_query($this->conectar(), "SELECT * FROM Pessoa where nome='$rg'");
             if(mysqli_num_rows($resultRg)>0)
             {
@@ -40,7 +43,7 @@
                 return false;
             }
 
-            $query = "INSERT INTO `Pessoa`(`tipoUser`, `nome`, `cpf`, `senha`, `rg`) VALUES('amg','$nome','$cpf','$senha','$rg')";
+            $query = "INSERT INTO `Pessoa`(`tipoUser`, `nome`, `cpf`, `senha`, `rg`, `nick`) VALUES('amg','$nome','$cpf','$senha','$rg', '$username')";
             $cadastrado = mysqli_query($this->conectar(),$query);
 
             if ($cadastrado == true) {
@@ -51,7 +54,7 @@
                     $_SESSION["amgLogged"] = true;
                     $_SESSION["admLogged"] = false;
                 }
-                $_SESSION["username"] = $nome;
+                $_SESSION["username"] = $username;
                 $_SESSION["userpass"] = $senha;
             }
             
@@ -59,16 +62,22 @@
         }
         public function entrar($nome, $senha) {
             $mysqli = $this->conectar();
-            $querySenha = "SELECT senha from Pessoa where nome='$nome' and senha='$senha'";
-            $queryUser = "SELECT nome from Pessoa where nome='$nome' and senha='$senha'";
-
+            
+            $queryUser = "SELECT nick from Pessoa where (LOWER(nick)='$nome' or LOWER(nome)='$nome') and senha='$senha'";
             $resultUser= mysqli_fetch_row( mysqli_query($mysqli,$queryUser) );
+            
+            if (strtolower($resultUser[0]) != $nome) {
+                $queryUser = "SELECT nome from Pessoa where (LOWER(nick)='$nome' or LOWER(nome)='$nome') and senha='$senha'";
+                $resultUser = mysqli_fetch_row( mysqli_query($mysqli,$queryUser) );
+            }
+
+            $querySenha = "SELECT senha from Pessoa where (LOWER(nick)='$nome' or LOWER(nome)='$nome') and senha='$senha'";
             $resultSenha = mysqli_fetch_row( mysqli_query($mysqli,$querySenha) );
 
             if($resultUser!=null && $resultSenha!=null)
             {
-                if($nome==$resultUser[0] && $senha ==$resultSenha[0]) {
-                    $queryTipoUsuario = "SELECT tipoUser from Pessoa where nome='$nome' and senha='$senha'";
+                if($nome == strtolower($resultUser[0]) && $senha == $resultSenha[0]) {
+                    $queryTipoUsuario = "SELECT tipoUser from Pessoa where (nick='$nome' or nome='$nome') and senha='$senha'";
                     $tipoUsuario = mysqli_fetch_row( mysqli_query($mysqli,$queryTipoUsuario) )[0];
 
                     if ($tipoUsuario == "adm") {
@@ -78,7 +87,9 @@
                         $_SESSION["amgLogged"] = true;
                         $_SESSION["admLogged"] = false;
                     }
-                    $_SESSION["username"] = $nome;
+
+                    $username = mysqli_fetch_row( mysqli_query($mysqli,"SELECT nick from Pessoa where (LOWER(nick)='$nome' or LOWER(nome)='$nome') and senha='$senha'") )[0];
+                    $_SESSION["username"] = $username;
                     $_SESSION["userpass"] = $senha;
                     return true;
                 }
@@ -127,7 +138,7 @@
         }
         public function getUsuario($nome) {
             $mysqli = $this->conectar();
-            $query = "SELECT * FROM Pessoa where nome='$nome'";
+            $query = "SELECT * FROM Pessoa where nick='$nome'";
             $resultado = mysqli_query($mysqli, $query);
 
             if (is_bool($resultado) || is_null($resultado)) return $resultado;
@@ -139,7 +150,8 @@
                     $linha[2],
                     $linha[3],
                     $linha[4],
-                    $linha[5]
+                    $linha[5],
+                    $linha[6]
                 );
             } 
 

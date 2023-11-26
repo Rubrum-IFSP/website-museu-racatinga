@@ -48,6 +48,11 @@
                 <label for="nome">Nome:</label>
                 <input type="text" name="nomeRegistro" >
             </div>
+
+            <div class="userinfo-box">
+                <label for="username">Nome de Usuário:</label>
+                <input type="text" name="usernameRegistro" >
+            </div>
             
             <div class="userinfo-box">
                 <label for="">Senha: </label>

@@ -4,6 +4,7 @@
     require_once "../../classes/controller/ingresso/IngressoController.php";
     
     $usuarioController = new UsuarioController();
+    $ingressoController = new IngressoController();
     
     try {
         $ownProfile = true; 
@@ -34,17 +35,23 @@
     <title><?php echo $username?> - Museu Racatinga</title>
 </head>
 <body>
-        <?php
-           require_once "../components/navbar.php";
-        ?>
-        
-        <h1><?php echo $username?></h1>
+    <?php
+        require_once "../components/navbar.php";
+    ?>
+    
+    <main>
+        <div>
+            <h1><?php echo $username?></h1>
+            <h2>(username)</h2>
+        </div>
 
         <?php 
             if ( $ownProfile || $_SESSION["admLogged"] ) {
-                echo "<button>Informações Pessoais</button>";
+                echo "<div><button>Informações Pessoais</button></div>";
+                echo "<div>$</div>";
             }
         ?>
+    </main>
 </body>
 
 </html>
