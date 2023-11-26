@@ -8,6 +8,14 @@
 
     <form method ="POST" action="/prototipo-museu-racatinga/view/pages/logarUsuario.php" class="account-wrapper login">
         <h1>Bem Vindo de Volta!</h1>
+        
+        <?php
+            if (isset($_SESSION["loginMessage"])) {
+                echo "<div class='loginMessage'>".$_SESSION["loginMessage"]."</div>";
+                unset($_SESSION["loginMessage"]);
+            }
+        ?>
+
         <div class="userinfo-box">
             <label for="nome">Nome:</label>
             <input type="text" name="nomeLogin">
@@ -20,12 +28,6 @@
 
         <button type="submit" name="login">Entrar</button>
 
-        <?php
-            if (isset($_SESSION["loginMessage"])) {
-                echo "<div class='message'>".$_SESSION["loginMessage"]."</div>";
-            }
-        ?>
-
         <div class="change-wrapper">
             <p>Não tem uma conta? <span class="register-button">Registre-se agora!</span></p>
         </div>
@@ -33,10 +35,23 @@
 
     <form method ="POST" action="/prototipo-museu-racatinga/view/pages/logarUsuario.php" class="account-wrapper register">
         <h1>Bem Vindo ao Museu!</h1>
+
+        <?php
+            if (isset($_SESSION["registroMessage"])) {
+                echo "<div class='registroMessage'>".$_SESSION["registroMessage"]."</div>";
+                unset($_SESSION["registroMessage"]);
+            }
+        ?>
+
         <div class="userinfo-area">
             <div class="userinfo-box">
-                <label for="nome">Nome:</label>
+                <label for="nome">Nome Completo:</label>
                 <input type="text" name="nomeRegistro" >
+            </div>
+
+            <div class="userinfo-box">
+                <label for="username">Nome de Usuário:</label>
+                <input type="text" name="usernameRegistro" >
             </div>
             
             <div class="userinfo-box">
@@ -56,12 +71,6 @@
                 <input type="text" name="rgRegistro" maxlength="9" required>
             </div>
         </div>
-
-        <?php
-            if (isset($_SESSION["registroMessage"])) {
-                echo "<div class='message'>".$_SESSION["registroMessage"]."</div>";
-            }
-        ?>
 
         <button type="submit" name="cadastrar" value="true">Registrar</button>
 

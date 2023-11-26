@@ -12,11 +12,11 @@
         public function cadastrar(UsuarioVO $usuario) {
             return $this->model->cadastrar($usuario);
         }
-        public function entrar(UsuarioVo $usuario) {
-            return $this->model->entrar($usuario);
+        public function entrar($nome, $senha) {
+            return $this->model->entrar($nome, $senha);
         }
-        public function getUsuario(string $nome, string $senha) {
-            return $this->model->getUsuario($nome, $senha);
+        public function getUsuario($nome) {
+            return $this->model->getUsuario($nome);
         }
         public function procurarAdm() {
             return $this->model->procurarAdm();

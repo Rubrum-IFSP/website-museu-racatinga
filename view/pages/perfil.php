@@ -1,5 +1,29 @@
 <?php
-session_start();
+    session_start();
+    require_once "../../classes/controller/usuario/UsuarioController.php";
+    require_once "../../classes/controller/ingresso/IngressoController.php";
+    
+    $usuarioController = new UsuarioController();
+    $ingressoController = new IngressoController();
+    
+    try {
+        $ownProfile = true; 
+        if ( !isset($_SESSION["username"]) && !isset($_SESSION["userpass"]) ) {
+            throw new Exception("Usuario Deslogado");
+        }
+
+        if (isset($_GET['user']) && $_GET['user'] == 'self' ) { 
+            $username = $_SESSION["username"];
+            $ownProfile = true;
+        } else if (isset($_GET['user'])) {
+            $username = $_GET['user'];
+            $ownProfile = false;
+        }
+        
+        $usuario = $usuarioController->getUsuario( $username );
+    } catch (Exception $e) {
+        header("Location: ../../index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -8,35 +32,25 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/perfil.css">
-    <title>Museu Racatinga - Perfil</title>
+    <title><?php echo $username?> - Museu Racatinga</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="../../index.php">Página Inicial</a>
-            <a href="./acervo.php">Acervo</a>
-            <a href='./deslogar.php' class='open-login-button'>Deslogar</a>
-            <a href='./acervoEvento.php' class='open-login-button'>Eventos</a>
- 
-        
-        </nav>
-    </header>
+    <?php
+        require_once "../components/navbar.php";
+    ?>
+    
     <main>
-        <?php
-            require "../../classes/Conexao.php";
-            require "../../classes/AmigoDoMuseu.php";
-            require "../../classes/CreateIngressos.php";
+        <div>
+            <h1><?php echo $usuario->getNome() ?></h1>
+            <h2><?php echo $username ?></h2>
+        </div>
 
-            $classPerfil = new AmigoDoMuseu();
-
-            $classPerfil->mostrarDados($_SESSION['username']);
-            $classIngresso = new CreateIngressos();
-
-            $classIngresso->mostrarIngressos($_SESSION['username']);
-
+        <?php 
+            if ( $ownProfile || $_SESSION["admLogged"] ) {
+                echo "<div><button>Informações Pessoais</button></div>";
+                echo "<div>".$ingressoController->mostrarIngressos($username)."</div>";
+            }
         ?>
-
-
     </main>
 </body>
 

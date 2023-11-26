@@ -44,7 +44,7 @@
         public function listar() {
             $offsetAtual = $this->pagina*$this->limitePecas;
 
-            $listar = mysqli_query($this->conexao,"SELECT `id`, `descricao`, `ano`, `artista`, `nome`,`imagem` FROM `Pecas` LIMIT $offsetAtual, $this->limitePecas ;");
+            $listar = mysqli_query($this->conexao,"SELECT `id`, `descricao`, `ano`, `artista`, `nome`, `imagem` FROM `Pecas` LIMIT $offsetAtual, $this->limitePecas ;");
 
             while($linha=mysqli_fetch_array($listar)){
                 echo "<div class='container-peca'>";

@@ -11,23 +11,21 @@
             $_POST['nomeRegistro'],
             $_POST['cpfRegistro'],
             $_POST['senhaRegistro'],
-            $_POST['rgRegistro']
+            $_POST['rgRegistro'],
+            $_POST['usernameRegistro']
         );
 
         $usuarioController->cadastrar($usuario);
     } else if ( isset($_POST["login"]) ) {
-        $nome = $_POST['nomeLogin'];
+        $nome = strtolower( $_POST['nomeLogin'] );
         $senha = $_POST['senhaLogin'];
-
-        $usuario = $usuarioController->getUsuario($nome, $senha);
-        if( $usuario != false ) {
-            $usuarioController->entrar($usuario);
-        }
+ 
+        $usuarioController->entrar($nome, $senha);
     }
 
     foreach ($_POST as $key => $value) {
         unset($_POST[$key]);
     }
 
-    header("Location: $path/prototipo-museu-racatinga/index.php");
+    header("Location: {$_SERVER['HTTP_REFERER']}");
 ?>
