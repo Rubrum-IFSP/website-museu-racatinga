@@ -7,9 +7,7 @@
         $username = $_SESSION['username'];
 
         $controller = new IngressoController();
-        for ($i=0; $i < $_POST["quantidade-ingressos"]; $i++) { 
             $controller->comprarIngresso($username,$idEvento);
-        }
     } else if (!isset($_POST["check"])) {
         $_SESSION["ingressoMessage"] = "Confirme a Compra dos Ingresos";
     }
