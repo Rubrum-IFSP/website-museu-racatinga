@@ -88,7 +88,7 @@ header("Location: ./loginAdmPagina.php");
                 $imageExtension =strtolower(end($imageExtension));
     
                 if(!in_array($imageExtension, $validImageExtension)){
-                    echo "<script> alert('we only accept png, jpg and jpeg')</script>";
+                    echo "<script> alert('Apenas aceitamos PNG, JPG e JPEG')</script>";
                 }
                 else if ($fileSize>1000000){
                     echo "<script> alert('image too large')</script>";
@@ -97,7 +97,7 @@ header("Location: ./loginAdmPagina.php");
                     $newImageName = uniqid();
                     $newImageName .= '.'.$imageExtension;
     
-                    move_uploaded_file($tmpName,'imgAcervo/'.$newImageName);
+                    move_uploaded_file($tmpName,'../imgAcervo/'.$newImageName);
                 }
 
                 $novaPeca = new PecaVO(
@@ -112,7 +112,7 @@ header("Location: ./loginAdmPagina.php");
                 $controller->editarPeca($nomePeca, $novaPeca);
             }
             else{
-                echo "<script>alert('Escolha um Evento Válido!')</script>";
+                echo "<script>alert('Escolha uma Peça Válida!')</script>";
             }
         }
     }

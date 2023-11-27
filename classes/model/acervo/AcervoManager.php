@@ -118,7 +118,6 @@
                     break;
                 }
             }
-            unlink("../../imgAcervo/../view/pages/imgAcervo/$selectedImage");
             $idPeca = $selectedProduct;
             $queryUpdate = "UPDATE `Pecas` SET `descricao`='$desc',`ano`='$ano',`artista`='$artista',`nome`='$nome', `imagem`='$foto' WHERE id = $idPeca";
             return mysqli_query($mysqli, $queryUpdate);
