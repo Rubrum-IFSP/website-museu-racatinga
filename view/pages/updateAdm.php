@@ -53,7 +53,7 @@ header("Location: ./loginAdmPagina.php");
 
             <div>
                 <label for="ano">Ano: </label>
-                <input type="date" name="ano" id="ano" required>
+                <input type="number" name="ano" id="ano" required>
             </div>
 
             <div>

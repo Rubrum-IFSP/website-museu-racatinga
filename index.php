@@ -53,8 +53,11 @@
                     if(isset($_POST['submitComentario']) ){
                         $email = $_POST['email'];
                         $comentario = $_POST['fale-conosco-contato'];
-                        $Comentario = new ComentarioManager();
-                        $Comentario->criarComentario($email,$comentario);
+                        
+                        if ( $email != '' && $comentario != '' ) {
+                            $comentarioManager = new ComentarioManager();
+                            $comentarioManager->criarComentario($email,$comentario);
+                        }
                     } 
                 ?>
             </div>

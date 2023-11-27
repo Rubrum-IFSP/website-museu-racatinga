@@ -100,6 +100,7 @@ button:active {
         width: 60%;
     }
 }
+
 .container-perfil{
     font-size:2em;
     padding:20px 330px 20px 330px;
@@ -110,23 +111,39 @@ button:active {
     
 
 }
-.container-perfil spam{
 
+.container-perfil spam{
     padding:20px;
 }
+
 .container-perfil p{
     padding:20px;
     font-weight:bolder;
     background-color:rgba(12, 57, 19, 0.529);
     margin-bottom:10px;
-    border-radius:30px;
-
-    
+    border-radius:30px;   
 }
+
 .container-perfil h1{
     font-size:1.5em;
     margin-bottom:20px;
 }
+
 .container-perfil h3{
     margin-bottom:20px;
+}
+
+.ingresso-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.container-ingresso p {
+    font-size: 1.1em;
+}
+
+.titulo-ingresso {
+    font-size: 1.1em;
+    font-weight: 700;
 }

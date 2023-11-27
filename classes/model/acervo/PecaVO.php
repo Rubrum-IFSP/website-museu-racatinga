@@ -5,6 +5,7 @@
         private $ano;
         private string $artista;
         private $foto;
+        private $evento;
 
         public function getNome() {
             return $this->nome;
@@ -35,6 +36,12 @@
         }
         public function setFoto($foto) {
            $this->foto = $foto; 
+        }
+        public function getEvento() {
+            return $this->idEvento;
+        }
+        public function setEvento($idEvento) {
+            $this->idEvento = $idEvento;
         }
 
         public function __construct($nome, $descricao, $ano, $artista,$foto) {

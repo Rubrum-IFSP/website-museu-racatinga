@@ -75,14 +75,13 @@
 
             while($linha=mysqli_fetch_array($listar)){
                 echo "<div class='container-event'>";
-                    echo "<figure>";
-                        echo "<img src='../images/imagem.png'>";
-                        echo "<div class='evento-background'></div>";
-                    echo "</figure>"; 
                     echo "<div>";
                         echo "<div class='information-upper'>";
                             echo "<p class='evento-title'>$linha[0]</p>";
                             echo "<p class='evento-title'>$linha[2]</p>";
+                            if ( isset($_SESSION["admLogged"]) || isset($_SESSION["amgLogged"]) ) echo "<p class='evento-title'><a href='./ingressosPagina.php'>Comprar Ingresso</a>";
+                            else echo "<p class='evento-title ingresso-link'>Entre com uma conta para comprar seu ingresso";
+                            echo "</p>";
                         echo "</div>";
                         echo "<div class='information-down'>";
                             echo "<p class='evento-title'>Descrição: </p>";

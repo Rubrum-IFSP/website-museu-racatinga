@@ -25,13 +25,19 @@
             
             $linha = mysqli_fetch_row($resultado);
             if ($linha != NULL) {
-                return new PecaVO(
+                $eventoQuery = "SELECT `nome` FROM Evento WHERE id =".$linha[0];
+                $eventoResult = mysqli_query($this->conexao, $eventoQuery);
+                $evento = mysqli_fetch_row($eventoResult)[0];
+
+                $peca = new PecaVO(
                     $linha[5],
                     $linha[2],
                     $linha[3],
                     $linha[4],
                     $linha[6]
                 );
+                $peca->setEvento($evento);
+                return $peca;
             } 
 
             return false;
@@ -45,7 +51,7 @@
             $offsetAtual = $this->pagina*$this->limitePecas;
 
             $listar = mysqli_query($this->conexao,"SELECT `id`, `descricao`, `ano`, `artista`, `nome`, `imagem` FROM `Pecas` LIMIT $offsetAtual, $this->limitePecas ;");
-
+            
             while($linha=mysqli_fetch_array($listar)){
                 echo "<div class='container-peca'>";
                     echo "<figure>";

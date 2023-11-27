@@ -33,6 +33,7 @@
             </div>
 
             <div class="informacoes-bottom">
+                <?php echo "<h3>Evento: ".$peca->getEvento()."</h3>" ?>
                 <?php echo "<p>".$peca->getDescricao()."</p>" ?>
             </div>
         </div>

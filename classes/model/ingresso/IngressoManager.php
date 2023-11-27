@@ -39,18 +39,19 @@
             $queryIngressos = "SELECT IngressoEvento.codigo, IngressoEvento.dataCompra, IngressoEvento.idEvento FROM IngressoEvento where IngressoEvento.idPessoa = $selectedProduct";
             $resultIngressos = mysqli_query($this->conectar(), $queryIngressos);
 
-
+            echo "<div class='ingresso-wrapper'>";
             while($linha=mysqli_fetch_array($resultIngressos)){
                 echo "<div class='container-ingresso'>";
-                    echo "<p><spam class='content-ingresso'>Codigo: </spam>".$linha[0]. "</p>";
-                    echo "<p class='content-ingresso'>Data de Compra: ".$linha[1]."</p>";
+                    echo "<p><spam class='titulo-ingresso'>Codigo: </spam>".$linha[0]. "</p>";
+                    echo "<p><spam class='titulo-ingresso'>Data de Compra: </spam>".$linha[1]."</p>";
                     $idEvento = $linha[2];
                     $resultEvento = mysqli_query($this->conectar(),"SELECT nome From Evento WHERE id=$idEvento");
                     while($linhaEvento =mysqli_fetch_array($resultEvento)){
-                        echo "<p class='content-ingresso'>Evento: ".$linhaEvento[0]."</p>";
+                        echo "<p><spam class='titulo-ingresso'>Evento: </spam>".$linhaEvento[0]."</p>";
                     }
                 echo "</div>";
             }
+            echo "</div>";
         }
     }
 ?>

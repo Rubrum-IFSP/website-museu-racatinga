@@ -92,3 +92,19 @@ p.evento-title {
     font-weight: 700;
     text-align: center;
 }
+
+.evento-title a {
+    background-color: rgb(75, 143, 97);
+    text-decoration: none;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.ingresso-link {
+    text-transform: none;
+    background-color: rgba(220, 20, 60, 0.397);
+    padding: 5px;
+    border-radius: 5px;
+}
+
