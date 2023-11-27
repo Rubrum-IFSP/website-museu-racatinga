@@ -37,7 +37,7 @@
                     $logged=true;
                 }
 
-                if(isset($_SESSION['amgLogged']) || isset($_SESSION['admLogged'])){
+                if(isset($_SESSION['amgLogged'])){
                     echo 
                     "<a href='/prototipo-museu-racatinga/view/pages/ingressosPagina.php'>
                         Ingressos

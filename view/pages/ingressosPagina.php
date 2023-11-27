@@ -61,8 +61,6 @@
                         }
                     ?>
                 </select>
-                <label for="qtd">Quantidade de Ingressos: </label>
-                <input type="number" name="quantidade-ingressos" id="qtd" value="1" min="1" max="10" require/>
             </div>
 
             <div class='confirm-container'>
@@ -78,10 +76,5 @@
 </html>
 
 <?php    
-
-    // aq é a compra do ingresso, vc vai ter um form,***************** APENAS AMIGOS DO MUSEU PODEM ENTRAR NA PÁGINA INGRESSOS****************************
-    // 1 input = <select> com o nome dos eventos * <option value='evento1' name='$id'>
-    // 2 input check box "CERTEZA QUE QUER COMPRAR?"
-    // 3 input  BUTTON COMPRAR INGRESSO
 
 ?>
