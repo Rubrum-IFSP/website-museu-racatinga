@@ -10,7 +10,7 @@
 
         public function mostrarComentarios()
         {
-            $query = "SELECT `email`, `mensagem` FROM `Comentarios`";
+            $query = "SELECT `email`, `mensagem` FROM `Comentarios` ORDER BY id DESC";
             $listar = mysqli_query($this->conectar(),$query);
 
             while($linha=mysqli_fetch_array($listar)){

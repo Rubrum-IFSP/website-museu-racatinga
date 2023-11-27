@@ -1,0 +1,92 @@
+@import url(./layout.css);
+
+body {
+    min-height: 100vh;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-color);
+    padding: 0 10px;
+}
+
+h2, 
+h3,
+h4 {
+    text-transform: capitalize;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
+p {
+    font-size: 1.3em;
+    text-align: center;
+}
+
+.peca-wrapper {
+    margin: 100px 0;
+    background-color: var(--secondary-color);
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px 3px rgba(0, 0, 0, 0.247);
+    max-width: 100%;
+}
+
+.peca-wrapper figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    border-radius: 15px;
+    background-color: #968969a9;
+    box-shadow: 1px 2px 7px 2px rgba(0, 0, 0, 0.151);
+}
+
+.peca-wrapper img {
+    height: 100%;
+    width: auto;
+    box-shadow: 1px 2px 7px 2px rgba(0, 0, 0, 0.151);
+}
+
+.informacoes-peca {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width: 1095px) {
+    h2,
+    h3,
+    h4,
+    p {
+        text-align: left;
+    }
+
+    .peca-wrapper {
+        flex-direction: row;
+        width: 60%;
+        height: 350px;
+        font-size: 1.3em;
+    }
+
+    .informacoes-peca {
+        justify-content: space-evenly;
+    }
+}
