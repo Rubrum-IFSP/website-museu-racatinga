@@ -114,6 +114,11 @@ close-icon:hover {
     border-bottom: 1px solid white;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
 .userinfo-box input:hover {
     background-color: #324432;
 }

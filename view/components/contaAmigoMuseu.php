@@ -63,12 +63,12 @@
         <div class="userinfo-area">
             <div class="userinfo-box">
                 <label for="">CPF: </label>
-                <input type="text" name="cpfRegistro" maxlength="11" required>
+                <input placeholder="Digite apenas números." type="text" pattern="\d*" name="cpfRegistro" minlength="11" maxlength="11" required>
             </div>
 
             <div class="userinfo-box">
                 <label for="">RG: </label>
-                <input type="text" name="rgRegistro" maxlength="9" required>
+                <input placeholder="Digite apenas números." type="text" pattern="\d*" name="rgRegistro" minlength="9" maxlength="9" required>
             </div>
         </div>
 

@@ -17,6 +17,7 @@ main {
     justify-content: center;
     align-items: center;
     padding: 30px;
+    margin: 100px 0;
     gap: 10px;
 }
 
@@ -101,15 +102,13 @@ button:active {
     }
 }
 
-.container-perfil{
+.container-perfil {
     font-size:2em;
     padding:20px 330px 20px 330px;
     border-radius:20px;
     color:white;
     background-color:rgba(12, 57, 19, 0.529);
     text-align:center;
-    
-
 }
 
 .container-perfil spam{
@@ -135,8 +134,14 @@ button:active {
 
 .ingresso-wrapper {
     display: flex;
-    flex-direction: column;
-    gap: 5px;
+    flex-direction: column-reverse;
+    gap: 10px;
+}
+
+.container-ingresso {
+    background-color: rgba(133, 133, 133, 0.582);
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .container-ingresso p {

@@ -48,7 +48,8 @@
         <?php 
             if ( $ownProfile || $_SESSION["admLogged"] ) {
                 echo "<div><button>Informações Pessoais</button></div>";
-                echo "<div>".$ingressoController->mostrarIngressos($username)."</div>";
+                echo "<h2>Ingressos: </h2>";
+                $ingressoController->mostrarIngressos($username);
             }
         ?>
     </main>

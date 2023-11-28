@@ -79,8 +79,6 @@
                         echo "<div class='information-upper'>";
                             echo "<p class='evento-title'>$linha[0]</p>";
                             echo "<p class='evento-title'>$linha[2]</p>";
-                            if ( isset($_SESSION["admLogged"]) || isset($_SESSION["amgLogged"]) ) echo "<p class='evento-title'><a href='./ingressosPagina.php'>Comprar Ingresso</a>";
-                            else echo "<p class='evento-title ingresso-link'>Entre com uma conta para comprar seu ingresso";
                             echo "</p>";
                         echo "</div>";
                         echo "<div class='information-down'>";

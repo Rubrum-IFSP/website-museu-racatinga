@@ -58,6 +58,11 @@ h1 {
     font-size: 1.2em;
 }
 
+.information-down p {
+    overflow: auto;
+    padding: 10px;
+}
+
 .container-event, 
 .container-event div {
     flex-direction: column;
@@ -87,8 +92,6 @@ h1 {
 }
 
 p.evento-title {
-    word-wrap: break-word;
-    overflow: auto;
     font-weight: 700;
     text-align: center;
 }
