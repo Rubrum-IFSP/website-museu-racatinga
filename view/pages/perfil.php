@@ -32,6 +32,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/perfil.css">
+    <link rel="shortcut icon" href="../images/logo_rubrum.png" type="image/x-icon">
     <title><?php echo $username?> - Museu Racatinga</title>
 </head>
 <body>
@@ -47,7 +48,6 @@
 
         <?php 
             if ( $ownProfile || $_SESSION["admLogged"] ) {
-                echo "<div><button>Informações Pessoais</button></div>";
                 echo "<h2>Ingressos: </h2>";
                 $ingressoController->mostrarIngressos($username);
             }

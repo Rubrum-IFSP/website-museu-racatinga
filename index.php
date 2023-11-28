@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./view/css/index.css">
     <link rel="stylesheet" type="text/css" href="./view/css/loginWrapper.css">
+    <link rel="shortcut icon" href="view/images/logo_rubrum.png" type="image/x-icon">
     <title>Museu de Racatinga</title>
 </head>
 <body>
@@ -23,7 +24,7 @@
         <div class="background"></div>
         <h3>A história vive</h3>
         <h1>Museu de Racatinga</h1>
-        <a href="./view/pages/equipe.php">SOBRE</a>
+        <a href="./view/pages/equipe.php" style="z-index: 100">SOBRE</a>
     </section>
 
     <section class="contate-nos">

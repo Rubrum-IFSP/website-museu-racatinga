@@ -11,6 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="../css/peca.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/logo_rubrum.png" type="image/x-icon">
     <title><?php echo $peca->getNome()?> - Museu de Racatinga</title>
 </head>
 <body>

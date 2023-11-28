@@ -25,6 +25,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/acervo.css">
+    <link rel="shortcut icon" href="../images/logo_rubrum.png" type="image/x-icon">
     <title>Museu de Racatinga - Acervo</title>
 </head>
 <body>
